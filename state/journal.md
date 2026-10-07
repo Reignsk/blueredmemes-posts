@@ -15,3 +15,5 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - Open question: Metricool analytics timestamps are assumed to be Europe/Paris. Check with the first
   posts of the new format (a post scheduled for 20:00 should show as 20:00).
 - X has no history yet. The 18:00 slot was chosen as US midday; revisit once posts have numbers.
+- Added an automatic first reply (the account's own pick) under all 59 scheduled X posts, at the owner's
+  request. Watch whether posts with a reply get more comments than the TikTok equivalents suggest.

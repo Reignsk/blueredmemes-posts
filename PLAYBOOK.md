@@ -139,7 +139,8 @@ info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText
 X post (dilemma image only):
 
 ```
-info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText": "", "hasNotReadNotes": false,
+info: {"autoPublish": true, "descendants": [{"text": "<the account's own pick, one or two sentences>"}],
+ "draft": false, "firstCommentText": "", "hasNotReadNotes": false,
  "media": ["<raw url of -2-dilemma.jpg>"], "mediaAltText": [],
  "providers": [{"network": "twitter"}],
  "publicationDate": {"dateTime": "2026-11-03T18:00:00", "timezone": "Europe/Paris"},
@@ -148,6 +149,13 @@ info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText
  "twitterData": {"tags": []}}
 ```
 
+- Every X post carries one automatic first reply (the `descendants` entry): the account's own pick,
+  stated with a reason and a bit of humour, for example "The T-rex. I can outpace a walk for a year.
+  I cannot outrun a cat that's already on my fridge." It gives readers something to disagree with.
+  The owner asked for this because he has no time to reply to comments himself, and no tool here can
+  read comments. Keep it under 280 characters, no emoji needed, no request to engage.
+  When you update an X post later, send the same `descendants` again: an update replaces the whole
+  post, and it has not been tested whether leaving the field out removes the reply.
 - X text: under 280 characters, one emoji at the start, a strong first line, the question last.
   No hashtags, no links, and no "comment below / like / repost" requests: X's monetisation rules
   exclude posts that repeatedly ask for engagement. Asking the dilemma's own question is fine.
