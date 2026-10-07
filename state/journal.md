@@ -9,6 +9,8 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - Fix: all 59 carousels converted to JPEG (`2026-10/<name>-1-cover.jpg`, `-2-dilemma.jpg`), pushed, and
   the 49 scheduled TikTok posts updated to those files. "Who wins?" moved to 21:15 the same evening.
 - X posts were left as they are: X published a PNG without trouble at 18:00.
+- Confirmed at 21:24: the 21:15 post shows PUBLISHED in Metricool with the JPEG files
+  (https://www.tiktok.com/@blueredmemes/video/7694006799464189206). First TikTok post of the new format.
 - Lesson: a scheduled post is not a tested post. Metricool accepts a file the network will refuse and
   only reports it at publication time, by email to the owner.
 
