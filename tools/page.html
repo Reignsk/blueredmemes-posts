@@ -1,0 +1,1533 @@
+<!doctype html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}@font-face{font-family:Anton;src:url("fonts/anton-latin-400-normal.woff2")}</style></head><body><title>Forge à Dilemmes</title>
+
+<style>
+/* Mise en page : aperçu fixe à gauche, établi de réglages à droite ; une seule colonne sur téléphone. */
+:root{
+  color-scheme:dark;
+  --bg:#0c0c10; --surface:#16161c; --raise:#20202a; --line:#2e2e3a; --fg:#f3f1ec; --muted:#a09eac;
+  --red:#ff3b3b; --blue:#3d8dff; --on-accent:#ffffff; --focus:#ffd84a; --scrim:rgba(0,0,0,.9); --on-scrim:#ffffff;
+  --display:"Anton","Impact","Haettenschweiler","Arial Narrow Bold",sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#f3f2f6; --surface:#ffffff; --raise:#e9e8ef; --line:#d3d1dd; --fg:#121218; --muted:#5b596a;
+    --red:#d41515; --blue:#0b5fe0; --on-accent:#ffffff; --focus:#8a5a00; --scrim:rgba(0,0,0,.9); --on-scrim:#ffffff;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f3f2f6; --surface:#ffffff; --raise:#e9e8ef; --line:#d3d1dd; --fg:#121218; --muted:#5b596a;
+  --red:#d41515; --blue:#0b5fe0; --on-accent:#ffffff; --focus:#8a5a00; --scrim:rgba(0,0,0,.9); --on-scrim:#ffffff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.45}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:20px 56px;display:flex;flex-direction:column;gap:20px}
+.top h1{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,9vw,3.8rem);line-height:.95;margin:0;text-transform:uppercase;letter-spacing:.01em}
+.t-red{color:var(--red)} .t-blue{color:var(--blue)}
+.lede{margin:10px 0 0;color:var(--muted);max-width:62ch}
+.bench{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+.stage{display:flex;flex-direction:column;gap:12px;align-items:center;min-width:0}
+#cv{width:min(100%,440px);height:auto;aspect-ratio:1/1;display:block;border:1px solid var(--line)}
+#cv.tall{width:min(100%,330px);aspect-ratio:9/16}
+.stage-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.status{margin:0;min-height:1.4em;font-size:.9rem;color:var(--muted);text-align:center}
+.tools{display:flex;flex-direction:column;min-width:0}
+.group{display:flex;flex-direction:column;gap:10px;padding-block:16px;border-top:1px solid var(--line)}
+.group:first-child{border-top:0;padding-top:0}
+h2,.group>summary{font-family:var(--body);font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0;font-weight:600}
+.group>summary{cursor:pointer;padding-block:4px}
+.btn{font:inherit;font-weight:600;padding:9px 14px;border:1px solid var(--line);background:var(--raise);color:var(--fg);border-radius:6px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:var(--on-accent)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font-family:var(--display);font-size:1.3rem;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;min-height:46px}
+.seg button:first-child{border-left:0}
+.seg button[aria-checked="true"]{background:var(--fg);color:var(--bg)}
+.seg.small{max-width:240px}
+.seg.small.wide{max-width:340px;width:100%}
+.seg.small button{font-family:var(--body);font-size:.95rem;font-weight:600;min-height:44px}
+.nav,.presets{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.counter{font-variant-numeric:tabular-nums;min-width:4.5ch;text-align:center;font-weight:600}
+.mech{margin:0;font-size:.95rem;max-width:62ch}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--fg);border-radius:999px;margin-right:6px;white-space:nowrap}
+.f{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted);min-width:0}
+input[type="text"],select{font:inherit;font-size:1rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 10px;min-height:44px;width:100%;min-width:0}
+.pair{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.pal{display:flex;flex-wrap:wrap;gap:10px}
+.palitem{display:flex;align-items:center;gap:6px}
+.palitem input[type="color"]{width:56px;height:46px;padding:3px;border:1px solid var(--line);border-radius:6px;background:var(--surface);cursor:pointer}
+#opts{display:flex;flex-direction:column;gap:8px}
+.opt{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.opt>summary{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;list-style:none;min-height:48px}
+.opt>summary::-webkit-details-marker{display:none}
+.letter{font-family:var(--display);width:30px;height:30px;display:grid;place-items:center;background:var(--fg);color:var(--bg);flex:none}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--sw);flex:none;border:1px solid var(--line)}
+.opt-title{font-family:var(--display);font-size:1.1rem;letter-spacing:.02em;text-transform:uppercase;min-width:0;overflow-wrap:anywhere;flex:1}
+.opt-hint{font-size:.8rem;color:var(--muted);flex:none}
+.opt[open] .opt-hint{visibility:hidden}
+.opt-body{display:flex;flex-direction:column;gap:10px;padding:4px 12px 14px}
+.quad{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.imgrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{margin:0;font-size:.85rem;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;min-height:32px}
+.check input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--blue)}
+.bank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.bank button{font:inherit;width:100%;text-align:left;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer;min-height:44px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.bank button[aria-current="true"]{border-color:var(--fg)}
+.bank li{display:flex;gap:6px;align-items:stretch}
+.bank li>button[data-j]{flex:1;width:auto;min-width:0}
+.bank li>button.del{flex:none;width:auto;font-size:.85rem;color:var(--muted)}
+.btn:disabled{opacity:.55;cursor:default}
+.bank .words{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;min-width:0;overflow-wrap:anywhere;flex:1 1 200px}
+.research{display:flex;flex-direction:column;gap:10px;max-width:66ch}
+.research p{margin:0}
+.research a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.viewer{position:fixed;inset:0;background:var(--scrim);color:var(--on-scrim);z-index:10;display:flex;flex-direction:column;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}
+.viewer p{margin:0;text-align:center;max-width:40ch}
+.viewer img{flex:1 1 auto;min-height:0;max-width:100%;object-fit:contain}
+@media (min-width:880px){
+  .bench{grid-template-columns:minmax(280px,440px) minmax(0,1fr);align-items:start}
+  .stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1><span class="t-red">Forge à</span> <span class="t-blue">dilemmes</span></h1>
+    <p class="lede">Carrousel TikTok en 2 images : une couverture qui annonce le choix, puis le dilemme, de 2 à 6 choix. Pars d'une idée de la banque, choisis tes couleurs, change les mots, puis enregistre.</p>
+  </header>
+
+  <main class="bench">
+    <section class="stage" aria-label="Aperçu de l'image">
+      <div class="seg small wide" role="radiogroup" aria-label="Image affichée" id="seg-slide">
+        <button type="button" role="radio" data-slide="cover">1 · Couverture</button>
+        <button type="button" role="radio" data-slide="main">2 · Dilemme</button>
+      </div>
+      <canvas id="cv" width="1080" height="1080" role="img" aria-label="Aperçu de l'image"></canvas>
+      <div class="stage-actions">
+        <button type="button" class="btn primary" id="btn-save2" hidden>Enregistrer les 2 images</button>
+        <button type="button" class="btn" id="btn-save" hidden>Enregistrer celle-ci</button>
+        <button type="button" class="btn" id="btn-open">Afficher l'image</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </section>
+
+    <section class="tools">
+      <div class="group">
+        <h2 id="lbl-n">Nombre de choix</h2>
+        <div class="seg" role="radiogroup" aria-labelledby="lbl-n" id="seg-n">
+          <button type="button" role="radio" data-n="2">2</button>
+          <button type="button" role="radio" data-n="3">3</button>
+          <button type="button" role="radio" data-n="4">4</button>
+          <button type="button" role="radio" data-n="5">5</button>
+          <button type="button" role="radio" data-n="6">6</button>
+        </div>
+        <div class="seg small" role="radiogroup" aria-label="Format de l'image" id="seg-fmt">
+          <button type="button" role="radio" data-fmt="sq">Carré 1:1</button>
+          <button type="button" role="radio" data-fmt="tall">Vertical 9:16</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <h2>Couleurs des fonds</h2>
+        <div class="pal" id="pal"></div>
+        <div class="presets" id="presets"></div>
+        <p class="note">Touche une pastille pour choisir n'importe quelle couleur. Tes couleurs restent quand tu changes d'idée.</p>
+      </div>
+
+      <div class="group">
+        <h2>Idée de départ</h2>
+        <div class="nav">
+          <button type="button" class="btn" id="btn-prev" aria-label="Idée précédente">Précédente</button>
+          <span class="counter" id="counter">1 / 1</span>
+          <button type="button" class="btn" id="btn-next" aria-label="Idée suivante">Suivante</button>
+          <button type="button" class="btn" id="btn-rand">Au hasard</button>
+        </div>
+        <p class="mech"><span class="chip" id="mech-name"></span><span id="mech-why"></span></p>
+        <div class="seg small" role="radiogroup" aria-label="Langue des textes" id="seg-lang">
+          <button type="button" role="radio" data-lang="en">English</button>
+          <button type="button" role="radio" data-lang="fr">Français</button>
+        </div>
+      </div>
+
+      <div class="group" id="gen-group" hidden>
+        <h2>Nouvelle idée écrite par Claude</h2>
+        <div class="pair">
+          <label class="f" for="g-mech">Ressort
+            <select id="g-mech"><option value="">Au choix de Claude</option></select>
+          </label>
+          <label class="f" for="g-theme">Thème (facultatif)
+            <input type="text" id="g-theme" maxlength="80" autocomplete="off" placeholder="temps, animaux, argent…">
+          </label>
+        </div>
+        <div class="nav">
+          <button type="button" class="btn primary" id="btn-gen">Écrire une nouvelle idée</button>
+          <button type="button" class="btn" id="btn-stop" hidden>Arrêter</button>
+        </div>
+        <p class="note" id="gen-status" role="status"></p>
+        <p class="note">Claude écrit un dilemme inédit à <span id="gen-n">2</span> choix, en anglais et en français, et l'ajoute à ta banque. Chaque demande compte dans ton usage de Claude.</p>
+      </div>
+
+      <div class="group">
+        <h2>Couverture (image 1)</h2>
+        <label class="f" for="c-t">Grand titre
+          <input type="text" id="c-t" autocomplete="off">
+        </label>
+        <div><button type="button" class="btn" id="btn-title">Autre titre</button></div>
+        <div class="pair">
+          <label class="f" for="c-k">Ligne au-dessus du titre
+            <input type="text" id="c-k" autocomplete="off">
+          </label>
+          <label class="f" for="c-s">Mot pour faire glisser
+            <input type="text" id="c-s" autocomplete="off">
+          </label>
+        </div>
+        <p class="note">La couverture reprend tes couleurs, tes personnages et l'accroche du dilemme, sans montrer les choix.</p>
+      </div>
+
+      <div class="group">
+        <h2>Style des images</h2>
+        <div class="pair">
+          <label class="f" for="s-eyes">Yeux
+            <select id="s-eyes">
+              <option value="flame">Traînées de lumière</option>
+              <option value="slit">Fentes</option>
+              <option value="round">Ronds</option>
+            </select>
+          </label>
+          <label class="f" for="s-aura">Aura de tous les choix
+            <select id="s-aura">
+              <option value="">Propre à chaque choix</option>
+              <option value="flame">Flammes</option>
+              <option value="energy">Énergie</option>
+              <option value="bolt">Éclairs</option>
+              <option value="smoke">Fumée</option>
+              <option value="none">Aucune</option>
+            </select>
+          </label>
+        </div>
+        <label class="check" for="c-rim"><input type="checkbox" id="c-rim" checked>Contour lumineux autour du personnage</label>
+        <label class="check" for="c-tint"><input type="checkbox" id="c-tint">Mot-clé de la couleur du choix</label>
+        <label class="check" for="c-letters"><input type="checkbox" id="c-letters" checked>Lettres A à F sur les images, pour répondre en un caractère dans les commentaires</label>
+        <label class="check" for="c-guides" id="lbl-guides" hidden><input type="checkbox" id="c-guides">Montrer les zones couvertes par l'interface TikTok (repères approximatifs, absents de l'image enregistrée)</label>
+        <div><button type="button" class="btn" id="btn-seed">Changer les décors</button></div>
+      </div>
+
+      <div class="group">
+        <h2>Textes communs</h2>
+        <label class="f" for="f-hook">Accroche en haut de l'image
+          <input type="text" id="f-hook" autocomplete="off">
+        </label>
+        <label class="f" for="f-foot">Ligne commune sous les images
+          <input type="text" id="f-foot" autocomplete="off">
+        </label>
+        <div class="pair">
+          <label class="f" for="f-tag">Règle du jeu
+            <input type="text" id="f-tag" autocomplete="off">
+          </label>
+          <label class="f" for="f-handle">Ton pseudo
+            <input type="text" id="f-handle" autocomplete="off" placeholder="@tonpseudo">
+          </label>
+        </div>
+      </div>
+
+      <div class="group">
+        <h2>Les choix</h2>
+        <div id="opts"></div>
+      </div>
+
+      <details class="group" id="bank-box">
+        <summary id="bank-sum">Banque d'idées</summary>
+        <ul class="bank" id="bank"></ul>
+      </details>
+
+      <details class="group">
+        <summary>Ce que dit la recherche</summary>
+        <div class="research">
+          <p><strong>Six choix passent si chacun se lit en une seconde.</strong> Une méta-analyse de 50 expériences trouve un effet moyen presque nul du « trop de choix ». C'est la complexité des options qui surcharge. Garde 2 à 4 mots par option. <a href="https://academic.oup.com/jcr/article-abstract/37/3/409/1827647" target="_blank" rel="noopener">Scheibehenne et al., 2010</a></p>
+          <p><strong>À trois, supprime le refuge.</strong> L'option du milieu attire comme compromis rassurant. Trois extrêmes répartissent le vote. <a href="https://www.atticusli.com/blog/posts/compromise-effect-middle-options-tier-based-pricing/" target="_blank" rel="noopener">Effet de compromis</a></p>
+          <p><strong>Chacun se croit majoritaire.</strong> Dans l'étude de 1977, les participants surestimaient la part de gens qui choisiraient comme eux. Finis ta légende par une question du type « qui prend le B ? ». <a href="https://everydaypsych.com/the-false-consensus-effect/" target="_blank" rel="noopener">Faux consensus</a></p>
+          <p><strong>Le prix doit faire mal.</strong> L'aversion à la perte apparaît surtout pour les grosses pertes. Une contrepartie lourde et personnelle divise plus qu'un pouvoir gratuit. <a href="https://www.cambridge.org/core/product/CDA5239BD6ACFFE42ACD7009E92231F7" target="_blank" rel="noopener">Étude de 2022</a></p>
+          <p><strong>Toucher au sacré fait réagir.</strong> Échanger un souvenir, un proche ou des années de vie contre un avantage provoque de l'indignation, donc du débat. <a href="https://stafforini.com/works/tetlock-2003-thinking-unthinkable-sacred/" target="_blank" rel="noopener">Tetlock, 2003</a></p>
+          <p><strong>Limite les pouvoirs bruts.</strong> Sans contrainte, le voyage dans le temps (29 %) écrase l'invisibilité (12 %). Une limite sur chaque option ramène le vote vers l'égalité. <a href="https://maristpoll.marist.edu/polls/314-americans-want-to-go-back-to-the-future/" target="_blank" rel="noopener">Sondage Marist, 2018</a></p>
+          <p class="note">Ces études ne portent pas sur TikTok. Ce sont des hypothèses de départ, à vérifier avec tes propres statistiques.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+</div>
+
+<div class="viewer" id="viewer" hidden>
+  <p>Appui long sur l'image, puis « Enregistrer l'image ». Sur ordinateur : clic droit.</p>
+  <img id="viewer-img" alt="Image du dilemme prête à enregistrer">
+  <button type="button" class="btn" id="viewer-close">Fermer</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+var W=1080;
+var FONT='Anton, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
+var LET='ABCDEF',INK='#030305';
+function $(id){return document.getElementById(id);}
+
+/* ---------- couleurs ---------- */
+var COL={r:'#ff1a1a',b:'#1466ff',g:'#1fe03c',v:'#8b2cf5',y:'#ffc400',c:'#00cfff',o:'#ff6a00',m:'#ff1f8f'};
+var PRESETS=[
+  ['Rouge / Bleu',['#ff1a1a','#1466ff','#1fe03c','#8b2cf5','#ffc400','#00cfff']],
+  ['Rouge / Vert',['#ff1a1a','#1fe03c','#1466ff','#ffc400','#8b2cf5','#00cfff']],
+  ['Rouge / Cyan',['#ff1a1a','#00cfff','#ffc400','#8b2cf5','#1fe03c','#ff6a00']],
+  ['Violet / Or',['#8b2cf5','#ffc400','#00cfff','#ff1a1a','#1fe03c','#ff6a00']],
+  ['Bleu / Orange',['#1466ff','#ff6a00','#1fe03c','#ff1f8f','#00cfff','#ffc400']]
+];
+function rgb(h){if(typeof h!=='string')return h;var n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255];}
+function mixA(a,b,k){var A=rgb(a),B=rgb(b);return[0,1,2].map(function(i){return Math.round(A[i]+(B[i]-A[i])*k);});}
+function mix(a,b,k,al){var c=mixA(a,b,k);return al==null?'rgb('+c+')':'rgba('+c+','+al+')';}
+function col(c,al){return'rgba('+rgb(c)+','+al+')';}
+function hotOf(base){var c=rgb(base);return mixA(base,c[0]>=c[2]?'#fff0a0':'#dff8ff',.8);}
+function rng(seed){var s=seed>>>0;return function(){s+=0x6D2B79F5;var t=s;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+
+/* ---------- poses (x vers la droite, y vers le haut, 1 = taille du personnage) ---------- */
+var POSE={
+  stand:{l:'Debout',hd:[0,.9],nk:[0,.78],hp:[0,.46],eL:[-.15,.62],hL:[-.22,.45],eR:[.15,.62],hR:[.22,.45],kL:[-.1,.24],fL:[-.15,0],kR:[.1,.24],fR:[.15,0],face:0},
+  lunge:{l:'Attaque',ox:-.14,hd:[.1,.8],nk:[.06,.69],hp:[-.06,.4],eL:[-.1,.62],hL:[-.24,.7],eR:[.2,.62],hR:[.34,.6],kL:[-.2,.22],fL:[-.36,0],kR:[.14,.26],fR:[.22,0],face:1},
+  float:{l:'Lévitation',air:1,hd:[0,.97],nk:[0,.85],hp:[.02,.55],eL:[-.18,.75],hL:[-.34,.67],eR:[.18,.75],hR:[.34,.67],kL:[-.04,.35],fL:[-.08,.15],kR:[.07,.37],fR:[.05,.18],face:0},
+  crouch:{l:'Accroupi',sc:1.2,hd:[.16,.56],nk:[.1,.47],hp:[-.12,.3],eL:[.06,.26],hL:[.14,.02],eR:[.24,.36],hR:[.36,.26],kL:[-.02,.24],fL:[-.06,0],kR:[-.26,.2],fR:[-.38,0],face:1},
+  raise:{l:'Bras levés',hd:[0,.88],nk:[0,.76],hp:[0,.44],eL:[-.17,.84],hL:[-.24,1.02],eR:[.17,.84],hR:[.24,1.02],kL:[-.08,.22],fL:[-.12,0],kR:[.08,.22],fR:[.12,0],face:0},
+  guard:{l:'Garde',hd:[-.04,.86],nk:[-.03,.74],hp:[-.06,.43],eL:[-.14,.6],hL:[-.08,.5],eR:[.12,.64],hR:[.24,.7],kL:[-.16,.22],fL:[-.24,0],kR:[.06,.22],fR:[.14,0],face:1},
+  point:{l:'Bras tendu',hd:[-.02,.9],nk:[-.02,.78],hp:[-.02,.46],eL:[-.12,.62],hL:[-.14,.44],eR:[.16,.76],hR:[.36,.77],kL:[-.08,.24],fL:[-.1,0],kR:[.06,.24],fR:[.1,0],face:1},
+  sit:{l:'Méditation',air:1,sc:1.15,hd:[0,.8],nk:[0,.68],hp:[0,.38],eL:[-.17,.52],hL:[-.2,.38],eR:[.17,.52],hR:[.2,.38],kL:[-.24,.34],fL:[.06,.28],kR:[.24,.34],fR:[-.06,.28],face:0},
+  run:{l:'Course',hd:[.16,.84],nk:[.11,.73],hp:[-.02,.44],eL:[-.08,.6],hL:[-.2,.52],eR:[.24,.62],hR:[.3,.76],kL:[-.16,.3],fL:[-.36,.2],kR:[.14,.26],fR:[.1,0],face:1},
+  titan:{l:'Colosse',bulk:1.7,sc:1.08,hd:[0,.8],nk:[0,.7],hp:[0,.42],eL:[-.25,.56],hL:[-.3,.26],eR:[.25,.56],hR:[.3,.26],kL:[-.14,.22],fL:[-.2,0],kR:[.14,.22],fR:[.2,0],face:0}
+};
+var FXL={none:'Aucun',embers:'Braises',shards:'Éclats',storm:'Orage',mist:'Brume',rays:'Rayons',rings:'Ondes',stars:'Étoiles',rain:'Pluie'};
+var PROPL={none:'Aucun',sword:'Épée',staff:'Bâton',orb:'Orbe',barrier:'Bouclier',crown:'Couronne',horns:'Cornes',wings:'Ailes',halo:'Auréole',cape:'Cape',clock:'Horloge',eye:'Œil'};
+var AURAL={flame:'Flammes',energy:'Énergie',bolt:'Éclairs',smoke:'Fumée',none:'Aucune'};
+var AURA_OF={embers:'flame',shards:'flame',storm:'bolt',rain:'bolt',mist:'smoke',rays:'energy',rings:'energy',stars:'energy',none:'energy'};
+
+/* ---------- géométrie et silhouette ---------- */
+function seg(ctx,a,b,w0,w1){
+  var dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
+  ctx.beginPath();
+  ctx.moveTo(a[0]+nx*w0/2,a[1]+ny*w0/2);ctx.lineTo(b[0]+nx*w1/2,b[1]+ny*w1/2);
+  ctx.lineTo(b[0]-nx*w1/2,b[1]-ny*w1/2);ctx.lineTo(a[0]-nx*w0/2,a[1]-ny*w0/2);ctx.closePath();ctx.fill();
+  ctx.beginPath();ctx.arc(a[0],a[1],w0/2,0,6.3);ctx.fill();
+  ctx.beginPath();ctx.arc(b[0],b[1],w1/2,0,6.3);ctx.fill();
+}
+function dot(ctx,p,r){ctx.beginPath();ctx.arc(p[0],p[1],r,0,6.3);ctx.fill();}
+function spike(ctx,bx,by,tx,ty,wid){
+  var dx=tx-bx,dy=ty-by,L=Math.hypot(dx,dy)||1,nx=-dy/L*wid/2,ny=dx/L*wid/2;
+  ctx.beginPath();ctx.moveTo(bx+nx,by+ny);ctx.lineTo(tx,ty);ctx.lineTo(bx-nx,by-ny);ctx.closePath();ctx.fill();
+}
+function glow(ctx,x,y,r,hot){
+  var g=ctx.createRadialGradient(x,y,0,x,y,r*3);
+  g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.3,col(hot,.9));g.addColorStop(1,col(hot,0));
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*3,0,6.3);ctx.fill();
+}
+function figGeom(cx0,gy,hgt0,pk,flip){
+  var p=POSE[pk]||POSE.stand,d=flip?-1:1,hgt=hgt0*(p.sc||1),cx=cx0+d*(p.ox||0)*hgt,g={p:p,d:d,flip:flip,hgt:hgt,cx:cx,gy:gy};
+  ['hd','nk','hp','eL','hL','eR','hR','kL','fL','kR','fR'].forEach(function(k){g[k]=[cx+d*p[k][0]*hgt,gy-p[k][1]*hgt];});
+  g.u=hgt*.036;g.t=g.u*(p.bulk||1);g.hr=hgt*.082;
+  g.mid=[(g.nk[0]+g.hp[0])/2,(g.nk[1]+g.hp[1])/2];
+  g.sL=[g.nk[0]-d*g.t*1.25,g.nk[1]+g.t*.4];g.sR=[g.nk[0]+d*g.t*1.25,g.nk[1]+g.t*.4];
+  return g;
+}
+function bodyPts(g){return[g.hd,g.nk,g.mid,g.hp,g.eL,g.hL,g.eR,g.hR,g.kL,g.kR,g.sL,g.sR];}
+/* Tout ce qui est encre noire : corps, griffes, pointes, écharpe et accessoires pleins. */
+function inkFigure(ctx,g,prop,R){
+  var p=g.p,d=g.d,hgt=g.hgt,u=g.u,t=g.t,hr=g.hr,hd=g.hd,nk=g.nk,hp=g.hp,i,s,a;
+  ctx.fillStyle=INK;
+  if(prop==='wings'){
+    var wp=[[.02,.02],[.2,-.2],[.46,-.3],[.42,-.1],[.36,-.12],[.36,.06],[.28,.02],[.27,.17],[.18,.1],[.14,.24],[.04,.16]];
+    for(s=-1;s<=1;s+=2){ctx.beginPath();for(i=0;i<wp.length;i++){var px=nk[0]+s*wp[i][0]*hgt,py=nk[1]+wp[i][1]*hgt;if(i)ctx.lineTo(px,py);else ctx.moveTo(px,py);}ctx.closePath();ctx.fill();}
+  }
+  if(prop==='cape'){
+    var by=hp[1]+hgt*.3,half=hgt*.22,step=half/3;
+    ctx.beginPath();ctx.moveTo(nk[0]-u*2,nk[1]);ctx.lineTo(hp[0]-half,by);
+    for(i=1;i<=6;i++){ctx.lineTo(hp[0]-half+i*step-step/2,by-hgt*(.03+R()*.04));ctx.lineTo(hp[0]-half+i*step,by+hgt*R()*.02);}
+    ctx.lineTo(nk[0]+u*2,nk[1]);ctx.closePath();ctx.fill();
+  }else{
+    var sd=p.face?-d:(g.flip?1:-1),SL=hgt*.36;
+    ctx.beginPath();ctx.moveTo(nk[0],nk[1]-u*.8);
+    ctx.bezierCurveTo(nk[0]+sd*SL*.35,nk[1]-hgt*.09,nk[0]+sd*SL*.7,nk[1]+hgt*.04,nk[0]+sd*SL,nk[1]-hgt*.06);
+    ctx.lineTo(nk[0]+sd*SL*.86,nk[1]-hgt*.005);ctx.lineTo(nk[0]+sd*SL*.97,nk[1]+hgt*.05);
+    ctx.bezierCurveTo(nk[0]+sd*SL*.65,nk[1]+hgt*.1,nk[0]+sd*SL*.3,nk[1],nk[0],nk[1]+u);
+    ctx.closePath();ctx.fill();
+  }
+  seg(ctx,hp,g.kL,t*1.4,t*1.05);seg(ctx,g.kL,g.fL,t*1.05,t*.62);
+  seg(ctx,hp,g.kR,t*1.4,t*1.05);seg(ctx,g.kR,g.fR,t*1.05,t*.62);
+  if(!p.air){
+    [g.fL,g.fR].forEach(function(f){
+      if(f[1]<g.gy-hgt*.05)return;
+      var dir=p.face?d:(Math.sign(f[0]-hp[0])||1);
+      seg(ctx,f,[f[0]+dir*t*1.8,f[1]+t*.1],t*.64,t*.34);
+      spike(ctx,f[0]+dir*t*1.6,f[1],f[0]+dir*t*2.9,f[1]+t*.25,t*.34);
+    });
+  }
+  seg(ctx,nk,hp,t*3.1,t*1.7);
+  seg(ctx,g.sL,g.eL,t,t*.82);seg(ctx,g.eL,g.hL,t*.82,t*.52);
+  seg(ctx,g.sR,g.eR,t,t*.82);seg(ctx,g.eR,g.hR,t*.82,t*.52);
+  /* mains griffues */
+  [[g.eL,g.hL],[g.eR,g.hR]].forEach(function(pr){
+    var e=pr[0],h=pr[1],ba=Math.atan2(h[1]-e[1],h[0]-e[0]);
+    dot(ctx,h,t*.62);
+    for(var k=-1;k<=1;k++){a=ba+k*.55;spike(ctx,h[0],h[1],h[0]+Math.cos(a)*t*2.1,h[1]+Math.sin(a)*t*2.1,t*.5);}
+  });
+  /* pointes sur les avant-bras et dans le dos */
+  [[g.eL,g.hL],[g.eR,g.hR]].forEach(function(pr){
+    var e=pr[0],h=pr[1],mx=(e[0]+h[0])/2,my=(e[1]+h[1])/2,dx=h[0]-e[0],dy=h[1]-e[1],L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L,sg=((mx-g.mid[0])*nx+(my-g.mid[1])*ny)>=0?1:-1;
+    for(var k=0;k<2;k++){var q=.25+k*.35,bx=e[0]+dx*q,byy=e[1]+dy*q,len=u*(1.3+R()*1.3);spike(ctx,bx,byy,bx+sg*nx*len-dx/L*len*.5,byy+sg*ny*len-dy/L*len*.5,u*.7);}
+  });
+  for(i=0;i<4;i++){
+    var q2=.12+i*.2,bx2=nk[0]+(hp[0]-nk[0])*q2,by2=nk[1]+(hp[1]-nk[1])*q2,len2=u*(1.6+R()*1.6),sgn=p.face?-d:(i%2?1:-1),off=p.face?t*1.1:t*1.35;
+    spike(ctx,bx2+sgn*off*.6,by2,bx2+sgn*(off+len2),by2-len2*.55,u*.9);
+  }
+  seg(ctx,nk,hd,u*.95,u*.95);dot(ctx,hd,hr);
+  /* cheveux en pointes */
+  if(prop!=='crown'&&prop!=='horns'){
+    for(i=0;i<6;i++){
+      a=p.face?(-Math.PI/2-d*(.15+i*.24)):(-Math.PI/2+(i-2.5)*.34);
+      var tipA=a+(p.face?-d*.3:0),len3=hr*(1.4+R()*.7);
+      spike(ctx,hd[0]+Math.cos(a)*hr*.7,hd[1]+Math.sin(a)*hr*.7,hd[0]+Math.cos(tipA)*len3,hd[1]+Math.sin(tipA)*len3,hr*.42);
+    }
+  }
+  if(prop==='crown'){
+    var cp=[[-.72,-.7],[-.78,-1.4],[-.36,-1.02],[0,-1.58],[.36,-1.02],[.78,-1.4],[.72,-.7]];
+    ctx.beginPath();for(i=0;i<cp.length;i++){if(i)ctx.lineTo(hd[0]+cp[i][0]*hr,hd[1]+cp[i][1]*hr);else ctx.moveTo(hd[0]+cp[i][0]*hr,hd[1]+cp[i][1]*hr);}ctx.closePath();ctx.fill();
+  }
+  if(prop==='horns'){
+    for(s=-1;s<=1;s+=2){ctx.beginPath();ctx.moveTo(hd[0]+s*hr*.5,hd[1]-hr*.7);ctx.quadraticCurveTo(hd[0]+s*hr*1.7,hd[1]-hr*1.1,hd[0]+s*hr*1.25,hd[1]-hr*2.3);ctx.quadraticCurveTo(hd[0]+s*hr*1.05,hd[1]-hr*1.15,hd[0]+s*hr*.15,hd[1]-hr*.9);ctx.closePath();ctx.fill();}
+  }
+  if(prop==='sword'){
+    var dx=g.hR[0]-g.eR[0],dy=g.hR[1]-g.eR[1],L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,nx=-uy,ny=ux,len=hgt*.4,h=g.hR;
+    ctx.beginPath();ctx.moveTo(h[0]+nx*u*.6,h[1]+ny*u*.6);ctx.lineTo(h[0]+ux*len*.9+nx*u*.45,h[1]+uy*len*.9+ny*u*.45);ctx.lineTo(h[0]+ux*len,h[1]+uy*len);ctx.lineTo(h[0]-nx*u*.6,h[1]-ny*u*.6);ctx.closePath();ctx.fill();
+    var gd=[h[0]+ux*u,h[1]+uy*u];
+    seg(ctx,[gd[0]+nx*u*1.9,gd[1]+ny*u*1.9],[gd[0]-nx*u*1.9,gd[1]-ny*u*1.9],u*.55,u*.55);
+    seg(ctx,h,[h[0]-ux*u*1.6,h[1]-uy*u*1.6],u*.55,u*.7);
+  }
+  if(prop==='staff'){seg(ctx,[g.hR[0],p.air?g.hR[1]+hgt*.34:g.gy],[g.hR[0],g.hR[1]-hgt*.4],u*.55,u*.45);}
+}
+function backProps(x,g,prop,hot){
+  var i,mid=g.mid,hgt=g.hgt,u=g.u,hd=g.hd;
+  if(prop==='clock'){
+    var r=hgt*.5;x.save();x.strokeStyle=col(hot,.75);x.shadowColor=col(hot,1);x.shadowBlur=u;x.lineWidth=u*.45;x.lineCap='round';
+    x.beginPath();x.arc(mid[0],mid[1],r,0,6.3);x.stroke();
+    for(i=0;i<12;i++){var a=i/12*6.2832;x.beginPath();x.moveTo(mid[0]+Math.cos(a)*r*.84,mid[1]+Math.sin(a)*r*.84);x.lineTo(mid[0]+Math.cos(a)*r*.95,mid[1]+Math.sin(a)*r*.95);x.stroke();}
+    x.lineWidth=u*.6;x.beginPath();x.moveTo(mid[0],mid[1]);x.lineTo(mid[0]+r*.2,mid[1]-r*.66);x.moveTo(mid[0],mid[1]);x.lineTo(mid[0]-r*.42,mid[1]-r*.2);x.stroke();x.restore();
+  }
+  if(prop==='eye'){
+    var ew=hgt*.34,eh=hgt*.19;x.save();x.strokeStyle=col(hot,.85);x.shadowColor=col(hot,1);x.shadowBlur=u;x.lineWidth=u*.5;
+    x.beginPath();x.moveTo(hd[0]-ew,hd[1]);x.quadraticCurveTo(hd[0],hd[1]-eh*1.5,hd[0]+ew,hd[1]);x.quadraticCurveTo(hd[0],hd[1]+eh*1.5,hd[0]-ew,hd[1]);x.closePath();x.stroke();
+    x.fillStyle=col(hot,.28);x.beginPath();x.arc(hd[0],hd[1],hgt*.125,0,6.3);x.fill();x.stroke();x.restore();
+  }
+}
+function frontProps(x,g,prop,hot){
+  var hgt=g.hgt,u=g.u,hr=g.hr,hd=g.hd,h=g.hR;
+  if(prop==='sword'){
+    var dx=h[0]-g.eR[0],dy=h[1]-g.eR[1],L=Math.hypot(dx,dy)||1;
+    x.save();x.strokeStyle=col(hot,.95);x.shadowColor=col(hot,1);x.shadowBlur=u*.8;x.lineWidth=Math.max(1.5,u*.16);
+    x.beginPath();x.moveTo(h[0]+dx/L*u*1.4,h[1]+dy/L*u*1.4);x.lineTo(h[0]+dx/L*hgt*.39,h[1]+dy/L*hgt*.39);x.stroke();x.restore();
+  }
+  if(prop==='staff'){x.save();x.globalCompositeOperation='screen';glow(x,h[0],h[1]-hgt*.43,hgt*.04,hot);x.restore();}
+  if(prop==='orb'){x.save();x.globalCompositeOperation='screen';glow(x,h[0]+g.d*hgt*.02,h[1]-hgt*.11,hgt*.055,hot);x.restore();}
+  if(prop==='halo'){
+    x.save();x.strokeStyle='#ffffff';x.shadowColor=col(hot,1);x.shadowBlur=hr;x.lineWidth=hr*.16;
+    x.beginPath();x.ellipse(hd[0],hd[1]-hr*1.9,hr*1.05,hr*.3,0,0,6.3);x.stroke();x.stroke();x.restore();
+  }
+  if(prop==='barrier'){
+    x.save();x.fillStyle=col(hot,.13);x.strokeStyle=col(hot,.9);x.shadowColor=col(hot,1);x.shadowBlur=u*1.4;x.lineWidth=u*.5;
+    x.beginPath();x.arc(g.mid[0],g.mid[1]-hgt*.04,hgt*.6,0,6.3);x.fill();x.stroke();
+    x.lineWidth=u*.22;x.beginPath();x.arc(g.mid[0],g.mid[1]-hgt*.04,hgt*.52,-2.4,-.9);x.stroke();x.restore();
+  }
+}
+function drawEyes(x,g,hot,style){
+  var hd=g.hd,hr=g.hr,d=g.d,face=g.p.face||0,ex=hd[0]+d*face*hr*.36,ey=hd[1]+hr*.06,gap=hr*.42,s,gr,px;
+  x.save();x.globalCompositeOperation='screen';
+  for(s=-1;s<=1;s+=2){
+    px=ex+s*gap;gr=x.createRadialGradient(px,ey,0,px,ey,hr*1.7);
+    gr.addColorStop(0,col(hot,.95));gr.addColorStop(.22,col(hot,.5));gr.addColorStop(1,col(hot,0));
+    x.fillStyle=gr;x.beginPath();x.arc(px,ey,hr*1.7,0,6.3);x.fill();
+  }
+  if(style==='flame'){
+    for(s=-1;s<=1;s+=2){
+      px=ex+s*gap;var dir=face?-d:s,tx=px+dir*hr*2.5,ty=ey-hr*1.5;
+      gr=x.createLinearGradient(px,ey,tx,ty);gr.addColorStop(0,'rgba(255,255,255,.95)');gr.addColorStop(.35,col(hot,.7));gr.addColorStop(1,col(hot,0));
+      x.fillStyle=gr;x.beginPath();x.moveTo(px,ey-hr*.15);x.quadraticCurveTo(px+dir*hr*1.2,ey-hr*.3,tx,ty);x.quadraticCurveTo(px+dir*hr*.9,ey+hr*.05,px,ey+hr*.15);x.closePath();x.fill();
+    }
+  }
+  gr=x.createLinearGradient(ex-hr*2.8,0,ex+hr*2.8,0);gr.addColorStop(0,col(hot,0));gr.addColorStop(.5,col(hot,.75));gr.addColorStop(1,col(hot,0));
+  x.fillStyle=gr;x.fillRect(ex-hr*2.8,ey-hr*.035,hr*5.6,hr*.07);
+  x.restore();
+  x.save();x.shadowColor=col(hot,1);x.shadowBlur=hr*.9;x.fillStyle='#ffffff';
+  for(s=-1;s<=1;s+=2){
+    x.save();x.translate(ex+s*gap,ey);
+    if(style==='round'){x.beginPath();x.arc(0,0,hr*.21,0,6.3);}
+    else{x.rotate(-s*.36);x.beginPath();x.ellipse(0,0,hr*.31,hr*.14,0,0,6.3);}
+    x.fill();x.fill();x.restore();
+  }
+  x.restore();
+}
+
+/* ---------- auras ---------- */
+function auraBack(x,g,kind,base,hot,R){
+  var pts=bodyPts(g),hgt=g.hgt,u=g.u,i,p,gr;
+  if(kind==='flame'){
+    x.save();x.globalCompositeOperation='screen';
+    for(i=0;i<38;i++){
+      p=pts[Math.floor(R()*pts.length)];
+      var px=p[0]+(R()-.5)*u*5,py=p[1]+(R()-.3)*u*4,fh=hgt*(.16+R()*.34),fw=hgt*(.025+R()*.05),lean=(R()-.5)*fw*3-g.d*(g.p.face?fw*1.6:0);
+      gr=x.createLinearGradient(0,py,0,py-fh);gr.addColorStop(0,col(hot,.8));gr.addColorStop(.5,col(mixA(base,hot,.55),.5));gr.addColorStop(1,col(hot,0));
+      x.fillStyle=gr;x.beginPath();x.moveTo(px-fw,py);
+      x.bezierCurveTo(px-fw*1.3,py-fh*.4,px+lean-fw*.3,py-fh*.65,px+lean,py-fh);
+      x.bezierCurveTo(px+lean+fw*.4,py-fh*.6,px+fw*1.3,py-fh*.35,px+fw,py);x.closePath();x.fill();
+    }
+    x.restore();
+  }
+  if(kind==='energy'){
+    x.save();x.globalCompositeOperation='screen';
+    gr=x.createLinearGradient(g.cx-hgt*.36,0,g.cx+hgt*.36,0);gr.addColorStop(0,col(hot,0));gr.addColorStop(.5,col(hot,.4));gr.addColorStop(1,col(hot,0));
+    x.fillStyle=gr;x.fillRect(g.cx-hgt*.36,g.gy-hgt*1.8,hgt*.72,hgt*1.8);
+    x.strokeStyle=col(hot,.9);x.lineCap='round';
+    for(i=0;i<30;i++){
+      var sx=g.cx+(R()-.5)*hgt*.95,sy=g.gy-R()*hgt*1.25,sl=hgt*(.05+R()*.2);
+      x.lineWidth=Math.max(1.2,hgt*(.004+R()*.007));x.globalAlpha=.3+R()*.6;x.beginPath();x.moveTo(sx,sy);x.lineTo(sx,sy-sl);x.stroke();
+    }
+    x.globalAlpha=1;
+    for(i=0;i<3;i++){x.strokeStyle=col(hot,.8-i*.25);x.lineWidth=Math.max(2,hgt*.011);x.beginPath();x.ellipse(g.cx,g.gy,hgt*(.3+i*.2),hgt*(.045+i*.03),0,0,6.3);x.stroke();}
+    x.restore();
+  }
+  if(kind==='smoke'){
+    for(i=0;i<18;i++){
+      p=pts[Math.floor(R()*pts.length)];
+      var mx=p[0]+(R()-.5)*hgt*.3,my=p[1]-R()*hgt*.4,r=hgt*(.07+R()*.14);
+      gr=x.createRadialGradient(mx,my,0,mx,my,r);gr.addColorStop(0,'rgba(0,0,0,.62)');gr.addColorStop(1,'rgba(0,0,0,0)');
+      x.fillStyle=gr;x.beginPath();x.arc(mx,my,r,0,6.3);x.fill();
+    }
+    x.save();x.strokeStyle='rgba(3,3,5,.88)';x.lineCap='round';
+    for(i=0;i<11;i++){
+      p=pts[Math.floor(R()*pts.length)];var wl=hgt*(.22+R()*.34),wx=(R()-.5)*hgt*.22;
+      x.lineWidth=u*(.5+R()*1.2);x.beginPath();x.moveTo(p[0],p[1]);x.bezierCurveTo(p[0]+wx,p[1]-wl*.4,p[0]-wx*1.5,p[1]-wl*.7,p[0]+wx*.6,p[1]-wl);x.stroke();
+    }
+    x.restore();
+  }
+}
+function auraFront(x,g,kind,hot,R){
+  var pts=bodyPts(g),hgt=g.hgt,i,k,p;
+  if(kind==='bolt'){
+    x.save();x.strokeStyle='#ffffff';x.shadowColor=col(hot,1);x.shadowBlur=hgt*.04;x.lineJoin='round';x.lineCap='round';
+    for(i=0;i<9;i++){
+      p=pts[Math.floor(R()*pts.length)];
+      var a=R()*6.2832,px=p[0],py=p[1],n=5+Math.floor(R()*5),sg=hgt*(.035+R()*.055);
+      x.lineWidth=Math.max(1.5,hgt*(.005+R()*.007));x.beginPath();x.moveTo(px,py);
+      for(k=0;k<n;k++){a+=(R()-.5)*1.7;px+=Math.cos(a)*sg;py+=Math.sin(a)*sg-sg*.25;x.lineTo(px,py);}
+      x.stroke();x.stroke();
+    }
+    x.restore();
+  }
+  if(kind==='flame'||kind==='energy'){
+    x.save();x.globalCompositeOperation='screen';x.shadowColor=col(hot,1);x.shadowBlur=8;
+    for(i=0;i<26;i++){x.fillStyle=col(hot,.5+R()*.5);x.beginPath();x.arc(g.cx+(R()-.5)*hgt*1.1,g.gy-R()*hgt*1.35,1+R()*R()*hgt*.014,0,6.3);x.fill();}
+    x.restore();
+  }
+}
+
+/* ---------- décors ---------- */
+function ridge(x,w,y0,amp,yb,fill,R,spiky){
+  var n=spiky?16:9,i;x.fillStyle=fill;x.beginPath();x.moveTo(0,yb);x.lineTo(0,y0-amp*R()*.5);
+  for(i=0;i<=n;i++){
+    var q=i/n,hh=amp*(.2+R()*.8)*(spiky&&R()<.22?1.9:1);
+    x.lineTo(q*w+(R()-.5)*w/n*.5,y0-hh);
+    if(spiky)x.lineTo((q+.5/n)*w,y0-amp*.12*R());
+  }
+  x.lineTo(w,yb);x.closePath();x.fill();
+}
+function fxBack(x,f,e){
+  var w=e.w,h=e.h,cx=e.cx,gy=e.gy,hgt=e.hgt,hot=e.hot,R=e.R,i,g;
+  if(f==='rays'){
+    var oy=gy-hgt*.75,rr=Math.max(w,h)*1.5;x.save();x.globalCompositeOperation='screen';x.fillStyle=col(hot,.2);
+    for(i=0;i<18;i+=2){var a0=i/18*6.2832+.2,a1=(i+1)/18*6.2832+.2;x.beginPath();x.moveTo(cx,oy);x.lineTo(cx+Math.cos(a0)*rr,oy+Math.sin(a0)*rr);x.lineTo(cx+Math.cos(a1)*rr,oy+Math.sin(a1)*rr);x.closePath();x.fill();}
+    x.restore();
+  }
+  if(f==='rings'){
+    x.save();x.globalCompositeOperation='screen';x.lineWidth=Math.max(3,hgt*.014);
+    for(i=0;i<5;i++){x.strokeStyle=col(hot,.5-i*.08);x.beginPath();x.arc(cx,gy-hgt*.5,hgt*(.44+i*.2),0,6.3);x.stroke();}
+    x.restore();
+  }
+  if(f==='storm'){
+    x.fillStyle='rgba(0,0,0,.4)';
+    for(i=0;i<10;i++){x.beginPath();x.ellipse(R()*w,R()*h*.14,w*(.18+R()*.22),h*(.06+R()*.07),0,0,6.3);x.fill();}
+    x.save();x.strokeStyle='#ffffff';x.shadowColor=col(hot,1);x.shadowBlur=hgt*.07;x.lineWidth=Math.max(2.5,hgt*.012);x.lineJoin='round';
+    for(var b=0;b<2;b++){var bx=w*(b?.62+R()*.3:.08+R()*.3),by=0,end=h*(.45+R()*.3);x.beginPath();x.moveTo(bx,by);while(by<end){bx+=(R()-.5)*w*.16;by+=h*(.05+R()*.06);x.lineTo(bx,by);}x.stroke();x.stroke();}
+    x.restore();
+  }
+  if(f==='stars'){
+    g=x.createLinearGradient(0,0,0,h*.8);g.addColorStop(0,'rgba(0,0,14,.85)');g.addColorStop(1,'rgba(0,0,14,0)');x.fillStyle=g;x.fillRect(0,0,w,h);
+    x.fillStyle='#ffffff';
+    for(i=0;i<80;i++){x.globalAlpha=.4+R()*.6;x.beginPath();x.arc(R()*w,R()*h*.7,.8+R()*R()*3,0,6.3);x.fill();}
+    x.globalAlpha=1;
+  }
+}
+function fxFront(x,f,e){
+  var w=e.w,h=e.h,cx=e.cx,gy=e.gy,hgt=e.hgt,base=e.base,hot=e.hot,R=e.R,i,g;
+  if(f==='mist'){
+    for(i=0;i<12;i++){
+      var mx=R()*w,my=gy-h*.06+R()*h*.2,r=w*(.14+R()*.22),dark=i%3===0;
+      g=x.createRadialGradient(mx,my,0,mx,my,r);
+      g.addColorStop(0,dark?'rgba(0,0,0,.4)':mix(base,'#ffffff',.6,.42));g.addColorStop(1,dark?'rgba(0,0,0,0)':mix(base,'#ffffff',.6,0));
+      x.fillStyle=g;x.beginPath();x.arc(mx,my,r,0,6.3);x.fill();
+    }
+  }
+  if(f==='embers'){
+    x.save();x.globalCompositeOperation='screen';x.shadowColor=col(hot,1);x.shadowBlur=10;
+    for(i=0;i<70;i++){x.fillStyle=col(hot,.5+R()*.5);x.beginPath();x.arc(R()*w,R()*h,1.2+R()*R()*hgt*.022,0,6.3);x.fill();}
+    x.restore();
+  }
+  if(f==='shards'){
+    for(i=0;i<30;i++){
+      var a=R()*6.2832,dd=(.5+R()*.8)*hgt*.75,px=cx+Math.cos(a)*dd,py=gy-hgt*.5+Math.sin(a)*dd*.9,sz=hgt*(.014+R()*.055),rot=R()*6.2832,pts=[];
+      for(var k=0;k<4;k++){var an=rot+k*1.571+R()*.7,q=sz*(.5+R());pts.push([px+Math.cos(an)*q,py+Math.sin(an)*q]);}
+      x.fillStyle='rgba(4,4,6,.9)';x.beginPath();pts.forEach(function(p,j){if(j)x.lineTo(p[0],p[1]);else x.moveTo(p[0],p[1]);});x.closePath();x.fill();
+      x.strokeStyle=col(hot,.7);x.lineWidth=1.5;x.beginPath();x.moveTo(pts[0][0],pts[0][1]);x.lineTo(pts[1][0],pts[1][1]);x.stroke();
+    }
+  }
+  if(f==='rain'){
+    x.strokeStyle=mix(base,'#ffffff',.8,.45);x.lineWidth=Math.max(1.5,hgt*.006);x.beginPath();
+    for(i=0;i<80;i++){var rx=R()*w*1.2,ry=R()*h,l=hgt*(.05+R()*.1);x.moveTo(rx,ry);x.lineTo(rx-l*.35,ry+l);}
+    x.stroke();
+  }
+}
+
+/* ---------- un panneau complet, gardé en mémoire tant que rien ne change ---------- */
+var SC1=document.createElement('canvas'),SC2=document.createElement('canvas'),ART={},ARTK=[];
+function scratch(c,w,h){
+  if(c.width!==w||c.height!==h){c.width=w;c.height=h;}
+  var x=c.getContext('2d');x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='source-over';x.globalAlpha=1;x.clearRect(0,0,w,h);return x;
+}
+function panelArt(w,h,o,base,seed,flip,overlay,st,fs){
+  var au=st.aura||o.au||'energy',key=[w,h,base,o.p,o.f,o.a,au,seed,flip?1:0,overlay?1:0,st.rim?1:0,st.eyes,fs||1].join('|');
+  if(ART[key])return ART[key];
+  var c=document.createElement('canvas');c.width=w;c.height=h;
+  var x=c.getContext('2d'),R=rng(seed),hot=hotOf(base),cx=w/2,gy=h*(overlay?.82:.86),hgt=(overlay?Math.min(h*.5,w*.92):Math.min(h*.7,w*1.12))*(fs||1),fy=gy+(h-gy)*.32,i,g;
+  if(overlay){var pz=POSE[o.p]||POSE.stand,topF=Math.max(pz.hd[1]+.19,pz.hL[1]+.06,pz.hR[1]+.06);hgt=Math.min(hgt,(fy-h*.36)/(topF*(pz.sc||1)));}
+
+  g=x.createRadialGradient(cx,h*.32,6,cx,h*.42,Math.max(w,h)*.88);
+  g.addColorStop(0,mix(base,'#ffffff',.4));g.addColorStop(.36,mix(base,'#ffffff',.05));g.addColorStop(.74,mix(base,'#000000',.4));g.addColorStop(1,mix(base,'#000000',.76));
+  x.fillStyle=g;x.fillRect(0,0,w,h);
+
+  x.save();x.globalCompositeOperation='screen';
+  for(i=0;i<3;i++){var sx=w*(R()*1.2-.05),sw=w*(.06+R()*.13);x.fillStyle=col(hot,.07+R()*.07);x.beginPath();x.moveTo(sx,0);x.lineTo(sx+sw,0);x.lineTo(sx+sw-w*.38,h);x.lineTo(sx-w*.38,h);x.closePath();x.fill();}
+  x.restore();
+
+  if(o.f!=='storm'&&o.f!=='rain'){
+    var dr=Math.min(w,h)*(.2+R()*.07),dx=cx+(R()-.5)*w*.14,dy=gy-hgt*(.8+R()*.1);
+    x.save();x.globalCompositeOperation='screen';
+    g=x.createRadialGradient(dx,dy,dr*.3,dx,dy,dr*2.1);g.addColorStop(0,col(hot,.6));g.addColorStop(.45,col(hot,.2));g.addColorStop(1,col(hot,0));
+    x.fillStyle=g;x.fillRect(0,0,w,h);x.restore();
+    if(o.f==='stars'||o.f==='rings'){
+      x.fillStyle=mix(base,'#000000',.82);x.beginPath();x.arc(dx,dy,dr,0,6.3);x.fill();
+      x.save();x.strokeStyle='#ffffff';x.shadowColor=col(hot,1);x.shadowBlur=dr*.3;x.lineWidth=Math.max(2,dr*.05);x.beginPath();x.arc(dx,dy,dr,0,6.3);x.stroke();x.stroke();x.restore();
+    }else{
+      x.fillStyle=col(mixA(hot,'#ffffff',.35),.86);x.beginPath();x.arc(dx,dy,dr,0,6.3);x.fill();
+    }
+  }
+  var e={w:w,h:h,cx:cx,gy:gy,hgt:hgt,base:base,hot:hot,R:R};
+  fxBack(x,o.f,e);
+
+  ridge(x,w,gy,h*.2,h,mix(base,'#000000',.45),R,true);
+  ridge(x,w,gy+h*.01,h*.07,h,mix(base,'#000000',.68),R,false);
+  g=x.createLinearGradient(0,gy,0,h);g.addColorStop(0,mix(base,'#000000',.8));g.addColorStop(1,mix(base,'#000000',.95));
+  x.fillStyle=g;x.fillRect(0,gy+h*.012,w,h);
+  x.save();x.globalCompositeOperation='screen';x.translate(cx,fy);x.scale(1,.2);
+  g=x.createRadialGradient(0,0,0,0,0,hgt*.75);g.addColorStop(0,col(hot,.8));g.addColorStop(1,col(hot,0));x.fillStyle=g;x.beginPath();x.arc(0,0,hgt*.75,0,6.3);x.fill();x.restore();
+  x.save();x.strokeStyle=col(hot,.95);x.shadowColor=col(hot,1);x.shadowBlur=8;x.lineWidth=Math.max(1.5,hgt*.007);x.lineJoin='round';
+  for(i=0;i<9;i++){
+    var a=R()*6.2832,len=hgt*(.25+R()*.55);x.beginPath();x.moveTo(cx,fy);
+    for(var k=1;k<=5;k++){var rr=len*k/5,aa=a+(R()-.5)*.6;x.lineTo(cx+Math.cos(aa)*rr,fy+Math.sin(aa)*rr*.2);}
+    x.stroke();
+  }
+  x.restore();
+
+  var fg=figGeom(cx,fy,hgt,o.p,flip);
+  backProps(x,fg,o.a,hot);
+  auraBack(x,fg,au,base,hot,R);
+  var sx1=scratch(SC1,w,h);inkFigure(sx1,fg,o.a,R);
+  x.save();
+  if(au!=='none'){x.shadowColor=col(hot,.95);x.shadowBlur=hgt*.17;x.drawImage(SC1,0,0);x.shadowBlur=hgt*.07;x.drawImage(SC1,0,0);}
+  if(st.rim){x.shadowColor=col(mixA(hot,'#ffffff',.5),1);x.shadowBlur=hgt*.022;x.drawImage(SC1,0,0);x.drawImage(SC1,0,0);}
+  x.restore();
+  x.drawImage(SC1,0,0);
+  if(st.rim){
+    var r2=scratch(SC2,w,h),kk=Math.max(1.5,hgt*.009);
+    r2.drawImage(SC1,0,0);r2.globalCompositeOperation='destination-out';r2.drawImage(SC1,-fg.d*kk*.6,kk);
+    r2.globalCompositeOperation='source-in';r2.fillStyle=col(mixA(hot,'#ffffff',.3),1);r2.fillRect(0,0,w,h);
+    x.drawImage(SC2,0,0);
+  }
+  frontProps(x,fg,o.a,hot);
+  auraFront(x,fg,au,hot,R);
+  fxFront(x,o.f,e);
+  drawEyes(x,fg,hot,st.eyes);
+
+  g=x.createRadialGradient(cx,h*.45,Math.min(w,h)*.38,cx,h*.5,Math.max(w,h)*.82);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.6)');x.fillStyle=g;x.fillRect(0,0,w,h);
+  var nG=Math.round(w*h/380);
+  for(i=0;i<nG;i++){x.fillStyle=R()<.5?'rgba(0,0,0,.1)':'rgba(255,255,255,.06)';x.fillRect(R()*w,R()*h,2,2);}
+
+  ART[key]=c;ARTK.push(key);
+  if(ARTK.length>30){delete ART[ARTK.shift()];}
+  return c;
+}
+function cover(ctx,im,x,y,w,h){
+  var iw=im.naturalWidth||im.width,ih=im.naturalHeight||im.height;if(!iw||!ih)return;
+  var sc=Math.max(w/iw,h/ih),sw=w/sc,sh=h/sc;
+  ctx.drawImage(im,(iw-sw)/2,(ih-sh)/2,sw,sh,x,y,w,h);
+}
+
+/* ---------- texte ---------- */
+var capC={};
+function font(ctx,px){ctx.font=px+'px '+FONT;}
+function capH(ctx,px){
+  var k=Math.round(px*10);if(capC[k])return capC[k];
+  font(ctx,px);var m=ctx.measureText('H'),v=m.actualBoundingBoxAscent||px*.74;capC[k]=v;return v;
+}
+function U(s){return(s||'').toLocaleUpperCase('fr-FR').replace(/ ([?!»:;])/g,' $1').replace(/« /g,'« ').trim();}
+function tw(ctx,str,px,ls){font(ctx,px);return ctx.measureText(str).width+(ls||0)*px*Math.max(0,str.length-1);}
+function text(ctx,str,cx,y,px,ls){
+  font(ctx,px);
+  if(!ls){ctx.textAlign='center';ctx.fillText(str,cx,y);return;}
+  var x=cx-tw(ctx,str,px,ls)/2;ctx.textAlign='left';
+  for(var i=0;i<str.length;i++){var ch=str[i];ctx.fillText(ch,x,y);x+=ctx.measureText(ch).width+ls*px;}
+}
+function wrap(ctx,str,px,ls,maxW){
+  var words=str.split(/[ \t\n]+/),out=[],cur='';
+  for(var i=0;i<words.length;i++){var t=cur?cur+' '+words[i]:words[i];if(!cur||tw(ctx,t,px,ls)<=maxW)cur=t;else{out.push(cur);cur=words[i];}}
+  if(cur)out.push(cur);return out;
+}
+function fit(ctx,str,px,min,maxW,maxLines,ls){
+  if(!str)return null;var lines;
+  for(var s=px;s>=min;s-=1.5){
+    lines=wrap(ctx,str,s,ls,maxW);
+    if(lines.length<=maxLines&&lines.every(function(l){return tw(ctx,l,s,ls)<=maxW;}))return{lines:lines,px:s,ls:ls};
+  }
+  if(maxLines===1)lines=[str];else lines=wrap(ctx,str,min,ls,maxW).slice(0,maxLines);
+  var widest=Math.max.apply(null,lines.map(function(l){return tw(ctx,l,min,ls);}));
+  return{lines:lines,px:widest>maxW?min*maxW/widest:min,ls:ls};
+}
+function fitBig(ctx,str,px,maxW,thr){
+  if(!str)return null;
+  var w1=tw(ctx,str,px,0),s1=Math.min(px,px*maxW/w1);
+  if(s1>=px*thr||str.indexOf(' ')<0)return{lines:[str],px:s1,ls:0};
+  return fit(ctx,str,px,px*.35,maxW,2,0);
+}
+function headerBlock(ctx,o,m,maxW,kb,ks,thr){
+  var items=[],sm=m.small*ks,H=0,bigH=0,bigPx=m.big;
+  var a=fit(ctx,U(o.t),sm,sm*.6,maxW,2,.07);if(a)items.push(a);
+  var b=fitBig(ctx,U(o.b),m.big*kb,maxW,thr);if(b){b.big=1;items.push(b);}
+  var c=fit(ctx,U(o.s),sm*.92,sm*.55,maxW,2,.03);if(c)items.push(c);
+  items.forEach(function(it){
+    it.ch=capH(ctx,it.px);it.adv=it.ch+it.px*.2;var hh=it.lines.length*it.adv;H+=hh;
+    if(it.big){bigH=hh;bigPx=it.px;}
+  });
+  return{items:items,H:H,bigH:bigH,bigPx:bigPx};
+}
+/* Quand le bloc déborde, on réduit d'abord le mot-clé : les petites lignes restent lisibles. */
+function fitHeader(ctx,o,m,maxW,avail,thr){
+  var blk=headerBlock(ctx,o,m,maxW,1,1,thr);
+  if(blk.H<=avail)return blk;
+  var kb=1,ks=1;
+  if(blk.bigH>0){
+    var room=avail-(blk.H-blk.bigH);
+    kb=Math.max(.42,blk.bigPx*Math.max(.1,room/blk.bigH)/m.big);
+    blk=headerBlock(ctx,o,m,maxW,kb,1,thr);
+  }
+  for(var j=0;j<4&&blk.H>avail;j++){ks*=avail/blk.H*.98;blk=headerBlock(ctx,o,m,maxW,kb*ks,ks,thr);}
+  return blk;
+}
+
+/* ---------- mise en page ---------- */
+function layout(n,fmt){
+  var sq=fmt!=='tall',cols=n<=3?n:(n===4?2:3),rows=n<=3?1:2,overlay=false,m;
+  if(sq){
+    if(n===2)m={top:112,head:206,panel:540,quote:112,gap:0,big:132,small:42,q:38,hook:66,tag:40,foot:42};
+    else if(n===3)m={top:150,head:200,panel:500,quote:120,gap:0,big:100,small:34,q:30,hook:60,tag:30,foot:40};
+    else{overlay=true;m={top:150,head:0,panel:414,quote:0,gap:8,big:n===4?92:74,small:n===4?34:28,q:n===4?28:24,hook:60,tag:30,foot:36};}
+  }else if(n<=3){
+    m={top:320,head:280,panel:640,quote:170,gap:0,big:n===2?150:112,small:n===2?44:36,q:n===2?40:32,hook:70,tag:n===2?42:34,foot:46};
+  }else{
+    m={top:290,head:190,panel:340,quote:66,gap:0,big:n===4?104:84,small:n===4?38:33,q:n===4?30:26,hook:62,tag:34,foot:38};
+  }
+  var cw=W/cols,rowH=m.head+m.panel+m.quote+m.gap,cells=[];
+  for(var i=0;i<n;i++){
+    var r=Math.floor(i/cols),c=i%cols,x=c*cw;
+    if(n===5&&r===1)x=(W-2*cw)/2+c*cw;
+    cells.push({x:x,y:m.top+r*rowH,w:cw});
+  }
+  return{m:m,cells:cells,rows:rows,one:rows===1,overlay:overlay,sq:sq,H:sq?1080:1920,bottom:m.top+rows*rowH-m.gap};
+}
+function render(ctx,st,guides){
+  var n=st.n,L=layout(n,st.fmt),m=L.m,H=L.H,i,g;
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.shadowColor='rgba(0,0,0,0)';ctx.shadowBlur=0;
+  ctx.fillStyle='#000000';ctx.fillRect(0,0,W,H);ctx.textBaseline='alphabetic';
+
+  var hy=m.top-18,tag=U(st.tag),hook=U(st.hook);
+  if(tag&&n!==2){
+    var tg=fit(ctx,tag,m.tag,18,960,1,.14);ctx.fillStyle='#ffd84a';text(ctx,tg.lines[0],W/2,hy,tg.px,tg.ls);hy-=tg.px*1.55;
+  }
+  if(hook){
+    var hk=fit(ctx,hook,m.hook,30,1010,L.sq?1:2,.02),hch=capH(ctx,hk.px),hadv=hch+hk.px*.24,y0=hy-(hk.lines.length-1)*hadv;
+    ctx.fillStyle='#ffffff';
+    for(i=0;i<hk.lines.length;i++){text(ctx,hk.lines[i],W/2,y0,hk.px,hk.ls);y0+=hadv;}
+  }
+
+  var qEnd=0;
+  for(i=0;i<n;i++){
+    var cell=L.cells[i],o=st.opts[i];if(!o)continue;
+    var inset=n===2?0:3,px0=cell.x+inset,pw=cell.w-inset*2,py=cell.y+m.head,ph=m.panel,cx=cell.x+cell.w/2,base=st.pal[i]||'#ff1a1a';
+    var flip=cx>W/2+1,seed=(st.seed*131+n*17+st.idx*977+i*7919)>>>0;
+    if(o.img){ctx.save();ctx.beginPath();ctx.rect(px0,py,pw,ph);ctx.clip();ctx.fillStyle='#000000';ctx.fillRect(px0,py,pw,ph);cover(ctx,o.img,px0,py,pw,ph);ctx.restore();}
+    else ctx.drawImage(panelArt(pw,ph,o,base,seed,flip,L.overlay,st),px0,py);
+
+    var tintCol=st.tint?mix(base,'#ffffff',L.overlay?.5:.3):'#ffffff',bs=L.overlay?40:(L.one?(L.sq?50:58):46),q,qc,qa,qy;
+    if(L.overlay){
+      var hb=fitHeader(ctx,o,m,pw-28,ph*.37,.42);
+      g=ctx.createLinearGradient(0,py,0,py+hb.H+80);g.addColorStop(0,'rgba(0,0,0,.88)');g.addColorStop(.6,'rgba(0,0,0,.6)');g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g;ctx.fillRect(px0,py,pw,hb.H+80);
+      q=fit(ctx,U(o.q),m.q,m.q*.6,pw-2*(bs+22),2,.04);
+      if(q){
+        qc=capH(ctx,q.px);qa=qc+q.px*.34;var qh=q.lines.length*qa;
+        g=ctx.createLinearGradient(0,py+ph-qh-60,0,py+ph);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.85)');
+        ctx.fillStyle=g;ctx.fillRect(px0,py+ph-qh-60,pw,qh+60);
+      }
+      ctx.save();ctx.shadowColor='rgba(0,0,0,.95)';ctx.shadowBlur=8;ctx.shadowOffsetY=2;
+      var ty=py+14;
+      hb.items.forEach(function(it){ctx.fillStyle=it.big?tintCol:'#ffffff';it.lines.forEach(function(ln){text(ctx,ln,cx,ty+it.ch,it.px,it.ls);ty+=it.adv;});});
+      if(q){qy=py+ph-12-q.lines.length*qa;ctx.fillStyle='#ffffff';q.lines.forEach(function(ln){text(ctx,ln,cx,qy+qc,q.px,q.ls);qy+=qa;});}
+      ctx.restore();
+      qEnd=Math.max(qEnd,py+ph);
+    }else{
+      var blk=fitHeader(ctx,o,m,cell.w-36,m.head-24,L.one?.55:.42),yy=py-12-blk.H;
+      blk.items.forEach(function(it){ctx.fillStyle=it.big?tintCol:'#ffffff';it.lines.forEach(function(ln){text(ctx,ln,cx,yy+it.ch,it.px,it.ls);yy+=it.adv;});});
+      q=fit(ctx,U(o.q),m.q,m.q*.6,cell.w-36,L.one?(L.sq?2:3):2,.04);
+      if(q){
+        qc=capH(ctx,q.px);qa=qc+q.px*.34;qy=py+ph+18;ctx.fillStyle='#ffffff';
+        q.lines.forEach(function(ln){text(ctx,ln,cx,qy+qc,q.px,q.ls);qy+=qa;});
+        qEnd=Math.max(qEnd,qy);
+      }else qEnd=Math.max(qEnd,py+ph);
+    }
+    if(st.letters){
+      var bx=(n===2&&i===1)?px0+pw-bs-12:px0+12,byy=L.overlay?py+ph-bs-12:py+12,lp=bs*.78;
+      ctx.fillStyle='#ffffff';ctx.fillRect(bx,byy,bs,bs);
+      ctx.fillStyle='#000000';text(ctx,LET[i],bx+bs/2,byy+bs/2+capH(ctx,lp)/2,lp,0);
+    }
+  }
+
+  if(tag&&n===2){
+    var st2=fit(ctx,tag,m.tag,22,st.letters?560:640,1,.03),tyy=m.top+m.head+(L.sq?58:74);
+    font(ctx,st2.px);ctx.lineJoin='round';ctx.lineWidth=st2.px*.28;ctx.strokeStyle='#000000';ctx.textAlign='center';
+    ctx.strokeText(st2.lines[0],W/2,tyy);ctx.fillStyle='#ffffff';ctx.fillText(st2.lines[0],W/2,tyy);
+  }
+
+  var foot=U(st.foot),fEnd=0;
+  if(foot){
+    var ft=fit(ctx,foot,m.foot,22,1000,L.sq?1:2,.02),fc=capH(ctx,ft.px),fa=fc+ft.px*.26,fyy=qEnd+(L.sq?12:18);
+    ctx.fillStyle='#ffffff';
+    ft.lines.forEach(function(ln){text(ctx,ln,W/2,fyy+fc,ft.px,ft.ls);fyy+=fa;});
+    fEnd=fyy;
+  }
+  var handle=(st.handle||'').trim();
+  if(handle){
+    var hp=L.sq?26:30;
+    ctx.fillStyle='rgba(255,255,255,.72)';text(ctx,handle,W/2,Math.min(H-12,Math.max(L.bottom+(L.sq?36:44),fEnd+(L.sq?30:40))),hp,.1);
+  }
+
+  if(guides&&!L.sq){
+    ctx.save();ctx.fillStyle='rgba(255,60,60,.3)';
+    ctx.fillRect(0,0,W,150);ctx.fillRect(0,1540,W,380);ctx.fillRect(950,760,130,780);
+    ctx.fillStyle='#ffffff';text(ctx,'ZONE COUVERTE PAR TIKTOK',W/2,100,30,.06);text(ctx,'ZONE COUVERTE PAR TIKTOK',W/2,1740,30,.06);
+    ctx.restore();
+  }
+}
+
+/* ---------- couverture : annonce le choix sans montrer les options ---------- */
+var CT={en:["WHICH ONE DO YOU TAKE?","YOU CAN ONLY PICK ONE","CHOOSE WISELY","ONE ONLY. FOREVER.","YOUR CHOICE SAYS A LOT"],
+        fr:["LEQUEL TU PRENDS ?","TU NE PEUX EN CHOISIR QU'UN","CHOISIS BIEN","UN SEUL. POUR TOUJOURS.","TON CHOIX EN DIT LONG"]};
+function covText(st){
+  var fr=st.lang==='fr',list=CT[fr?'fr':'en'];
+  return{k:st.ck!=null?st.ck:st.n+(fr?' CHOIX · UN SEUL POSSIBLE':' CHOICES · ONLY ONE ALLOWED'),
+         t:st.ct!=null?st.ct:list[st.ti%list.length],
+         s:st.cs!=null?st.cs:(fr?'GLISSE':'SWIPE')};
+}
+function drawGuides(ctx){
+  ctx.save();ctx.fillStyle='rgba(255,60,60,.3)';
+  ctx.fillRect(0,0,W,150);ctx.fillRect(0,1540,W,380);ctx.fillRect(950,760,130,780);
+  ctx.fillStyle='#ffffff';text(ctx,'ZONE COUVERTE PAR TIKTOK',W/2,100,30,.06);text(ctx,'ZONE COUVERTE PAR TIKTOK',W/2,1740,30,.06);
+  ctx.restore();
+}
+function renderCover(ctx,st,guides){
+  var sq=st.fmt!=='tall',H=sq?1080:1920,n=st.n,c=covText(st),fr=st.lang==='fr',i,j,g;
+  var M=sq?{k:92,kp:40,t0:118,t1:330,tp:150,tl:2,bar:352,bw:360,z:414,zp:44,y0:440,y1:1080,by:1042,rx:W-56,sp:46}
+          :{k:330,kp:48,t0:366,t1:700,tp:190,tl:3,bar:730,bw:440,z:806,zp:56,y0:846,y1:1500,by:1456,rx:W-170,sp:54};
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.shadowColor='rgba(0,0,0,0)';ctx.shadowBlur=0;
+  ctx.fillStyle='#000000';ctx.fillRect(0,0,W,H);ctx.textBaseline='alphabetic';
+
+  var hS=M.y1-M.y0,cw=W/n,sl=n<=3?46:28,aw=Math.round(cw+sl*2);
+  for(i=0;i<n;i++){
+    var o=st.opts[i];if(!o)continue;
+    var xl=i*cw,xr=(i+1)*cw,ax=Math.round(xl+cw/2-aw/2),flip=xl+cw/2>W/2+1,seed=(st.seed*131+n*17+st.idx*977+i*7919)>>>0;
+    ctx.save();ctx.beginPath();
+    ctx.moveTo(i===0?0:xl+sl,M.y0);ctx.lineTo(i===n-1?W:xr+sl,M.y0);ctx.lineTo(i===n-1?W:xr-sl,M.y1);ctx.lineTo(i===0?0:xl-sl,M.y1);ctx.closePath();ctx.clip();
+    if(o.img){ctx.fillStyle='#000000';ctx.fillRect(ax,M.y0,aw,hS);cover(ctx,o.img,ax,M.y0,aw,hS);}
+    else ctx.drawImage(panelArt(aw,hS,o,st.pal[i]||'#ff1a1a',seed,flip,false,st,.86),ax,M.y0);
+    ctx.restore();
+  }
+  ctx.strokeStyle='#000000';ctx.lineWidth=12;
+  for(j=1;j<n;j++){ctx.beginPath();ctx.moveTo(j*cw+sl,M.y0-2);ctx.lineTo(j*cw-sl,M.y1+2);ctx.stroke();}
+  g=ctx.createLinearGradient(0,M.y0,0,M.y0+130);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,M.y0,W,130);
+  g=ctx.createLinearGradient(0,M.y1-200,0,M.y1);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.92)');ctx.fillStyle=g;ctx.fillRect(0,M.y1-200,W,200);
+
+  if(st.letters){
+    var bs=n<=3?56:44,lp=bs*.78;
+    for(i=0;i<n;i++){
+      var bcx=Math.min(W-bs/2-14,Math.max(bs/2+14,i*cw+cw/2+(i===0?sl*.4:(i===n-1?sl*.4:sl*.8)))),byy=M.y0+30;
+      ctx.fillStyle='#ffffff';ctx.fillRect(bcx-bs/2,byy,bs,bs);
+      ctx.fillStyle='#000000';text(ctx,LET[i],bcx,byy+bs/2+capH(ctx,lp)/2,lp,0);
+    }
+  }
+  if(n===2){
+    var dcy=M.y0+hS*.52,dp=60;
+    ctx.save();ctx.translate(W/2,dcy);ctx.rotate(Math.PI/4);ctx.fillStyle='#000000';ctx.fillRect(-60,-60,120,120);ctx.strokeStyle='#ffffff';ctx.lineWidth=6;ctx.strokeRect(-60,-60,120,120);ctx.restore();
+    ctx.fillStyle='#ffffff';text(ctx,fr?'OU':'OR',W/2,dcy+capH(ctx,dp)/2,dp,0);
+  }
+
+  var kk=U(c.k);
+  if(kk){var kf=fit(ctx,kk,M.kp,20,1000,1,.12);ctx.fillStyle='#ffd84a';text(ctx,kf.lines[0],W/2,M.k,kf.px,kf.ls);}
+  var tt=U(c.t),tf=null,px,ch=0,adv=0,bh=0;
+  if(tt){
+    for(px=M.tp;px>=40;px-=6){
+      tf=fit(ctx,tt,px,px,1010,M.tl,0);ch=capH(ctx,tf.px);adv=ch+tf.px*.16;bh=tf.lines.length*adv-tf.px*.16;
+      if(tf.px>=px-.01&&bh<=M.t1-M.t0)break;
+    }
+    var ty=M.t0+((M.t1-M.t0)-bh)/2;ctx.fillStyle='#ffffff';
+    tf.lines.forEach(function(ln){text(ctx,ln,W/2,ty+ch,tf.px,0);ty+=adv;});
+  }
+  var segW=M.bw/n;
+  for(i=0;i<n;i++){ctx.fillStyle=st.pal[i]||'#ff1a1a';ctx.fillRect(W/2-M.bw/2+i*segW+3,M.bar,segW-6,12);}
+  var hk=U(st.hook);
+  if(hk){var zf=fit(ctx,hk,M.zp,22,1000,1,.04);ctx.fillStyle='rgba(255,255,255,.88)';text(ctx,zf.lines[0],W/2,M.z,zf.px,zf.ls);}
+
+  ctx.save();ctx.shadowColor='rgba(0,0,0,.95)';ctx.shadowBlur=10;ctx.shadowOffsetY=2;
+  var sw=U(c.s);
+  if(sw){
+    var wt=tw(ctx,sw,M.sp,.08),arw=M.sp*1.5,a0=M.rx-arw,ay=M.by-capH(ctx,M.sp)/2;
+    ctx.fillStyle='#ffd84a';text(ctx,sw,a0-20-wt/2,M.by,M.sp,.08);
+    ctx.beginPath();ctx.moveTo(a0,ay-M.sp*.13);ctx.lineTo(a0+arw*.55,ay-M.sp*.13);ctx.lineTo(a0+arw*.55,ay-M.sp*.36);ctx.lineTo(a0+arw,ay);
+    ctx.lineTo(a0+arw*.55,ay+M.sp*.36);ctx.lineTo(a0+arw*.55,ay+M.sp*.13);ctx.lineTo(a0,ay+M.sp*.13);ctx.closePath();ctx.fill();
+  }
+  var handle=(st.handle||'').trim();
+  if(handle){var hp=sq?28:32;ctx.fillStyle='rgba(255,255,255,.85)';text(ctx,handle,44+tw(ctx,handle,hp,.1)/2,M.by,hp,.1);}
+  ctx.restore();
+  if(guides&&!sq)drawGuides(ctx);
+}
+function paint(ctx,st,guides){if(st.slide==='cover')renderCover(ctx,st,guides);else render(ctx,st,guides);}
+
+/* ---------- banque d'idées : [couleur, pose, décor, accessoire, EN, FR] avec "haut;MOT-CLÉ;précision;réplique" ---------- */
+var MECH={
+  MIR:['Miroir','Même phrase, un seul mot change. Le cerveau compare en une seconde, donc on choisit vite.'],
+  PRIX:['Prix à payer','Chaque option coûte cher et de façon personnelle. Sans contrepartie, tout le monde prendrait la même.'],
+  SACRE:['Sacré contre profane','Un proche, un souvenir ou des années de vie dans la balance : ça indigne, donc ça débat.'],
+  RISQ:['Risque','Certitude contre gros lot. Les prudents et les joueurs se justifient dans les commentaires.'],
+  PARA:['Paradoxe','Les deux options se contredisent. Ça pousse à argumenter pour savoir qui gagne.'],
+  CALC:['Calcul','Petits gains répétés : les gens sortent la calculatrice et postent leur résultat.'],
+  IDENT:['Identité','Le choix dit qui on est. Chacun se croit majoritaire et s’étonne des autres.'],
+  EXTR:['Trois extrêmes','À trois, l’option du milieu sert de refuge. Ici aucune n’est le compromis.'],
+  NERF:['Tous limités','Une limite sur chaque pouvoir ramène le vote vers l’égalité.'],
+  PERSO:['Personnel','La réponse dépend de la vie de chacun. Tout le monde a un cas différent à raconter en commentaire.'],
+  DUEL:['Combat','Qui préfères-tu affronter ? Chacun évalue ses chances et défend sa stratégie.'],
+  DECAL:['Décalage','Un choix utile contre un choix absurde mais stylé. Le second fait rire, donc il se partage.'],
+  RANG:['Classement','À 4 choix et plus, demande un classement : les commentaires deviennent des listes.']
+};
+function D(n,m,hook,tag,o,foot){return{n:n,m:m,hook:hook,tag:tag,o:o,foot:foot||['','']};}
+var BANK=[
+D(2,'MIR',["PICK ONE. NO TAKEBACKS.","UN SEUL CHOIX. PAS DE RETOUR."],["ONCE A DAY","UNE FOIS PAR JOUR"],[
+ ['r','stand','rings','clock',"ABILITY TO;STOP TIME;FOR 10 SECONDS;“WHERE DID HE GO?”","POUVOIR;ARRÊTER LE TEMPS;PENDANT 10 SECONDES;« IL EST PASSÉ OÙ ? »"],
+ ['b','raise','mist','orb',"ABILITY TO;REWIND;10 SECONDS BACK;“DIDN'T THIS JUST HAPPEN?”","POUVOIR;REMBOBINER;10 SECONDES EN ARRIÈRE;« ON VIENT PAS DE VIVRE ÇA ? »"]]),
+D(2,'PARA',["WHO WINS?","QUI GAGNE ?"],["PERMANENT","PERMANENT"],[
+ ['r','run','shards','none',"NOTHING CAN;STOP YOU;UNSTOPPABLE FORCE;“HE WALKED THROUGH THE WALL”","RIEN NE PEUT;T'ARRÊTER;FORCE INARRÊTABLE;« IL A TRAVERSÉ LE MUR »"],
+ ['b','titan','rings','barrier',"NOTHING CAN;MOVE YOU;IMMOVABLE OBJECT;“THE TRUCK JUST BENT”","RIEN NE PEUT;TE DÉPLACER;OBJET INÉBRANLABLE;« LE CAMION S'EST PLIÉ »"]]),
+D(2,'PRIX',["EVERY POWER HAS A PRICE","CHAQUE POUVOIR A UN PRIX"],["NO LIMIT","SANS LIMITE"],[
+ ['r','titan','embers','horns',"UNLIMITED;STRENGTH;EACH USE ERASES A MEMORY;“WAIT... WHO ARE YOU?”","FORCE;ILLIMITÉE;CHAQUE USAGE EFFACE UN SOUVENIR;« ATTENDS... T'ES QUI ? »"],
+ ['c','run','rain','none',"UNLIMITED;SPEED;EACH USE AGES YOU ONE DAY;“HE WAS 20 THIS MORNING”","VITESSE;ILLIMITÉE;CHAQUE USAGE TE VIEILLIT D'UN JOUR;« IL AVAIT 20 ANS CE MATIN »"]]),
+D(2,'SACRE',["WHAT WOULD YOU GIVE UP?","TU SACRIFIES QUOI ?"],["NO WAY BACK","SANS RETOUR"],[
+ ['g','raise','rays','halo',"HEAL;ANYONE;EACH TIME COSTS YOU A YEAR;“HE LOOKS SO TIRED”","GUÉRIR;N'IMPORTE QUI;CHAQUE FOIS TE COÛTE UN AN;« IL A L'AIR ÉPUISÉ »"],
+ ['v','guard','rings','barrier',"NEVER;GET HURT;BUT YOU CAN'T SAVE ANYONE;“I'M SORRY”","NE JAMAIS;ÊTRE BLESSÉ;MAIS TU NE PEUX SAUVER PERSONNE;« DÉSOLÉ »"]]),
+D(2,'RISQ',["SAFE OR GREEDY?","PRUDENT OU JOUEUR ?"],["ONE TRY","UN SEUL ESSAI"],[
+ ['b','stand','mist','orb',"100% CHANCE;ONE POWER;PICKED AT RANDOM;“PLEASE NOT TALKING TO FISH”","100 % DE CHANCE;UN POUVOIR;TIRÉ AU HASARD;« PITIÉ, PAS PARLER AUX POISSONS »"],
+ ['y','raise','embers','crown',"10% CHANCE;EVERY POWER;90%: NOTHING, EVER;“I HAD TO TRY”","10 % DE CHANCE;TOUS LES POUVOIRS;90 % : RIEN, JAMAIS;« FALLAIT QUE J'ESSAIE »"]]),
+D(2,'MIR',["TAKE IT OR BREAK IT","PRENDRE OU DÉTRUIRE"],["BY TOUCH","AU TOUCHER"],[
+ ['v','point','rings','orb',"COPY ANY;POWER;YOU CAN ONLY HOLD ONE;“THAT'S MINE NOW”","COPIER;UN POUVOIR;UN SEUL À LA FOIS;« MAINTENANT IL EST À MOI »"],
+ ['r','lunge','shards','none',"ERASE ANY;POWER;GONE FOREVER;“WHY CAN'T I FLY ANYMORE?”","EFFACER;UN POUVOIR;POUR TOUJOURS;« POURQUOI JE VOLE PLUS ? »"]]),
+D(2,'PARA',["KNOW IT OR FIX IT?","SAVOIR OU RÉPARER ?"],["ONE TIME ONLY","UNE SEULE FOIS"],[
+ ['c','float','stars','eye',"SEE;THE FUTURE;10 YEARS AHEAD · CAN'T CHANGE IT;“I KNOW HOW THIS ENDS”","VOIR;LE FUTUR;10 ANS D'AVANCE · IMPOSSIBLE À CHANGER;« JE SAIS COMMENT ÇA FINIT »"],
+ ['o','crouch','embers','clock',"CHANGE;THE PAST;ONE DAY · YOU WON'T REMEMBER WHY;“SOMETHING FEELS DIFFERENT”","CHANGER;LE PASSÉ;UN SEUL JOUR · TU OUBLIES POURQUOI;« Y A UN TRUC QUI A CHANGÉ »"]]),
+D(2,'IDENT',["CROWD OR SOLITUDE?","FOULE OU SOLITUDE ?"],["NO CEILING","SANS PLAFOND"],[
+ ['y','raise','rays','crown',"THE MORE;PEOPLE WATCH;THE STRONGER YOU GET;“STOP FILMING HIM!”","PLUS ON TE;REGARDE;PLUS TU ES FORT;« ARRÊTEZ DE LE FILMER ! »"],
+ ['v','sit','stars','none',"THE MORE;ALONE YOU ARE;THE STRONGER YOU GET;“HE WAITED FOR NIGHT”","PLUS TU ES;SEUL;PLUS TU ES FORT;« IL A ATTENDU LA NUIT »"]]),
+D(2,'PARA',["REAL OR REPUTATION?","ÊTRE OU PARAÎTRE ?"],["FOR LIFE","À VIE"],[
+ ['r','stand','shards','sword',"WIN EVERY;FIGHT;BUT NOBODY EVER BELIEVES IT;“NO WAY THAT WAS HIM”","GAGNER CHAQUE;COMBAT;MAIS PERSONNE N'Y CROIT;« IMPOSSIBLE QUE CE SOIT LUI »"],
+ ['b','raise','rays','cape',"LOSE EVERY;FIGHT;BUT EVERYONE THINKS YOU WON;“A LIVING LEGEND”","PERDRE CHAQUE;COMBAT;MAIS TOUS CROIENT QUE T'AS GAGNÉ;« UNE LÉGENDE VIVANTE »"]]),
+D(2,'CALC',["DO THE MATH","FAIS LE CALCUL"],["STACKS FOREVER","CUMULABLE À VIE"],[
+ ['g','point','rays','halo',"+1 MINUTE OF LIFE;PER TRUTH;EVERY HONEST ANSWER YOU GIVE;“BRUTALLY HONEST. FOREVER.”","+1 MINUTE DE VIE;PAR VÉRITÉ;À CHAQUE RÉPONSE HONNÊTE;« HONNÊTE. BRUTALEMENT. »"],
+ ['m','crouch','mist','horns',"+1 HOUR OF LIFE;PER LIE;EVERY LIE NOBODY CATCHES;“TRUST ME.”","+1 HEURE DE VIE;PAR MENSONGE;À CHAQUE MENSONGE NON DÉCOUVERT;« FAIS-MOI CONFIANCE. »"]]),
+D(2,'MIR',["ONE RULE STOPS APPLYING TO YOU","UNE RÈGLE NE S'APPLIQUE PLUS À TOI"],["PERMANENT","PERMANENT"],[
+ ['c','float','stars','none',"FOR YOU;DISTANCE;DOES NOT EXIST;“HE WAS IN TOKYO A SECOND AGO”","POUR TOI;LA DISTANCE;N'EXISTE PLUS;« IL ÉTAIT À TOKYO Y A UNE SECONDE »"],
+ ['o','sit','rings','clock',"FOR YOU;WAITING;DOES NOT EXIST;“HIS ORDER CAME BEFORE HE ASKED”","POUR TOI;L'ATTENTE;N'EXISTE PLUS;« SA COMMANDE EST ARRIVÉE AVANT QU'IL DEMANDE »"]]),
+D(2,'PRIX',["NEVER NEED IT AGAIN","PLUS JAMAIS BESOIN"],["NO SIDE EFFECTS","SANS EFFET SECONDAIRE"],[
+ ['r','stand','embers','none',"NEVER NEED;SLEEP;BUT YOU CAN'T DREAM ANYMORE;“HE HAS BEEN UP SINCE 2019”","PLUS BESOIN DE;DORMIR;MAIS TU NE RÊVES PLUS JAMAIS;« IL EST DEBOUT DEPUIS 2019 »"],
+ ['b','sit','mist','halo',"NEVER NEED;FOOD;BUT YOU CAN'T TASTE ANYMORE;“HE JUST WATCHES US EAT”","PLUS BESOIN DE;MANGER;MAIS TU NE SENS PLUS LE GOÛT;« IL NOUS REGARDE MANGER »"]]),
+D(2,'PERSO',["CHECK YOUR PHONE FIRST","REGARDE TON TÉLÉPHONE D'ABORD"],["FOR 24 HOURS","PENDANT 24 HEURES"],[
+ ['v','point','rings','orb',"GET THE POWERS OF;YOUR LOCK SCREEN;WHATEVER IS ON IT RIGHT NOW;“MINE IS A PHOTO OF MY CAT”","LES POUVOIRS DE;TON FOND D'ÉCRAN;CELUI QUE TU AS LÀ, MAINTENANT;« MOI C'EST UNE PHOTO DE MON CHAT »"],
+ ['g','sit','stars','none',"GET THE POWERS OF;YOUR LAST GAME;THE LAST CHARACTER YOU PLAYED;“I WAS PLAYING A FARMING GAME”","LES POUVOIRS DE;TON DERNIER JEU;LE DERNIER PERSO QUE TU AS JOUÉ;« JE JOUAIS À UN JEU DE FERME »"]],["NO CHANGING IT NOW","INTERDIT DE CHANGER MAINTENANT"]),
+D(2,'DUEL',["YOU VS YOU","TOI CONTRE TOI"],["ARENA: YOUR KITCHEN","ARÈNE : TA CUISINE"],[
+ ['r','run','embers','none',"FIGHT;YOUR PAST SELF;10 YEARS YOUNGER · FEARLESS;“HE HAS NO BACK PAIN”","AFFRONTER;TON PASSÉ;10 ANS DE MOINS · PEUR DE RIEN;« LUI IL A PAS MAL AU DOS »"],
+ ['b','guard','rings','eye',"FIGHT;YOUR FUTURE SELF;10 YEARS OLDER · KNOWS YOUR MOVES;“HE REMEMBERS THIS FIGHT”","AFFRONTER;TON FUTUR;10 ANS DE PLUS · CONNAÎT TES COUPS;« IL SE SOUVIENT DE CE COMBAT »"]],["ONLY ONE WALKS OUT","UN SEUL RESSORT"]),
+D(2,'MIR',["UPGRADE YOUR EYES","AMÉLIORE TES YEUX"],["ON AND OFF AT WILL","ACTIVABLE À VOLONTÉ"],[
+ ['v','crouch','stars','eye',"SEE IN;THE DARK;PERFECTLY, IN ANY DARKNESS;“WHO TURNED OFF THE LIGHTS? HIM.”","VOIR DANS;LE NOIR;PARFAITEMENT, PARTOUT;« QUI A ÉTEINT ? LUI. »"],
+ ['y','guard','rings','clock',"SEE IN;SLOW MOTION;WHENEVER YOU WANT;“HE CAUGHT THE FLY. WITH CHOPSTICKS.”","VOIR AU;RALENTI;QUAND TU VEUX;« IL A ATTRAPÉ LA MOUCHE. AVEC DES BAGUETTES. »"]]),
+D(2,'DECAL',["PRACTICAL OR LEGENDARY?","PRATIQUE OU LÉGENDAIRE ?"],["YOURS FOR LIFE","À TOI POUR LA VIE"],[
+ ['v','point','stars','orb',"A POCKET;BLACK HOLE;SWALLOWS ANYTHING · FITS IN A JAR;“WHERE DID MY HOMEWORK GO?”","UN;TROU NOIR;DE POCHE · AVALE TOUT;« IL EST PASSÉ OÙ MON DEVOIR ? »"],
+ ['o','titan','mist','horns',"A LOYAL;GIANT CRAB;3 METERS · CARRIES YOU EVERYWHERE;“HE PARKED HIS CRAB OUTSIDE”","UN;CRABE GÉANT;3 MÈTRES · FIDÈLE · TE PORTE PARTOUT;« IL A GARÉ SON CRABE DEVANT »"]]),
+D(2,'DUEL',["LOCKED IN FOR 10 MINUTES","ENFERMÉ 10 MINUTES"],["THEY ARE ANGRY","ILS SONT EN COLÈRE"],[
+ ['g','guard','shards','none',"SURVIVE;50 GEESE;THEY WORK AS A TEAM;“THEY HAVE A FORMATION”","SURVIVRE À;50 OIES;ELLES JOUENT EN ÉQUIPE;« ELLES ONT UNE FORMATION »"],
+ ['o','lunge','embers','none',"SURVIVE;1 KANGAROO;PRO BOXER · 2 METERS TALL;“HE PUT GLOVES ON”","SURVIVRE À;1 KANGOUROU;BOXEUR PRO · 2 MÈTRES;« IL A MIS DES GANTS »"]],["ARENA: A SCHOOL GYM","ARÈNE : UN GYMNASE"]),
+
+D(3,'EXTR',["ONE TICKET. ONE WAY.","UN BILLET. UN SEUL."],["1 HOUR A DAY","1 HEURE PAR JOUR"],[
+ ['o','stand','mist','none',"VISIT;THE PAST;LOOK, DON'T TOUCH;“SO THAT'S WHAT REALLY HAPPENED”","VISITER;LE PASSÉ;REGARDER SANS TOUCHER;« C'EST DONC ÇA LA VRAIE HISTOIRE »"],
+ ['g','sit','rings','clock',"FREEZE;THE PRESENT;ONLY YOU CAN MOVE;“ONE MORE HOUR”","FIGER;LE PRÉSENT;TOI SEUL BOUGES;« ENCORE UNE HEURE »"],
+ ['c','float','stars','eye',"VISIT;THE FUTURE;BRING NOTHING BACK;“I KNOW WHO WINS”","VISITER;LE FUTUR;NE RIEN RAMENER;« JE SAIS QUI GAGNE »"]]),
+D(3,'IDENT',["BODY, MIND OR WILL?","CORPS, ESPRIT OU VOLONTÉ ?"],["PERMANENT","PERMANENT"],[
+ ['r','titan','shards','none',"UNBREAKABLE;BODY;NOTHING CAN HURT YOU;“THE BULLET BOUNCED”","CORPS;INCASSABLE;RIEN NE TE BLESSE;« LA BALLE A REBONDI »"],
+ ['b','sit','rings','eye',"UNLIMITED;MIND;LEARN ANYTHING IN 1 MINUTE;“HE READ THE WHOLE LIBRARY”","ESPRIT;ILLIMITÉ;TOUT APPRENDRE EN 1 MINUTE;« IL A LU TOUTE LA BIBLIOTHÈQUE »"],
+ ['y','stand','rays','crown',"UNSHAKABLE;WILL;NEVER FEEL FEAR OR DOUBT;“HE DIDN'T EVEN BLINK”","VOLONTÉ;INÉBRANLABLE;NI PEUR NI DOUTE;« IL A MÊME PAS CLIGNÉ »"]]),
+D(3,'PRIX',["MASTER ONE. PAY FOR IT.","MAÎTRISE-EN UN. PAIE LE PRIX."],["TOTAL CONTROL","CONTRÔLE TOTAL"],[
+ ['o','raise','embers','none',"CONTROL;FIRE;BUT YOU ARE NEVER WARM;“WHY IS HE SHIVERING?”","CONTRÔLER;LE FEU;MAIS TU AS TOUJOURS FROID;« POURQUOI IL GRELOTTE ? »"],
+ ['b','float','rain','none',"CONTROL;WATER;BUT YOU ARE ALWAYS THIRSTY;“HE DRANK THE POOL”","CONTRÔLER;L'EAU;MAIS TU AS TOUJOURS SOIF;« IL A BU LA PISCINE »"],
+ ['v','point','rings','orb',"CONTROL;GRAVITY;BUT YOU CAN NEVER JUMP;“HIS FEET NEVER LEAVE THE GROUND”","CONTRÔLER;LA GRAVITÉ;MAIS TU NE PEUX PLUS SAUTER;« SES PIEDS QUITTENT JAMAIS LE SOL »"]]),
+D(3,'RISQ',["HOW GREEDY ARE YOU?","T'ES GOURMAND À QUEL POINT ?"],["ONE DRAW","UN SEUL TIRAGE"],[
+ ['g','stand','mist','none',"100% CHANCE;1 POWER;YOU CHOOSE IT;“I'LL TAKE THE SAFE ONE”","100 % DE CHANCE;1 POUVOIR;TU LE CHOISIS;« JE PRENDS LE SÛR »"],
+ ['y','point','rays','orb',"50% CHANCE;3 POWERS;FAIL: NOTHING, EVER;“COIN FLIP”","50 % DE CHANCE;3 POUVOIRS;RATÉ : RIEN, JAMAIS;« PILE OU FACE »"],
+ ['r','raise','storm','crown',"1% CHANCE;ALL POWERS;FAIL: NOTHING, EVER;“SOMEONE HAS TO WIN”","1 % DE CHANCE;TOUS LES POUVOIRS;RATÉ : RIEN, JAMAIS;« FAUT BIEN QU'UN GAGNE »"]]),
+D(3,'EXTR',["ONE CALL. WHAT ANSWERS?","UN APPEL. QUI RÉPOND ?"],["ANYTIME","À VOLONTÉ"],[
+ ['r','stand','shards','sword',"SUMMON ANY;WEAPON;THAT EVER EXISTED;“WHERE DID HE GET THAT?”","INVOQUER;UNE ARME;QUI A EXISTÉ UN JOUR;« IL A SORTI ÇA D'OÙ ? »"],
+ ['g','crouch','mist','horns',"SUMMON ANY;BEAST;LIVING OR EXTINCT;“IS THAT A MAMMOTH?”","INVOQUER;UNE BÊTE;VIVANTE OU DISPARUE;« C'EST UN MAMMOUTH ?! »"],
+ ['b','guard','rings','barrier',"SUMMON ANY;SHELTER;NOTHING GETS IN;“THE DOOR WON'T BREAK”","INVOQUER;UN ABRI;RIEN N'ENTRE;« LA PORTE CÈDE PAS »"]]),
+D(3,'PERSO',["BE HONEST.","SOIS HONNÊTE."],["NO CHEATING","SANS TRICHER"],[
+ ['y','point','rays','none',"POWERS OF;YOUR LAST EMOJI;THE ONE YOU JUST SENT;“I SENT A SKULL”","LES POUVOIRS DE;TON DERNIER EMOJI;CELUI QUE TU VIENS D'ENVOYER;« J'AI ENVOYÉ UNE TÊTE DE MORT »"],
+ ['o','sit','mist','none',"POWERS OF;YOUR LAST MEAL;WHATEVER YOU ATE TODAY;“I HAD SOUP”","LES POUVOIRS DE;TON DERNIER REPAS;CE QUE TU AS MANGÉ AUJOURD'HUI;« J'AI MANGÉ DE LA SOUPE »"],
+ ['c','crouch','stars','eye',"POWERS OF;YOUR LAST SEARCH;CHECK YOUR HISTORY;“PLEASE NO”","LES POUVOIRS DE;TA DERNIÈRE RECHERCHE;REGARDE TON HISTORIQUE;« PITIÉ NON »"]]),
+
+D(4,'RANG',["RANK THEM 1 TO 4","CLASSE-LES DE 1 À 4"],["ALWAYS ON","TOUJOURS ACTIF"],[
+ ['c','stand','rays','eye',"SEE;THROUGH WALLS;UP TO 1 KM;“HE KNEW WE WERE HERE”","VOIR;À TRAVERS LES MURS;JUSQU'À 1 KM;« IL SAVAIT QU'ON ÉTAIT LÀ »"],
+ ['v','sit','rings','none',"HEAR;EVERY WHISPER;WITHIN 10 KM;“HE HEARD THAT?”","ENTENDRE;CHAQUE MURMURE;À 10 KM;« IL A ENTENDU ÇA ? »"],
+ ['o','crouch','mist','horns',"SMELL;FEAR;AND WHO IS LYING;“HE SNIFFED AND KNEW”","SENTIR;LA PEUR;ET QUI MENT;« IL A RENIFLÉ. IL SAVAIT. »"],
+ ['g','guard','shards','none',"FEEL;DANGER;10 SECONDS EARLY;“HE MOVED BEFORE IT FELL”","SENTIR;LE DANGER;10 SECONDES AVANT;« IL A BOUGÉ AVANT LA CHUTE »"]]),
+D(4,'NERF',["EVERY ONE HAS A CATCH","CHACUN A UN PIÈGE"],["",""],[
+ ['c','float','mist','wings',"POWER OF;FLIGHT;ONLY AS FAST AS YOU RUN;“HE'S JOGGING. IN THE SKY.”","POUVOIR;VOLER;PAS PLUS VITE QUE TA COURSE;« IL FAIT SON FOOTING. DANS LE CIEL. »"],
+ ['v','point','rings','orb',"POWER OF;TELEPORT;ONLY WHERE YOU'VE BEEN;“I NEVER LEFT MY TOWN”","POUVOIR;TÉLÉPORTATION;SEULEMENT OÙ TU ES DÉJÀ ALLÉ;« J'AI JAMAIS QUITTÉ MA VILLE »"],
+ ['r','run','rain','none',"POWER OF;SUPER SPEED;BUT YOU STILL GET TIRED;“200 KM/H... FOR 9 SECONDS”","POUVOIR;SUPER VITESSE;MAIS TU TE FATIGUES;« 200 KM/H... PENDANT 9 SECONDES »"],
+ ['g','stand','shards','none',"POWER OF;GHOST WALK;ONLY WHILE HOLDING YOUR BREATH;“HE GOT STUCK IN THE WALL”","POUVOIR;TRAVERSER LES MURS;TANT QUE TU RETIENS TON SOUFFLE;« IL EST RESTÉ COINCÉ DANS LE MUR »"]]),
+D(4,'SACRE',["ANY POWER YOU WANT. PICK THE PRICE.","LE POUVOIR QUE TU VEUX. CHOISIS LE PRIX."],["NO REFUND","NON REMBOURSABLE"],[
+ ['r','stand','embers','none',"LOSE YOUR;VOICE;SILENT FOREVER;“...”","PERDRE TA;VOIX;MUET POUR TOUJOURS;« ... »"],
+ ['b','float','mist','none',"LOSE YOUR;NAME;EVERYONE FORGETS YOU;“HAVE WE MET?”","PERDRE TON;NOM;TOUT LE MONDE T'OUBLIE;« ON SE CONNAÎT ? »"],
+ ['y','sit','rays','none',"LOSE YOUR;CHILDHOOD;EVERY MEMORY, GONE;“WHO IS IN THIS PHOTO?”","PERDRE TON;ENFANCE;TOUS LES SOUVENIRS EFFACÉS;« C'EST QUI SUR LA PHOTO ? »"],
+ ['v','crouch','stars','none',"LOSE YOUR;SLEEP;AWAKE FOREVER, ALWAYS TIRED;“DAY 4,012”","PERDRE TON;SOMMEIL;ÉVEILLÉ À VIE, TOUJOURS FATIGUÉ;« JOUR 4 012 »"]]),
+D(4,'RANG',["PICK YOUR GUARDIAN","CHOISIS TON GARDIEN"],["LOYAL FOR LIFE","FIDÈLE À VIE"],[
+ ['o','crouch','embers','wings',"A LOYAL;DRAGON;EATS ONE COW A DAY;“THE FARMERS ARE ANGRY”","UN;DRAGON;MANGE UNE VACHE PAR JOUR;« LES FERMIERS SONT FURIEUX »"],
+ ['c','raise','mist','cape',"A GHOST;ARMY;1,000 SOLDIERS · NIGHT ONLY;“WAIT FOR SUNSET”","UNE ARMÉE DE;FANTÔMES;1 000 SOLDATS · LA NUIT SEULEMENT;« ATTENDS LE COUCHER DU SOLEIL »"],
+ ['r','titan','shards','horns',"A 100 M;TITAN;ONE HOUR A DAY;“59 MINUTES LEFT”","UN;TITAN;100 M DE HAUT · 1 HEURE PAR JOUR;« PLUS QUE 59 MINUTES »"],
+ ['v','lunge','rings','sword',"YOUR OWN;SHADOW;FIGHTS LIKE YOU · NEVER TIRES;“THERE'S TWO OF HIM”","TA PROPRE;OMBRE;SE BAT COMME TOI · JAMAIS FATIGUÉE;« ILS SONT DEUX »"]]),
+D(4,'MIR',["ONE BUTTON ON THE REMOTE","UN SEUL BOUTON SUR LA TÉLÉCOMMANDE"],["WORKS ON REAL LIFE","MARCHE SUR LA VRAIE VIE"],[
+ ['b','stand','rings','clock',"BUTTON;PAUSE;10 SECONDS · UNLIMITED USES;“HE'S ALREADY BEHIND YOU”","BOUTON;PAUSE;10 SECONDES · SANS LIMITE;« IL EST DÉJÀ DERRIÈRE TOI »"],
+ ['g','point','mist','clock',"BUTTON;REWIND;1 MINUTE · 3 TIMES A DAY;“LET ME SAY THAT AGAIN”","BOUTON;RETOUR;1 MINUTE · 3 FOIS PAR JOUR;« ATTENDS, JE LA REFAIS »"],
+ ['o','run','rain','none',"BUTTON;SKIP;JUMP PAST ANY BAD DAY;“IT'S ALREADY FRIDAY?”","BOUTON;AVANCE RAPIDE;SAUTER UNE MAUVAISE JOURNÉE;« ON EST DÉJÀ VENDREDI ? »"],
+ ['m','sit','stars','halo',"BUTTON;REPLAY;RELIVE ONE DAY, ONCE A YEAR;“BEST DAY. AGAIN.”","BOUTON;REVIVRE;UN JOUR, UNE FOIS PAR AN;« LE MEILLEUR JOUR. ENCORE. »"]]),
+D(4,'DUEL',["PICK YOUR OPPONENT","CHOISIS TON ADVERSAIRE"],["NO WEAPONS","SANS ARMES"],[
+ ['r','titan','shards','none',"FIGHT THE;GIANT;10 M TALL · VERY SLOW;“AIM FOR THE ANKLES”","AFFRONTER LE;GÉANT;10 M DE HAUT · TRÈS LENT;« VISE LES CHEVILLES »"],
+ ['c','float','mist','cape',"FIGHT THE;GHOST;YOU CAN'T TOUCH IT · IT CAN'T TOUCH YOU;“SO... WHO WINS?”","AFFRONTER LE;FANTÔME;TU NE LE TOUCHES PAS · LUI NON PLUS;« DU COUP... QUI GAGNE ? »"],
+ ['v','guard','rings','barrier',"FIGHT THE;MIRROR;COPIES EVERY MOVE YOU MAKE;“STOP HITTING YOURSELF”","AFFRONTER LE;MIROIR;IL COPIE CHACUN DE TES GESTES;« ARRÊTE DE TE FRAPPER »"],
+ ['y','run','embers','none',"FIGHT THE;SWARM;10,000 BEES · ONE MIND;“WHERE DO I EVEN PUNCH?”","AFFRONTER L';ESSAIM;10 000 ABEILLES · UN SEUL ESPRIT;« JE FRAPPE OÙ ? »"]],["WIN AND THEIR POWER IS YOURS","SI TU GAGNES, TU PRENDS SON POUVOIR"]),
+
+D(5,'IDENT',["CHOOSE YOUR CLASS","CHOISIS TA CLASSE"],["ONE LIFE. ONE CLASS.","UNE VIE. UNE CLASSE."],[
+ ['g','raise','rays','halo',"THE;HEALER;HEAL ANY WOUND BUT YOUR OWN;","LE;GUÉRISSEUR;SOIGNE TOUT SAUF TOI;"],
+ ['v','crouch','mist','cape',"THE;SHADOW;INVISIBLE UNTIL YOU SPEAK;","L';OMBRE;INVISIBLE TANT QUE TU TE TAIS;"],
+ ['r','titan','shards','horns',"THE;TITAN;10× STRENGTH · HALF SPEED;","LE;TITAN;FORCE ×10 · VITESSE ÷2;"],
+ ['c','sit','stars','eye',"THE;ORACLE;SEE 1 MINUTE AHEAD;","L';ORACLE;VOIT 1 MINUTE EN AVANCE;"],
+ ['y','point','storm','staff',"THE;STORM;LIGHTNING · ONLY UNDER OPEN SKY;","LA;FOUDRE;ÉCLAIRS · SEULEMENT DEHORS;"]]),
+D(5,'RISQ',["MORE POWER OR MORE TIME?","PLUS DE POUVOIR OU PLUS DE TEMPS ?"],["CLOCK STARTS NOW","LE CHRONO DÉMARRE"],[
+ ['r','raise','storm','crown',"EVERY POWER;1 HOUR;THEN GONE FOREVER;","TOUS LES POUVOIRS;1 HEURE;PUIS PLUS RIEN;"],
+ ['o','lunge','embers','sword',"10 POWERS;1 DAY;YOU CHOOSE THEM;","10 POUVOIRS;1 JOUR;TU LES CHOISIS;"],
+ ['y','stand','rays','orb',"3 POWERS;1 YEAR;YOU CHOOSE THEM;","3 POUVOIRS;1 AN;TU LES CHOISIS;"],
+ ['b','guard','rings','barrier',"1 POWER;FOREVER;YOU CHOOSE IT;","1 POUVOIR;À VIE;TU LE CHOISIS;"],
+ ['m','float','stars','none',"1 RANDOM POWER;DAILY;A NEW ONE EVERY MORNING;","1 POUVOIR AU HASARD;PAR JOUR;UN NOUVEAU CHAQUE MATIN;"]]),
+D(5,'RANG',["ONE THING CAN NEVER TOUCH YOU","UNE CHOSE NE T'ATTEINT PLUS"],["FOR LIFE","À VIE"],[
+ ['o','stand','embers','none',"IMMUNE TO;FIRE;WALK THROUGH LAVA;","IMMUNISÉ CONTRE;LE FEU;MARCHE DANS LA LAVE;"],
+ ['r','titan','shards','none',"IMMUNE TO;PAIN;YOU STILL GET INJURED;","IMMUNISÉ CONTRE;LA DOULEUR;MAIS TU TE BLESSES QUAND MÊME;"],
+ ['v','stand','mist','cape',"IMMUNE TO;FEAR;NOTHING SCARES YOU;","IMMUNISÉ CONTRE;LA PEUR;RIEN NE T'EFFRAIE;"],
+ ['b','sit','stars','halo',"IMMUNE TO;SLEEP;8 EXTRA HOURS A DAY;","IMMUNISÉ CONTRE;LE SOMMEIL;8 HEURES DE PLUS PAR JOUR;"],
+ ['c','float','rings','none',"IMMUNE TO;GRAVITY;ON AND OFF AT WILL;","IMMUNISÉ CONTRE;LA GRAVITÉ;ACTIVABLE À VOLONTÉ;"]]),
+D(5,'MIR',["ONE WORD. REALITY OBEYS.","UN MOT. LA RÉALITÉ OBÉIT."],["ONLY THIS WORD","CE MOT SEULEMENT"],[
+ ['r','point','rings','none',"YOU SAY;STOP;ANYTHING IN MOTION FREEZES;","TU DIS;STOP;TOUT CE QUI BOUGE SE FIGE;"],
+ ['y','raise','rays','none',"YOU SAY;OPEN;ANY DOOR, LOCK OR PATH;","TU DIS;OUVRE;PORTE, SERRURE, PASSAGE;"],
+ ['o','lunge','shards','none',"YOU SAY;BREAK;WHATEVER YOU POINT AT;","TU DIS;CASSE;CE QUE TU POINTES DU DOIGT;"],
+ ['g','sit','mist','halo',"YOU SAY;HEAL;ANYTHING BROKEN, ANYONE HURT;","TU DIS;RÉPARE;TOUT CE QUI EST CASSÉ OU BLESSÉ;"],
+ ['v','crouch','stars','cape',"YOU SAY;VANISH;YOU DISAPPEAR FOR 1 MINUTE;","TU DIS;DISPARAIS;TU T'EFFACES 1 MINUTE;"]]),
+D(5,'IDENT',["ONE ANIMAL FORM. FOREVER.","UNE FORME ANIMALE. À VIE."],["SHIFT AT WILL","À VOLONTÉ"],[
+ ['b','crouch','mist','none',"BECOME A;WOLF;EVERY PACK FOLLOWS YOU;","DEVENIR;LOUP;TOUTES LES MEUTES TE SUIVENT;"],
+ ['y','float','rays','wings',"BECOME AN;EAGLE;SEE A MOUSE FROM 3 KM;","DEVENIR;AIGLE;VOIR UNE SOURIS À 3 KM;"],
+ ['c','run','rain','none',"BECOME A;SHARK;RULE EVERY OCEAN;","DEVENIR;REQUIN;RÉGNER SUR LES OCÉANS;"],
+ ['o','titan','shards','none',"BECOME A;BEAR;STRONGEST THING ON LAND;","DEVENIR;OURS;LE PLUS FORT SUR TERRE;"],
+ ['g','crouch','rings','horns',"BECOME A;SPIDER;WALLS, WEBS, 8 EYES · HUMAN SIZE;","DEVENIR;ARAIGNÉE;MURS, TOILES, 8 YEUX · TAILLE HUMAINE;"]]),
+
+D(6,'NERF',["ALL NERFED. PICK ONE.","TOUS LIMITÉS. CHOISIS-EN UN."],["NO UPGRADES","PAS D'AMÉLIORATION"],[
+ ['c','float','mist','wings',"POWER OF;FLIGHT;MAX 2 METERS HIGH;","POUVOIR;VOLER;2 MÈTRES DE HAUT MAX;"],
+ ['v','crouch','stars','cape',"POWER OF;INVISIBILITY;WHILE HOLDING YOUR BREATH;","POUVOIR;INVISIBILITÉ;TANT QUE TU RETIENS TON SOUFFLE;"],
+ ['g','point','rings','orb',"POWER OF;TELEPORT;ONLY WHERE YOU CAN SEE;","POUVOIR;TÉLÉPORTATION;SEULEMENT OÙ TU VOIS;"],
+ ['b','sit','rays','eye',"POWER OF;MIND READING;ONE THOUGHT A DAY;","POUVOIR;LIRE LES PENSÉES;UNE PENSÉE PAR JOUR;"],
+ ['r','titan','shards','horns',"POWER OF;STRENGTH;10 SECONDS AT A TIME;","POUVOIR;SUPER FORCE;10 SECONDES À LA FOIS;"],
+ ['y','stand','storm','clock',"POWER OF;TIME STOP;3 SECONDS · ONCE A DAY;","POUVOIR;ARRÊT DU TEMPS;3 SECONDES · 1 FOIS PAR JOUR;"]]),
+D(6,'RANG',["ONE RELIC. YOURS FOREVER.","UNE RELIQUE. À TOI POUR TOUJOURS."],["CAN'T BE STOLEN","IMPOSSIBLE À VOLER"],[
+ ['v','stand','mist','cape',"THE;MASK;LOOK LIKE ANYONE;","LE;MASQUE;PRENDRE N'IMPORTE QUEL VISAGE;"],
+ ['y','point','rays','orb',"THE;COIN;EVERY FLIP LANDS YOUR WAY;","LA;PIÈCE;TOMBE TOUJOURS DE TON CÔTÉ;"],
+ ['b','sit','stars','eye',"THE;BOOK;ONE TRUE ANSWER A DAY;","LE;LIVRE;UNE RÉPONSE VRAIE PAR JOUR;"],
+ ['g','crouch','mist','none',"THE;RING;NOBODY NOTICES YOU;","L';ANNEAU;PERSONNE NE TE REMARQUE;"],
+ ['r','lunge','shards','sword',"THE;BLADE;CUTS THROUGH ANYTHING;","LA;LAME;TRANCHE N'IMPORTE QUOI;"],
+ ['c','run','rain','none',"THE;BOOTS;WALK ON WATER, WALLS AND AIR;","LES;BOTTES;MARCHER SUR L'EAU, LES MURS, L'AIR;"]]),
+D(6,'RISQ',["24 HOURS. NO POWERS. WHERE?","24 HEURES. ZÉRO POUVOIR. OÙ ?"],["SURVIVE = ANY POWER YOU WANT","SURVIS = LE POUVOIR DE TON CHOIX"],[
+ ['b','float','rain','none',"ONE NIGHT IN;THE ABYSS;11 KM UNDER THE SEA;","UNE NUIT DANS;LES ABYSSES;11 KM SOUS LA MER;"],
+ ['v','crouch','mist','cape',"ONE NIGHT IN A;HAUNTED CASTLE;IT KNOWS YOUR NAME;","UNE NUIT DANS UN;CHÂTEAU HANTÉ;IL CONNAÎT TON NOM;"],
+ ['g','run','shards','none',"ONE NIGHT IN;THE JURASSIC;YOU ARE THE SNACK;","UNE NUIT AU;JURASSIQUE;LE GOÛTER, C'EST TOI;"],
+ ['r','guard','embers','none',"ONE NIGHT IN A;DEAD CITY;THEY HEAR EVERYTHING;","UNE NUIT DANS UNE;VILLE MORTE;ILS ENTENDENT TOUT;"],
+ ['c','float','stars','none',"ONE NIGHT IN;DEEP SPACE;ONE SUIT · 25 HOURS OF AIR;","UNE NUIT DANS;L'ESPACE;UNE COMBI · 25 H D'AIR;"],
+ ['y','stand','rings','none',"ONE NIGHT IN;YEAR 3000;NOBODY SPEAKS YOUR LANGUAGE;","UNE NUIT EN;L'AN 3000;PERSONNE NE PARLE TA LANGUE;"]]),
+D(6,'RANG',["MAX OUT ONE STAT","MONTE UNE STAT AU MAX"],["THE REST STAYS HUMAN","LE RESTE RESTE HUMAIN"],[
+ ['r','titan','shards','none',"+1000;STRENGTH;LIFT A TRUCK;","+1000;FORCE;SOULEVER UN CAMION;"],
+ ['c','run','rain','none',"+1000;SPEED;OUTRUN A BULLET;","+1000;VITESSE;PLUS RAPIDE QU'UNE BALLE;"],
+ ['b','sit','rings','eye',"+1000;IQ;SOLVE ANYTHING;","+1000;QI;TOUT RÉSOUDRE;"],
+ ['y','point','rays','crown',"+1000;LUCK;NEVER LOSE A BET;","+1000;CHANCE;JAMAIS PERDRE UN PARI;"],
+ ['m','raise','mist','halo',"+1000;CHARISMA;EVERYONE LISTENS;","+1000;CHARISME;TOUT LE MONDE T'ÉCOUTE;"],
+ ['g','guard','storm','none',"+1000;REFLEXES;DODGE ANYTHING;","+1000;RÉFLEXES;TOUT ESQUIVER;"]]),
+D(6,'IDENT',["WHO DO YOU BECOME?","TU DEVIENS QUI ?"],["SAME POWERS. DIFFERENT LIFE.","MÊMES POUVOIRS. AUTRE VIE."],[
+ ['b','raise','rays','cape',"THE;HERO;LOVED · NEVER OFF DUTY;","LE;HÉROS;AIMÉ · JAMAIS DE REPOS;"],
+ ['r','stand','embers','horns',"THE;VILLAIN;FEARED · COMPLETELY FREE;","LE;MÉCHANT;CRAINT · TOTALEMENT LIBRE;"],
+ ['v','crouch','rain','sword',"THE;OUTLAW;NO RULES · NO FRIENDS;","LE;HORS-LA-LOI;AUCUNE RÈGLE · AUCUN AMI;"],
+ ['g','sit','mist','staff',"THE;MENTOR;WISE · YOUR POWER FADES;","LE;MENTOR;SAGE · TON POUVOIR S'ÉTEINT;"],
+ ['c','float','stars','none',"THE;GHOST;NOBODY KNOWS YOU EXIST;","LE;FANTÔME;PERSONNE NE SAIT QUE TU EXISTES;"],
+ ['y','raise','storm','crown',"THE;GOD;ALL-POWERFUL · ALONE;","LE;DIEU;TOUT-PUISSANT · SEUL;"]]),
+D(2,'PRIX',["READ THE FINE PRINT","LIS LES PETITES LIGNES"],["FOR LIFE","À VIE"],[
+ ['r','point','rings','eye',"READ EVERY;MIND;AND EVERYONE CAN READ YOURS;“STOP THINKING SO LOUD”","LIRE TOUTES LES;PENSÉES;ET TOUT LE MONDE LIT LES TIENNES;« PENSE MOINS FORT »"],
+ ['b','crouch','mist','cape',"BECOME;INVISIBLE;BUT NOBODY CAN EVER SEE YOU AGAIN;“IS SOMEONE THERE?”","DEVENIR;INVISIBLE;MAIS PLUS PERSONNE NE TE VERRA JAMAIS;« Y A QUELQU'UN ? »"]]),
+D(2,'CALC',["ONE JUMP OR THE WHOLE SKY?","UN SAUT OU TOUT LE CIEL ?"],["EVERY DAY, FOREVER","CHAQUE JOUR, À VIE"],[
+ ['r','point','rings','orb',"TELEPORT;ANYWHERE;ONCE A DAY · ONE WAY;“HOW DO I GET HOME?”","SE TÉLÉPORTER;PARTOUT;1 FOIS PAR JOUR · ALLER SIMPLE;« JE RENTRE COMMENT ? »"],
+ ['b','float','stars','wings',"FLY AT;200 KM/H;AS LONG AS YOU WANT;“I FORGOT MY JACKET”","VOLER À;200 KM/H;AUSSI LONGTEMPS QUE TU VEUX;« J'AI OUBLIÉ MA VESTE »"]]),
+D(2,'DUEL',["SOMETHING IS HUNTING YOU","QUELQUE CHOSE TE TRAQUE"],["FOR ONE YEAR","PENDANT UN AN"],[
+ ['r','titan','embers','horns',"HUNTED BY;A T-REX;KNOWS WHERE YOU ARE · ONLY WALKS;“THE FLOOR IS SHAKING”","TRAQUÉ PAR;UN T-REX;SAIT OÙ TU ES · MARCHE SEULEMENT;« LE SOL TREMBLE »"],
+ ['b','crouch','rings','eye',"HUNTED BY;A HOUSE CAT;IT TELEPORTS · IT HOLDS A GRUDGE;“IT'S ON THE FRIDGE AGAIN”","TRAQUÉ PAR;UN CHAT;IL SE TÉLÉPORTE · IL EST RANCUNIER;« IL EST ENCORE SUR LE FRIGO »"]],["NO HIDING. NO TRUCE.","NI CACHETTE. NI TRÊVE."]),
+D(2,'IDENT',["LOVED OR RESPECTED?","AIMÉ OU RESPECTÉ ?"],["WORLDWIDE","DANS LE MONDE ENTIER"],[
+ ['r','raise','rays','halo',"EVERYONE;LOVES YOU;BUT NOBODY RESPECTS YOU;“AWW, HE'S TRYING”","TOUT LE MONDE;T'AIME;MAIS PERSONNE NE TE RESPECTE;« OH, IL ESSAIE »"],
+ ['b','stand','shards','crown',"EVERYONE;RESPECTS YOU;BUT NOBODY LIKES YOU;“YES, SIR.”","TOUT LE MONDE;TE RESPECTE;MAIS PERSONNE NE T'AIME;« OUI, CHEF. »"]]),
+D(2,'NERF',["BOTH ARE BROKEN","LES DEUX SONT BUGUÉS"],["NO REFUNDS","NON REMBOURSABLE"],[
+ ['r','titan','shards','none',"SUPER STRENGTH;LEFT ARM ONLY;THE REST OF YOU IS NORMAL;“DON'T HIGH-FIVE HIM”","SUPER FORCE;BRAS GAUCHE;LE RESTE DE TOI EST NORMAL;« LUI TAPE PAS DANS LA MAIN »"],
+ ['b','run','rain','none',"SUPER SPEED;LEGS ONLY;YOUR REFLEXES STAY NORMAL;“HE HIT ANOTHER WALL”","SUPER VITESSE;JAMBES SEULES;TES RÉFLEXES RESTENT NORMAUX;« ENCORE UN MUR »"]]),
+D(2,'PARA',["FOREVER IS A LONG TIME","L'ÉTERNITÉ, C'EST LONG"],["NO WAY OUT","SANS ISSUE"],[
+ ['r','sit','mist','staff',"LIVE;FOREVER;BUT YOU KEEP AGING;“HE IS 400. HE LOOKS 400.”","VIVRE;POUR TOUJOURS;MAIS TU CONTINUES DE VIEILLIR;« IL A 400 ANS. ÇA SE VOIT. »"],
+ ['b','raise','rays','halo',"STAY;25;BUT YOU ONLY GET 25 MORE YEARS;“ENJOY IT WHILE IT LASTS”","RESTER À;25 ANS;MAIS IL NE TE RESTE QUE 25 ANS;« PROFITE TANT QUE ÇA DURE »"]]),
+D(2,'PERSO',["LOOK TO YOUR LEFT","REGARDE À TA GAUCHE"],["RIGHT NOW","LÀ, MAINTENANT"],[
+ ['r','point','rays','orb',"POWERS OF;THE FIRST OBJECT;YOU SEE ON YOUR LEFT;“IT'S A CHARGER”","LES POUVOIRS DU;PREMIER OBJET;QUE TU VOIS À TA GAUCHE;« C'EST UN CHARGEUR »"],
+ ['b','sit','stars','eye',"POWERS OF;YOUR LAST PHOTO;WHATEVER IS IN YOUR CAMERA ROLL;“IT'S A SCREENSHOT”","LES POUVOIRS DE;TA DERNIÈRE PHOTO;CELLE DE TA GALERIE;« C'EST UNE CAPTURE D'ÉCRAN »"]],["NO CHEATING","SANS TRICHER"]),
+D(2,'DECAL',["TINY POWER. HUGE LIFE.","PETIT POUVOIR. GRANDE VIE."],["PERMANENT","PERMANENT"],[
+ ['r','run','rays','none',"EVERY;TRAFFIC LIGHT;TURNS GREEN FOR YOU;“HE HAS NEVER BRAKED”","CHAQUE;FEU ROUGE;PASSE AU VERT POUR TOI;« IL A JAMAIS FREINÉ »"],
+ ['b','point','rings','orb',"EVERY;PHONE YOU TOUCH;CHARGES TO 100%;“PASS IT TO HIM”","CHAQUE;TÉLÉPHONE TOUCHÉ;SE RECHARGE À 100 %;« PASSE-LE-LUI »"]]),
+D(3,'RISQ',["ONE DOOR. NO PEEKING.","UNE PORTE. SANS REGARDER."],["YOU MUST OPEN ONE","TU DOIS EN OUVRIR UNE"],[
+ ['r','point','embers','orb',"DOOR 1;A POWER;YOU DON'T GET TO CHOOSE IT;“PLEASE BE FLIGHT”","PORTE 1;UN POUVOIR;TU NE LE CHOISIS PAS;« PITIÉ, VOLER »"],
+ ['y','raise','rays','crown',"DOOR 2;10 MILLION;AND YOUR RIVAL GETS A POWER;“WORTH IT?”","PORTE 2;10 MILLIONS;ET TON RIVAL REÇOIT UN POUVOIR;« ÇA VALAIT LE COUP ? »"],
+ ['c','sit','mist','halo',"DOOR 3;NOTHING;BUT YOU PICK WHO GETS A POWER;“I CHOOSE MY MOM”","PORTE 3;RIEN;MAIS TU CHOISIS QUI REÇOIT UN POUVOIR;« JE CHOISIS MA MÈRE »"]]),
+D(3,'IDENT',["WHEN DOES IT WORK?","ÇA MARCHE QUAND ?"],["YOUR POWER. ONE CONDITION.","TON POUVOIR. UNE CONDITION."],[
+ ['v','crouch','stars','cape',"ONLY;AT NIGHT;10× STRONGER IN THE DARK;“HE SLEEPS ALL DAY”","SEULEMENT;LA NUIT;10× PLUS FORT DANS LE NOIR;« IL DORT TOUTE LA JOURNÉE »"],
+ ['r','lunge','embers','horns',"ONLY;WHEN ANGRY;NO LIMIT · NO CONTROL;“DON'T MAKE HIM MAD”","SEULEMENT;EN COLÈRE;AUCUNE LIMITE · AUCUN CONTRÔLE;« L'ÉNERVE PAS »"],
+ ['g','guard','rings','barrier',"ONLY;TO PROTECT;USELESS FOR YOURSELF;“HE CAN'T EVEN OPEN A JAR”","SEULEMENT;POUR PROTÉGER;INUTILE POUR TOI-MÊME;« IL OUVRE MÊME PAS UN BOCAL »"]]),
+D(3,'DUEL',["WHO DO YOU SEND?","TU ENVOIES QUI ?"],["THEY FIGHT FOR YOU","ILS SE BATTENT POUR TOI"],[
+ ['b','stand','mist','none',"AN ARMY OF;1,000 YOU;SAME SKILLS · SAME FEARS;“WE'RE ALL SCARED”","UNE ARMÉE DE;1 000 TOI;MÊMES TALENTS · MÊMES PEURS;« ON A TOUS PEUR »"],
+ ['c','guard','rings','barrier',"A SQUAD OF;10 ROBOTS;PERFECT AIM · TAKE ORDERS LITERALLY;“YOU SAID 'BREAK A LEG'”","UNE ESCOUADE DE;10 ROBOTS;VISÉE PARFAITE · TOUT AU PIED DE LA LETTRE;« TU AS DIT “CASSE-TOI” »"],
+ ['r','titan','embers','horns',"JUST;1 MONSTER;UNBEATABLE · IT HATES YOU;“IT'S LOOKING AT ME”","JUSTE;1 MONSTRE;IMBATTABLE · IL TE DÉTESTE;« IL ME REGARDE »"]]),
+D(4,'NERF',["ONE WISH. TERMS APPLY.","UN VŒU. SOUS CONDITIONS."],["THE GENIE IS CHEAP","LE GÉNIE EST RADIN"],[
+ ['y','raise','rays','crown',"WISH FOR;MONEY;UNLIMITED · COINS ONLY;“THAT'S 4,000 COINS”","VŒU :;ARGENT;ILLIMITÉ · EN PIÈCES SEULEMENT;« ÇA FAIT 4 000 PIÈCES »"],
+ ['m','point','stars','halo',"WISH FOR;FAME;WORLD FAMOUS · MONDAYS ONLY;“WHO IS HE ON TUESDAY?”","VŒU :;GLOIRE;CÉLÈBRE · LE LUNDI SEULEMENT;« C'EST QUI LE MARDI ? »"],
+ ['r','sit','mist','none',"WISH FOR;LOVE;PERFECT MATCH · 9,000 KM AWAY;“LONG DISTANCE”","VŒU :;AMOUR;L'ÂME SŒUR · À 9 000 KM;« RELATION À DISTANCE »"],
+ ['c','stand','rings','clock',"WISH FOR;TIME;+50 YEARS · ALL ADDED AT THE END;“GREAT.”","VŒU :;TEMPS;+50 ANS · TOUS AJOUTÉS À LA FIN;« SUPER. »"]]),
+D(4,'RANG',["RANK YOUR SIDEKICKS","CLASSE TES ACOLYTES"],["THEY NEVER LEAVE","ILS NE PARTENT JAMAIS"],[
+ ['v','sit','stars','eye',"A TALKING;CAT;KNOWS EVERYTHING · TELLS NOTHING;“I KNOW. I WON'T SAY.”","UN;CHAT PARLANT;SAIT TOUT · NE DIT RIEN;« JE SAIS. JE DIRAI PAS. »"],
+ ['o','crouch','embers','wings',"A POCKET;DRAGON;TINY · REAL FIRE;“HE SNEEZED AGAIN”","UN;DRAGON DE POCHE;MINUSCULE · VRAI FEU;« IL A ENCORE ÉTERNUÉ »"],
+ ['c','guard','rings','barrier',"A LOYAL;ROBOT;DOES EVERY CHORE · NARRATES IT;“NOW WASHING PLATE THREE”","UN;ROBOT FIDÈLE;FAIT TOUT · COMMENTE TOUT;« JE LAVE L'ASSIETTE TROIS »"],
+ ['g','stand','mist','none',"YOUR OWN;CLONE;SAME BRAIN · SAME LAZINESS;“YOU DO IT”","TON PROPRE;CLONE;MÊME CERVEAU · MÊME FLEMME;« FAIS-LE, TOI »"]]),
+D(4,'SACRE',["THE WORLD PAYS FOR YOUR POWER","LE MONDE PAIE TON POUVOIR"],["GONE FOR EVERYONE","SUPPRIMÉ POUR TOUS"],[
+ ['v','sit','rings','none',"NO MORE;MUSIC;SILENCE, FOREVER;“WHAT WAS A SONG?”","FINI;LA MUSIQUE;LE SILENCE, POUR TOUJOURS;« C'ÉTAIT QUOI, UNE CHANSON ? »"],
+ ['b','point','shards','orb',"NO MORE;INTERNET;BACK TO 1985;“ASK THE LIBRARY”","FINI;INTERNET;RETOUR EN 1985;« DEMANDE À LA BIBLIOTHÈQUE »"],
+ ['y','crouch','mist','none',"NO MORE;SUGAR;NOTHING SWEET, EVER AGAIN;“BIRTHDAY SALAD”","FINI;LE SUCRE;PLUS RIEN DE SUCRÉ, JAMAIS;« SALADE D'ANNIVERSAIRE »"],
+ ['r','stand','embers','clock',"NO MORE;WEEKENDS;MONDAY TO MONDAY;“SEE YOU TOMORROW”","FINI;LES WEEK-ENDS;DU LUNDI AU LUNDI;« À DEMAIN »"]]),
+D(5,'MIR',["CONTROL ONE THING","CONTRÔLE UNE CHOSE"],["WITH YOUR MIND","PAR LA PENSÉE"],[
+ ['c','raise','shards','none',"CONTROL;METAL;EVERY CAR, KEY AND COIN;","CONTRÔLER;LE MÉTAL;VOITURES, CLÉS, PIÈCES;"],
+ ['g','sit','mist','staff',"CONTROL;PLANTS;EVERY FOREST OBEYS;","CONTRÔLER;LES PLANTES;CHAQUE FORÊT T'OBÉIT;"],
+ ['v','crouch','stars','cape',"CONTROL;SHADOWS;THEY MOVE WITHOUT YOU;","CONTRÔLER;LES OMBRES;ELLES BOUGENT SANS TOI;"],
+ ['b','point','rings','none',"CONTROL;SOUND;MUTE OR AMPLIFY ANYTHING;","CONTRÔLER;LE SON;COUPER OU AMPLIFIER TOUT;"],
+ ['y','stand','rays','crown',"CONTROL;LUCK;YOURS UP · THEIRS DOWN;","CONTRÔLER;LA CHANCE;LA TIENNE MONTE · LA LEUR BAISSE;"]]),
+D(5,'EXTR',["PICK YOUR SIZE","CHOISIS TA TAILLE"],["PERMANENT","PERMANENT"],[
+ ['g','crouch','mist','none',"BECOME;5 MM;NOBODY EVER FINDS YOU;","MESURER;5 MM;PERSONNE NE TE TROUVE;"],
+ ['c','run','rain','none',"BECOME;30 CM;FIT ANYWHERE;","MESURER;30 CM;TU PASSES PARTOUT;"],
+ ['b','stand','rings','none',"BECOME;3 M;STRONGEST IN ANY ROOM;","MESURER;3 M;LE PLUS FORT DE LA PIÈCE;"],
+ ['o','titan','shards','none',"BECOME;30 M;NO BUILDING FITS YOU;","MESURER;30 M;AUCUN BÂTIMENT À TA TAILLE;"],
+ ['r','titan','storm','horns',"BECOME;300 M;YOU ARE THE WEATHER;","MESURER;300 M;LA MÉTÉO, C'EST TOI;"]]),
+D(5,'PRIX',["IT ONLY WORKS IF…","ÇA MARCHE SEULEMENT SI…"],["YOUR POWER. YOUR RULE.","TON POUVOIR. TA RÈGLE."],[
+ ['y','raise','rays','none',"ONLY IF;YOU SING;OUT LOUD · EVERY TIME;","SEULEMENT SI;TU CHANTES;À VOIX HAUTE · À CHAQUE FOIS;"],
+ ['g','run','mist','none',"ONLY IF;BAREFOOT;SHOES ON = POWER OFF;","SEULEMENT;PIEDS NUS;CHAUSSURES = PLUS DE POUVOIR;"],
+ ['v','crouch','stars','cape',"ONLY IF;NOBODY LOOKS;ONE WITNESS AND IT'S OFF;","SEULEMENT SI;PERSONNE NE REGARDE;UN TÉMOIN ET C'EST FINI;"],
+ ['o','sit','embers','none',"ONLY IF;YOU'RE HUNGRY;EAT AND IT'S GONE;","SEULEMENT SI;TU AS FAIM;TU MANGES, C'EST PERDU;"],
+ ['c','point','rings','halo',"ONLY IF;YOU SAY SORRY;BEFORE EVERY USE;","SEULEMENT SI;TU T'EXCUSES;AVANT CHAQUE USAGE;"]]),
+D(6,'RANG',["SWAP LIVES FOR A YEAR","ÉCHANGE DE VIE PENDANT UN AN"],["NO SWITCHING BACK EARLY","PAS DE RETOUR ANTICIPÉ"],[
+ ['y','stand','rays','crown',"THE;KING;ALL THE POWER · ZERO PRIVACY;","LE;ROI;TOUT LE POUVOIR · ZÉRO VIE PRIVÉE;"],
+ ['v','crouch','mist','cape',"THE;THIEF;ANY LOCK · ALWAYS HUNTED;","LE;VOLEUR;TOUTE SERRURE · TOUJOURS TRAQUÉ;"],
+ ['b','raise','stars','staff',"THE;WIZARD;REAL MAGIC · 300 YEARS OLD;","LE;MAGE;VRAIE MAGIE · 300 ANS;"],
+ ['r','lunge','rain','sword',"THE;PIRATE;NO RULES · NO DENTIST;","LE;PIRATE;AUCUNE RÈGLE · AUCUN DENTISTE;"],
+ ['c','guard','shards','barrier',"THE;KNIGHT;A LEGEND · VERY HEAVY ARMOR;","LE;CHEVALIER;UNE LÉGENDE · ARMURE TRÈS LOURDE;"],
+ ['g','sit','mist','halo',"THE;MONK;TOTAL PEACE · TOTAL SILENCE;","LE;MOINE;PAIX TOTALE · SILENCE TOTAL;"]]),
+D(6,'MIR',["TALK TO ONE OF THEM","PARLE À L'UN D'EUX"],["THEY ANSWER BACK","ILS RÉPONDENT"],[
+ ['g','crouch','mist','none',"TALK TO;ANIMALS;THEY HAVE OPINIONS;","PARLER AUX;ANIMAUX;ILS ONT DES AVIS;"],
+ ['c','point','rings','orb',"TALK TO;MACHINES;YOUR TOASTER IS BITTER;","PARLER AUX;MACHINES;TON GRILLE-PAIN EST AIGRI;"],
+ ['v','float','stars','cape',"TALK TO;THE DEAD;THEY NEVER STOP;","PARLER AUX;MORTS;ILS NE S'ARRÊTENT JAMAIS;"],
+ ['y','sit','rays','staff',"TALK TO;PLANTS;THEY ARE VERY SLOW;","PARLER AUX;PLANTES;ELLES SONT TRÈS LENTES;"],
+ ['b','stand','rings','clock',"TALK TO;YOUR PAST SELF;ONE MINUTE A DAY;","PARLER À;TON PASSÉ;UNE MINUTE PAR JOUR;"],
+ ['r','raise','storm','none',"TALK TO;THE WEATHER;IT RARELY LISTENS;","PARLER À;LA MÉTÉO;ELLE ÉCOUTE RAREMENT;"]]),
+D(6,'RISQ',["PICK YOUR WEAKNESS","CHOISIS TA FAIBLESSE"],["EVERY HERO HAS ONE","CHAQUE HÉROS EN A UNE"],[
+ ['b','guard','rain','none',"WEAK TO;WATER;ONE DROP AND YOU'RE HUMAN;","FAIBLE FACE À;L'EAU;UNE GOUTTE ET T'ES HUMAIN;"],
+ ['y','crouch','rays','cape',"WEAK TO;SUNLIGHT;POWERS OFF BY DAY;","FAIBLE FACE AU;SOLEIL;AUCUN POUVOIR LE JOUR;"],
+ ['m','sit','rings','none',"WEAK TO;MUSIC;ANY SONG FREEZES YOU;","FAIBLE FACE À;LA MUSIQUE;UNE CHANSON TE FIGE;"],
+ ['c','stand','shards','none',"WEAK TO;COLD;BELOW 10°C = NOTHING;","FAIBLE FACE AU;FROID;SOUS 10 °C = RIEN;"],
+ ['g','point','mist','halo',"WEAK TO;LIES;TELL ONE AND LOSE IT ALL;","FAIBLE FACE AU;MENSONGE;UN SEUL ET TU PERDS TOUT;"],
+ ['v','float','stars','eye',"WEAK TO;MIRRORS;YOUR REFLECTION DRAINS YOU;","FAIBLE FACE AUX;MIROIRS;TON REFLET T'ÉPUISE;"]])
+];
+
+
+/* ---------- nouvelles idées écrites par Claude ---------- */
+var MECHP={
+  MIR:'Mirror: the same sentence for every option, only one word changes.',
+  PRIX:'Price to pay: each power comes with a heavy personal cost.',
+  SACRE:'Sacred trade: the cost is a memory, a loved one or years of life.',
+  RISQ:'Risk: a sure small gain against an unlikely huge one.',
+  PARA:'Paradox: the options contradict or cancel each other.',
+  CALC:'Math: small repeated gains that people will want to calculate.',
+  IDENT:'Identity: the choice says who you are.',
+  EXTR:'Extremes: no option is the safe middle one.',
+  NERF:'All nerfed: well-known kinds of powers, each with a frustrating limit.',
+  RANG:'Ranking: options people will rank from best to worst.',
+  PERSO:'Personal: the answer depends on the viewer\'s own life (their phone, their last meal, their room).',
+  DUEL:'Fight: choose which opponent or danger to face.',
+  DECAL:'Mismatch: a practical option against an absurd but cool one.'
+};
+var GEN=[],sampleFn=null,genCtl=null;
+function has(m,k){return typeof k==='string'&&Object.prototype.hasOwnProperty.call(m,k);}
+function clean(v,max){return String(v==null?'':v).replace(/[;\r\n]+/g,', ').replace(/\s+/g,' ').trim().slice(0,max);}
+function okIdea(d){
+  return!!d&&d.n>=2&&d.n<=6&&has(MECH,d.m)&&Array.isArray(d.o)&&d.o.length===d.n&&
+    [d.hook,d.tag,d.foot].every(function(a){return Array.isArray(a)&&a.length===2&&typeof a[0]==='string'&&typeof a[1]==='string';})&&
+    d.o.every(function(a){return Array.isArray(a)&&a.length>=6&&has(COL,a[0])&&has(POSE,a[1])&&has(FXL,a[2])&&has(PROPL,a[3])&&typeof a[4]==='string'&&typeof a[5]==='string'&&(a[6]==null||has(AURAL,a[6]));});
+}
+function ideaFrom(data,n){
+  if(!data||typeof data!=='object'||!Array.isArray(data.options)||data.options.length<n)return null;
+  var used={},keys=Object.keys(COL),o=[],i;
+  for(i=0;i<n;i++){
+    var it=data.options[i]||{},en=it.en||{},fr=it.fr||{},bigE=clean(en.big,40),bigF=clean(fr.big,40);
+    if(!bigE&&!bigF)return null;
+    var c=has(COL,it.color)&&!used[it.color]?it.color:keys.filter(function(k){return!used[k];})[0];used[c]=1;
+    var f=has(FXL,it.decor)?it.decor:'none';
+    o.push([c,has(POSE,it.pose)?it.pose:'stand',f,has(PROPL,it.prop)?it.prop:'none',
+      [clean(en.top,40),bigE||bigF,clean(en.sub,70),clean(en.quote,70)].join(';'),
+      [clean(fr.top,40),bigF||bigE,clean(fr.sub,70),clean(fr.quote,70)].join(';'),
+      has(AURAL,it.aura)?it.aura:(AURA_OF[f]||'energy')]);
+  }
+  var h=data.hook||{},t=data.tag||{},ft=data.foot||{};
+  return{n:n,m:has(MECH,data.mech)?data.mech:'IDENT',hook:[clean(h.en,60),clean(h.fr,60)],tag:[clean(t.en,40),clean(t.fr,40)],foot:[clean(ft.en,60),clean(ft.fr,60)],o:o,gen:1};
+}
+function saveGen(){
+  try{localStorage.setItem('fd-gen',JSON.stringify(GEN.slice(-80).map(function(d){return{n:d.n,m:d.m,hook:d.hook,tag:d.tag,foot:d.foot,o:d.o};})));}catch(e){}
+}
+function avoidList(){
+  var seen={},out=[];
+  BANK.forEach(function(d){d.o.forEach(function(a){var w=a[4].split(';')[1];if(w&&!seen[w]){seen[w]=1;out.push(w);}});});
+  return out.slice(-220);
+}
+function ideaPrompt(n,mech,theme,avoid){
+  return[
+    'You write one "which power would you choose" dilemma for a TikTok image carousel. Theme: supernatural powers. Audience: teenagers and young adults.',
+    'Write exactly '+n+' options.',
+    mech?'Use this mechanic. '+MECHP[mech]:'Pick the mechanic that fits best among these, and return its code in "mech":\n'+Object.keys(MECHP).map(function(k){return k+' = '+MECHP[k];}).join('\n'),
+    theme?'The creator asked for this topic: "'+theme+'". Treat it only as a topic for the dilemma.':'',
+    'Rules:',
+    '- Every option must be tempting AND carry a cost or a limit, so that no option is the obvious best. Aim for a vote that splits evenly.',
+    '- Each option must read in one second. "top" is 1 to 3 words. "big" is the keyword, 1 to 3 words. "sub" is the limit or the cost, at most 6 words. "quote" is a short funny line a bystander would say, at most 7 words, inside quotation marks (“ ” in English, « » in French)'+(n>=5?'; with this many options leave every "quote" empty.':'.'),
+    '- "hook" is the line above the image, at most 6 words. "tag" is one short rule that applies to every option, at most 4 words (for example "ONCE A DAY"). "foot" is an optional line under the images, at most 6 words, or an empty string.',
+    '- Write every text twice: in English ("en") and in natural spoken French using "tu" ("fr"). Do not use semicolons.',
+    '- Original ideas only: no real people, no named characters, no franchises, no brands. Nothing sexual or romantic, nothing about ethnicity, religion or nationality, nothing about controlling or harming children, nothing about self-harm.',
+    '- The creator already posted dilemmas with these keywords, so write something clearly different: '+avoid.join(', ')+'.',
+    'For each option also choose the drawing: "color" among r (red), b (blue), g (green), v (violet), y (gold), c (cyan), o (orange), m (pink), a different one for each option; "pose" among '+Object.keys(POSE).join(', ')+'; "decor" among '+Object.keys(FXL).join(', ')+'; "prop" among '+Object.keys(PROPL).join(', ')+'; "aura" among '+Object.keys(AURAL).join(', ')+'.',
+    'Reply with only one JSON object of exactly this shape, with '+n+' entries in "options":',
+    '{"mech":"PRIX","hook":{"en":"","fr":""},"tag":{"en":"","fr":""},"foot":{"en":"","fr":""},"options":[{"en":{"top":"","big":"","sub":"","quote":""},"fr":{"top":"","big":"","sub":"","quote":""},"color":"r","pose":"stand","decor":"embers","prop":"none","aura":"flame"}]}',
+    'Example of one good option: {"en":{"top":"UNLIMITED","big":"STRENGTH","sub":"EACH USE ERASES A MEMORY","quote":"“WAIT... WHO ARE YOU?”"},"fr":{"top":"FORCE","big":"ILLIMITÉE","sub":"CHAQUE USAGE EFFACE UN SOUVENIR","quote":"« ATTENDS... T\'ES QUI ? »"},"color":"r","pose":"titan","decor":"embers","prop":"horns","aura":"flame"}'
+  ].filter(Boolean).join('\n');
+}
+function gsay(msg){$('gen-status').textContent=msg||'';}
+var GEN_OFF={not_granted:1,sampling_disabled:1,not_declared:1,capability_disabled:1,capability_removed:1};
+function genCopy(code){
+  if(code==='cancelled')return'';
+  if(code==='rate_limited')return'Limite d’usage atteinte pour l’instant. Réessaie plus tard.';
+  if(code==='session_expired')return'Ta session a expiré. Reconnecte-toi, puis réessaie.';
+  if(code==='refused')return'Claude a refusé cette demande. Change le thème, puis réessaie.';
+  if(code==='invalid_json'||code==='empty_completion')return'La réponse était illisible. Réessaie.';
+  return'Problème de connexion. Réessaie.';
+}
+function genIdea(){
+  if(!sampleFn||genCtl)return;
+  var n=S.n,mech=$('g-mech').value,theme=clean($('g-theme').value,80).replace(/"/g,'');
+  genCtl=new AbortController();$('btn-gen').disabled=true;$('btn-stop').hidden=false;
+  gsay('Claude réfléchit. Ça peut prendre jusqu’à une minute.');
+  sampleFn.json(ideaPrompt(n,has(MECHP,mech)?mech:'',theme,avoidList()),{cache:false,signal:genCtl.signal}).then(function(data){
+    var d=ideaFrom(data,n);
+    if(!d){gsay('La réponse était incomplète. Réessaie.');return;}
+    BANK.push(d);GEN.push(d);saveGen();
+    setSlide('main');load(n,bankFor(n).length-1,false);
+    gsay('Nouvelle idée ajoutée à ta banque.');
+  },function(e){
+    var code=e&&e.code;
+    if(GEN_OFF[code]){$('gen-group').hidden=true;say('La création d’idées par Claude est désactivée pour cette visite.');return;}
+    gsay(genCopy(code));
+  }).then(function(){genCtl=null;$('btn-gen').disabled=false;$('btn-stop').hidden=true;});
+}
+
+/* ---------- état et interface ---------- */
+var S={slide:'main',ck:null,ct:null,cs:null,ti:0,n:2,idx:0,fmt:'sq',lang:'en',hook:'',tag:'',foot:'',handle:'',tint:false,rim:true,eyes:'flame',aura:'',letters:true,guides:false,seed:7,mech:'MIR',pal:PRESETS[0][1].slice(),opts:[]};
+try{
+  var sl=localStorage.getItem('fd-lang');if(sl==='fr'||sl==='en')S.lang=sl;
+  var sh=localStorage.getItem('fd-handle');if(sh)S.handle=sh;
+  var sp=JSON.parse(localStorage.getItem('fd-pal')||'null');
+  if(Array.isArray(sp)&&sp.length===6&&sp.every(function(c){return/^#[0-9a-f]{6}$/i.test(c);}))S.pal=sp;
+  var sg=JSON.parse(localStorage.getItem('fd-gen')||'[]');
+  if(Array.isArray(sg))sg.filter(okIdea).forEach(function(d){var x={n:d.n,m:d.m,hook:d.hook,tag:d.tag,foot:d.foot,o:d.o,gen:1};GEN.push(x);BANK.push(x);});
+}catch(e){}
+var cv=$('cv'),ctx=cv.getContext('2d'),raf=0;
+function draw(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;paint(ctx,S,S.guides);});}
+function bankFor(n){return BANK.filter(function(d){return d.n===n;});}
+function load(n,idx,keep){
+  var list=bankFor(n),L=S.lang==='fr'?1:0,old=keep?S.opts:[];
+  S.n=n;S.idx=((idx%list.length)+list.length)%list.length;
+  if(!keep)S.ct=null;
+  var d=list[S.idx];S.hook=d.hook[L];S.tag=d.tag[L];S.foot=d.foot[L];S.mech=d.m;
+  S.opts=d.o.map(function(a,i){
+    var tx=a[4+L].split(';'),k=old[i];
+    return{ic:a[0],p:k?k.p:a[1],f:k?k.f:a[2],a:k?k.a:a[3],au:k?k.au:(a[6]||AURA_OF[a[2]]||'energy'),t:tx[0]||'',b:tx[1]||'',s:tx[2]||'',q:tx[3]||'',img:k?k.img:null};
+  });
+  syncUI();draw();
+}
+function say(msg){$('status').textContent=msg||'';}
+function savePal(){try{localStorage.setItem('fd-pal',JSON.stringify(S.pal));}catch(e){}}
+
+function field(i,k,label){return'<label class="f" for="o'+i+'-'+k+'">'+label+'<input type="text" id="o'+i+'-'+k+'" data-i="'+i+'" data-k="'+k+'" autocomplete="off"></label>';}
+function sel(i,k,label,map){
+  var h='<label class="f" for="o'+i+'-'+k+'">'+label+'<select id="o'+i+'-'+k+'" data-i="'+i+'" data-k="'+k+'">';
+  Object.keys(map).forEach(function(key){var v=map[key];h+='<option value="'+key+'">'+(typeof v==='string'?v:v.l)+'</option>';});
+  return h+'</select></label>';
+}
+function build(){
+  var h='',i;
+  for(i=0;i<6;i++){
+    h+='<details class="opt" id="opt-'+i+'"><summary><span class="letter">'+LET[i]+'</span><span class="dot" id="o'+i+'-dot"></span><span class="opt-title" id="o'+i+'-title"></span><span class="opt-hint">modifier</span></summary><div class="opt-body">';
+    h+=field(i,'t','Petite ligne du haut')+field(i,'b','Mot-clé en gros')+field(i,'s','Précision ou contrainte')+field(i,'q','Réplique');
+    h+='<div class="quad">'+sel(i,'p','Pose',POSE)+sel(i,'au','Aura',AURAL)+sel(i,'f','Décor',FXL)+sel(i,'a','Accessoire',PROPL)+'</div>';
+    h+='<div class="imgrow"><label class="btn" for="o'+i+'-img">Mettre mon image</label><input class="vh" type="file" accept="image/*" id="o'+i+'-img" data-i="'+i+'"><button type="button" class="btn" id="o'+i+'-noimg" data-i="'+i+'" data-act="noimg" hidden>Revenir au dessin</button></div>';
+    h+='<p class="note" id="o'+i+'-note" hidden>Ton image remplace le dessin. Pose, aura, décor et accessoire sont ignorés.</p>';
+    h+='</div></details>';
+  }
+  $('opts').innerHTML=h;
+  h='';
+  for(i=0;i<6;i++)h+='<label class="palitem" for="pal-'+i+'" id="palitem-'+i+'"><span class="letter">'+LET[i]+'</span><input type="color" id="pal-'+i+'" data-i="'+i+'" aria-label="Couleur de fond du choix '+LET[i]+'"></label>';
+  $('pal').innerHTML=h;
+  h='';
+  PRESETS.forEach(function(p,j){h+='<button type="button" class="btn" data-p="'+j+'">'+p[0]+'</button>';});
+  h+='<button type="button" class="btn" data-p="idea">Couleurs de l’idée</button>';
+  $('presets').innerHTML=h;
+  h='<option value="">Au choix de Claude</option>';
+  Object.keys(MECH).forEach(function(k){h+='<option value="'+k+'">'+MECH[k][0]+'</option>';});
+  $('g-mech').innerHTML=h;
+}
+function syncOpt(i){
+  var o=S.opts[i],card=$('opt-'+i);
+  card.hidden=!o;$('palitem-'+i).hidden=!o;
+  $('pal-'+i).value=S.pal[i];
+  if(!o)return;
+  ['t','b','s','q'].forEach(function(k){var el=$('o'+i+'-'+k);if(el.value!==o[k])el.value=o[k];});
+  ['p','f','a','au'].forEach(function(k){$('o'+i+'-'+k).value=o[k];});
+  $('o'+i+'-title').textContent=o.b||'(sans mot-clé)';
+  $('o'+i+'-dot').style.setProperty('--sw',S.pal[i]);
+  $('o'+i+'-noimg').hidden=!o.img;$('o'+i+'-note').hidden=!o.img;
+}
+function syncSlide(){document.querySelectorAll('#seg-slide button').forEach(function(b){b.setAttribute('aria-checked',b.dataset.slide===S.slide?'true':'false');});}
+function setSlide(v){if(S.slide!==v){S.slide=v;syncSlide();}}
+function syncUI(){
+  var list=bankFor(S.n),L=S.lang==='fr'?1:0,i,tall=S.fmt==='tall';
+  document.querySelectorAll('#seg-n button').forEach(function(b){b.setAttribute('aria-checked',+b.dataset.n===S.n?'true':'false');});
+  document.querySelectorAll('#seg-lang button').forEach(function(b){b.setAttribute('aria-checked',b.dataset.lang===S.lang?'true':'false');});
+  syncSlide();var cvt=covText(S);$('c-k').value=cvt.k;$('c-t').value=cvt.t;$('c-s').value=cvt.s;
+  document.querySelectorAll('#seg-fmt button').forEach(function(b){b.setAttribute('aria-checked',b.dataset.fmt===S.fmt?'true':'false');});
+  if(cv.height!==(tall?1920:1080))cv.height=tall?1920:1080;
+  cv.classList.toggle('tall',tall);$('lbl-guides').hidden=!tall;
+  $('counter').textContent=(S.idx+1)+' / '+list.length;
+  var mc=MECH[S.mech]||['',''];$('mech-name').textContent=mc[0];$('mech-why').textContent=mc[1];
+  $('f-hook').value=S.hook;$('f-tag').value=S.tag;$('f-foot').value=S.foot;$('f-handle').value=S.handle;
+  $('c-tint').checked=S.tint;$('c-rim').checked=S.rim;$('s-eyes').value=S.eyes;$('s-aura').value=S.aura;
+  $('c-letters').checked=S.letters;$('c-guides').checked=S.guides;
+  for(i=0;i<6;i++)syncOpt(i);
+  $('bank-sum').textContent='Banque d’idées à '+S.n+' choix ('+list.length+')';
+  var h='';
+  list.forEach(function(d,j){
+    d._w=d.o.map(function(a){return a[4+L].split(';')[1];}).join(' / ');
+    h+='<li><button type="button" data-j="'+j+'" aria-current="'+(j===S.idx?'true':'false')+'"><span class="words"></span><span class="chip">'+MECH[d.m][0]+'</span>'+(d.gen?'<span class="chip">Écrite par Claude</span>':'')+'</button>'+(d.gen?'<button type="button" class="btn del" data-del="'+j+'">Supprimer</button>':'')+'</li>';
+  });
+  $('bank').innerHTML=h;
+  $('bank').querySelectorAll('button[data-j]').forEach(function(b){b.querySelector('.words').textContent=list[+b.dataset.j]._w;});
+  $('gen-n').textContent=S.n;
+}
+
+function setImg(i,file){
+  if(!file||!S.opts[i])return;
+  var im=new Image();
+  im.onload=function(){S.opts[i].img=im;syncOpt(i);draw();say('Image ajoutée au choix '+LET[i]+'.');};
+  im.onerror=function(){say('Image illisible. Essaie un fichier JPG ou PNG.');};
+  im.src=URL.createObjectURL(file);
+}
+function exportBlob(which){
+  return new Promise(function(res){
+    var c=document.createElement('canvas'),s2=Object.assign({},S,{slide:which||S.slide});c.width=W;c.height=S.fmt==='tall'?1920:1080;paint(c.getContext('2d'),s2,false);
+    c.toBlob(function(b){res(b);},'image/png');
+  });
+}
+function fileName(which){
+  var s=S.opts.map(function(o){return(o.b||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}).filter(Boolean).join('-ou-').slice(0,70);
+  return((which||S.slide)==='cover'?'1-couverture-':'2-dilemme-')+(s||'image')+'.png';
+}
+var viewerUrl='';
+function openViewer(blob){
+  if(viewerUrl)URL.revokeObjectURL(viewerUrl);
+  viewerUrl=URL.createObjectURL(blob);$('viewer-img').src=viewerUrl;$('viewer').hidden=false;$('viewer-close').focus();
+}
+var dl=null;
+function saveOne(which){
+  return exportBlob(which).then(function(blob){
+    if(!blob)throw{code:'noblob'};
+    if(!dl)throw{code:'unavailable'};
+    return dl.save({filename:fileName(which),data:blob});
+  });
+}
+function saveFail(err){
+  var code=err&&err.code;
+  if(code==='declined')say('Enregistrement annulé.');
+  else if(code==='rate_limited')say('Une demande est déjà ouverte. Réessaie dans un instant avec « Enregistrer celle-ci ».');
+  else if(code==='noblob')say('L’image n’a pas pu être créée. Réessaie.');
+  else{say('');exportBlob().then(function(b){if(b)openViewer(b);});}
+}
+function save(){say('Création de l’image…');saveOne(S.slide).then(function(){say('Image enregistrée.');},saveFail);}
+function saveBoth(){
+  say('Création des images…');
+  saveOne('cover').then(function(){return saveOne('main');}).then(function(){say('Les 2 images sont enregistrées.');},saveFail);
+}
+
+build();
+$('seg-n').addEventListener('click',function(e){var b=e.target.closest('button');if(b)load(+b.dataset.n,0,false);});
+$('seg-slide').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setSlide(b.dataset.slide);draw();});
+$('c-k').addEventListener('input',function(e){S.ck=e.target.value;setSlide('cover');draw();});
+$('c-t').addEventListener('input',function(e){S.ct=e.target.value;setSlide('cover');draw();});
+$('c-s').addEventListener('input',function(e){S.cs=e.target.value;setSlide('cover');draw();});
+$('btn-title').addEventListener('click',function(){S.ti++;S.ct=null;$('c-t').value=covText(S).t;setSlide('cover');draw();});
+$('seg-fmt').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;S.fmt=b.dataset.fmt;syncUI();draw();});
+$('seg-lang').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  S.lang=b.dataset.lang;try{localStorage.setItem('fd-lang',S.lang);}catch(err){}
+  load(S.n,S.idx,true);
+});
+$('btn-prev').addEventListener('click',function(){load(S.n,S.idx-1,false);});
+$('btn-next').addEventListener('click',function(){load(S.n,S.idx+1,false);});
+$('btn-rand').addEventListener('click',function(){
+  var len=bankFor(S.n).length,j=S.idx;if(len>1){while(j===S.idx)j=Math.floor(Math.random()*len);}
+  load(S.n,j,false);
+});
+$('bank').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.del==null){load(S.n,+b.dataset.j,false);return;}
+  if(!b.dataset.arm){b.dataset.arm='1';b.textContent='Confirmer';return;}
+  var d=bankFor(S.n)[+b.dataset.del],cur=bankFor(S.n)[S.idx];
+  if(!d||!d.gen)return;
+  BANK.splice(BANK.indexOf(d),1);GEN.splice(GEN.indexOf(d),1);saveGen();
+  if(d===cur)load(S.n,0,false);else{S.idx=bankFor(S.n).indexOf(cur);syncUI();}
+});
+$('pal').addEventListener('input',function(e){
+  var t=e.target,i=+t.dataset.i;if(t.type!=='color')return;
+  S.pal[i]=t.value;$('o'+i+'-dot').style.setProperty('--sw',t.value);savePal();draw();
+});
+$('presets').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.p==='idea')S.opts.forEach(function(o,i){S.pal[i]=COL[o.ic]||S.pal[i];});
+  else S.pal=PRESETS[+b.dataset.p][1].slice();
+  savePal();for(var i=0;i<6;i++)syncOpt(i);draw();
+});
+$('f-hook').addEventListener('input',function(e){S.hook=e.target.value;draw();});
+$('f-tag').addEventListener('input',function(e){S.tag=e.target.value;setSlide('main');draw();});
+$('f-foot').addEventListener('input',function(e){S.foot=e.target.value;setSlide('main');draw();});
+$('f-handle').addEventListener('input',function(e){S.handle=e.target.value;try{localStorage.setItem('fd-handle',S.handle);}catch(err){}draw();});
+$('c-tint').addEventListener('change',function(e){S.tint=e.target.checked;draw();});
+$('c-rim').addEventListener('change',function(e){S.rim=e.target.checked;draw();});
+$('s-eyes').addEventListener('change',function(e){S.eyes=e.target.value;draw();});
+$('s-aura').addEventListener('change',function(e){S.aura=e.target.value;draw();});
+$('c-letters').addEventListener('change',function(e){S.letters=e.target.checked;draw();});
+$('c-guides').addEventListener('change',function(e){S.guides=e.target.checked;draw();});
+$('btn-seed').addEventListener('click',function(){S.seed=(S.seed+1)%9973;draw();});
+var box=$('opts');
+box.addEventListener('input',function(e){
+  var t=e.target,i=+t.dataset.i,k=t.dataset.k;
+  if(t.tagName!=='INPUT'||t.type!=='text'||!S.opts[i])return;
+  S.opts[i][k]=t.value;if(k==='b')$('o'+i+'-title').textContent=t.value||'(sans mot-clé)';setSlide('main');draw();
+});
+box.addEventListener('change',function(e){
+  var t=e.target,i=+t.dataset.i;if(!S.opts[i])return;
+  if(t.tagName==='SELECT'){S.opts[i][t.dataset.k]=t.value;draw();}
+  else if(t.type==='file'){setImg(i,t.files&&t.files[0]);t.value='';}
+});
+box.addEventListener('click',function(e){
+  var b=e.target.closest('[data-act="noimg"]');
+  if(b){var i=+b.dataset.i;if(S.opts[i]){S.opts[i].img=null;syncOpt(i);draw();say('');}}
+});
+$('btn-gen').addEventListener('click',genIdea);
+$('btn-stop').addEventListener('click',function(){if(genCtl)genCtl.abort();});
+$('btn-save').addEventListener('click',save);
+$('btn-save2').addEventListener('click',saveBoth);
+$('btn-open').addEventListener('click',function(){exportBlob().then(function(b){if(b)openViewer(b);else say('L’image n’a pas pu être créée. Réessaie.');});});
+$('viewer-close').addEventListener('click',function(){$('viewer').hidden=true;$('btn-open').focus();});
+
+load(2,0,false);
+if(document.fonts&&document.fonts.load){
+  document.fonts.load('80px Anton','AÉ').then(function(){capC={};draw();},function(){});
+  if(document.fonts.ready)document.fonts.ready.then(function(){capC={};draw();});
+}
+if(window.claude&&typeof window.claude.use==='function'){
+  window.claude.use('sample').then(function(fn){sampleFn=typeof fn==='function'?fn:null;$('gen-group').hidden=!sampleFn;},function(){});
+  window.claude.use('downloads').then(function(ns){dl=ns||null;$('btn-save').hidden=!dl;$('btn-save2').hidden=!dl;},function(){});
+}
+})();
+</script>
+</body></html>
