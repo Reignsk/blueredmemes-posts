@@ -142,8 +142,8 @@ info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText
 - Music: `autoAddMusic: true` lets TikTok pick a recommended track; it is the only music setting this
   connector has (checked 2026-10-07: no track field in `tiktokData`, neither in the tool nor in stored posts).
   TikTok's own posting API has no field for a chosen sound on photo posts. Metricool's help says a TikTok
-  *Business* account can pick one of TikTok's Top 100 commercial tracks in the Metricool screen; the owner's
-  account is treated as personal, and switching account type is his decision. The owner cares about music:
+  *Business* account can pick one of TikTok's Top 100 commercial tracks in the Metricool screen; whether the
+  owner's account is personal or Business is not known, and changing account type is his decision. The owner cares about music:
   if a track field ever appears in the tool description, tell him in the report.
 
 X post (dilemma image only):
