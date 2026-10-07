@@ -2,6 +2,18 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-07, evening (in conversation with the owner)
+
+- The owner subscribed to X Premium today (2026-10-07). This is the reference date for X results.
+- X baseline from Metricool: 71 followers on 2026-10-06. No post rows and 0 impressions recorded yet
+  (X was connected to Metricool today; the first post of the new format went out today at 18:00).
+  There is therefore no real "before Premium" period to compare with: follow the trend from here.
+- X metrics that exist in Metricool: posts `TTTW02` (date and time), `TTTW03` (text), `TTTW11` (impressions),
+  `TTTW05` (likes), `TTTW08` (replies), `TTTW06` (reposts), `TTTW30` (follows from the post);
+  account `TTEV01` (followers), `TTEV11` (impressions per day). Not yet seen returning post rows.
+- Monetisation on X needs 500 verified followers and 500,000 verified impressions in 90 days. At 71
+  followers that is far away: the goal for now is followers and impressions, not revenue.
+
 ## 2026-10-07 (set-up, done in conversation with the owner)
 
 - Connected Metricool (TikTok + X), this repository for image hosting, paid Metricool plan with the X add-on.

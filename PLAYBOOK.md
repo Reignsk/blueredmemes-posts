@@ -73,6 +73,11 @@ Read it fully at the start of every run, then follow "Every run" below.
    `TKPO02, TKPO05, TKPO07, TKPO08, TKPO09, TKPO10` (TikTok posts: time, description, views, likes,
    comments, shares). Note the 3 best and 3 worst posts in `state/journal.md` with one line on what
    they have in common. Let that steer the next dilemmas. Do not over-read a handful of posts.
+   Do the same for X with `TTTW02, TTTW03, TTTW11, TTTW05, TTTW08, TTTW06, TTTW30` (posts: time, text,
+   impressions, likes, replies, reposts, follows) and `TTEV01, TTEV11` (followers, impressions per day).
+   The owner has X Premium since 2026-10-07 and had 71 followers on 2026-10-06: note followers and
+   total impressions in the journal at every run so the trend is visible. If the X calls return no
+   rows, say so in the journal and in the report rather than guessing.
 4. **Write new dilemmas** for the empty slots: usually 12 to 20 per run. Quality comes before
    filling every slot. Add them to the bank in `tools/page.html` (format below).
 5. **Render.** Write a picks file and run
@@ -164,4 +169,6 @@ info: {"autoPublish": true, "descendants": [{"text": "<the account's own pick, o
 
 - Reply to comments in the hour after a post: it is the strongest growth lever on X.
 - Pick a precise TikTok sound (needs a post switched to manual delivery, on his request).
-- Anything about subscriptions, X Premium, bios and profile.
+- Anything about subscriptions, X Premium, bios and profile. (He took X Premium on 2026-10-07.
+  To be paid by X he still has to reach 500 verified followers and 500,000 verified impressions
+  in 90 days, and verify his identity in the X app himself.)
