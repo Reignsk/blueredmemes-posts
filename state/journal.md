@@ -2,6 +2,16 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-07, 20:45 (in conversation with the owner): TikTok refuses PNG
+
+- The first TikTok post (20:00, "Who wins?") failed: "The 'image/png' type is not allowed, use
+  'image/jpeg' or 'image/webp' instead." Every TikTok post had been scheduled with PNG files.
+- Fix: all 59 carousels converted to JPEG (`2026-10/<name>-1-cover.jpg`, `-2-dilemma.jpg`), pushed, and
+  the 49 scheduled TikTok posts updated to those files. "Who wins?" moved to 21:15 the same evening.
+- X posts were left as they are: X published a PNG without trouble at 18:00.
+- Lesson: a scheduled post is not a tested post. Metricool accepts a file the network will refuse and
+  only reports it at publication time, by email to the owner.
+
 ## 2026-10-07, evening (in conversation with the owner)
 
 - The owner subscribed to X Premium today (2026-10-07). This is the reference date for X results.

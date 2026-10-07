@@ -136,6 +136,12 @@ info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText
   "title": "<the hook>", "autoAddMusic": true, "photoCoverIndex": 0, "isAigc": false}}
 ```
 
+- TikTok accepts only JPEG or WebP images. A PNG is accepted by Metricool at scheduling time and then
+  refused by TikTok at publication time (this cost the first post on 2026-10-07). Always schedule the
+  `.jpg` files that `tools/render.js` produces, and check that the `media` URLs Metricool returns end
+  in `.jpeg` or `.jpg`.
+- At the start of each run, look for posts whose provider status is `ERROR` in `getScheduledPosts`
+  for the last two days. Fix the cause, move the post to the next free slot, and tell the owner.
 - TikTok caption: one or two sentences that restate the dilemma, a call to answer
   ("A or B 👇", "Comment your letter 👇", "Rank your top 3 👇"), then 5 hashtags, for example
   `#wouldyourather #superpowers #thisorthat #dilemma #pickone`.
