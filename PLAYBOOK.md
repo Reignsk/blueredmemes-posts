@@ -34,14 +34,19 @@ Read it fully at the start of every run, then follow "Every run" below.
 
 ## Rhythm
 
-- TikTok: 2 posts a day at 14:00 and 20:00 (Europe/Paris). Keep at least 10 days scheduled ahead.
+- TikTok: 2 posts a day at 16:00 and 22:00 (Europe/Paris). Keep at least 10 days scheduled ahead.
+  (Changed from 14:00 and 20:00 on 2026-10-08, with the owner's agreement: see "Why these hours".)
 - X: up to 4 posts a day at 12:00, 15:00, 18:00 and 21:00. Keep at least 7 days scheduled ahead.
   - Every new dilemma goes on X as well as TikTok (not at the same hour).
   - A dilemma may be reposted on X once it is at least 21 days old, with a rewritten text.
   - If there is not enough material for 4 a day, schedule fewer. Never repeat inside 21 days.
-- Why these hours: on the owner's 187 past TikTok posts, 20:00 was the strongest slot,
-  14:00 and 17:00 were good, 18:00 was the weakest; Sunday was the best day, Monday the weakest.
-  Photo carousels beat videos. Revisit this when new data says otherwise.
+- Why these hours: on the owner's 187 past TikTok posts (May to early October 2026), the strongest hour
+  in Metricool's analytics was "20:00", "14:00" and "17:00" were good and "18:00" was the weakest.
+  Those analytics timestamps are in UTC, not Paris time (checked 2026-10-08: a post scheduled for 21:15
+  Paris shows 19:15). In Paris summer time that makes 22:00 the strongest hour, 16:00 and 19:00 good,
+  and 20:00 the weakest. Hence 16:00 and 22:00. Sunday was the best day, Monday the weakest.
+  Photo carousels beat videos. Revisit this when new data says otherwise, and always convert analytics
+  times from UTC (+2 h in summer time, +1 h in winter time) before comparing hours.
 - Vary the number of choices from one post to the next (2, 3, 4, 5, 6) and avoid two
   dilemmas with the same mechanic on the same day.
 
@@ -71,7 +76,7 @@ Read it fully at the start of every run, then follow "Every run" below.
    to know which dilemmas exist and where each one has been used.
 3. **Look at results.** Call `getAnalyticsDataByMetrics` for the last 14 days with
    `TKPO02, TKPO05, TKPO07, TKPO08, TKPO09, TKPO10` (TikTok posts: time, description, views, likes,
-   comments, shares). Note the 3 best and 3 worst posts in `state/journal.md` with one line on what
+   comments, shares). The times in these rows are UTC. Note the 3 best and 3 worst posts in `state/journal.md` with one line on what
    they have in common. Let that steer the next dilemmas. Do not over-read a handful of posts.
    Do the same for X with `TTTW02, TTTW03, TTTW11, TTTW05, TTTW08, TTTW06, TTTW30` (posts: time, text,
    impressions, likes, replies, reposts, follows) and `TTEV01, TTEV11` (followers, impressions per day).
@@ -124,11 +129,11 @@ TikTok carousel (cover first):
 
 ```
 blogId: "7280217"
-date: "2026-11-03T20:00:00+01:00"
+date: "2026-11-03T22:00:00+01:00"
 info: {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText": "", "hasNotReadNotes": false,
  "media": ["<raw url of -1-cover.jpg>", "<raw url of -2-dilemma.jpg>"], "mediaAltText": [],
  "providers": [{"network": "tiktok"}],
- "publicationDate": {"dateTime": "2026-11-03T20:00:00", "timezone": "Europe/Paris"},
+ "publicationDate": {"dateTime": "2026-11-03T22:00:00", "timezone": "Europe/Paris"},
  "shortener": false, "smartLinkData": {"ids": []},
  "text": "<caption>",
  "tiktokData": {"disableComment": false, "disableDuet": false, "disableStitch": false,

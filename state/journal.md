@@ -2,6 +2,20 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-08, 09:25 (follow-up, on the owner's answer): TikTok moved to 16:00 and 22:00
+
+- The owner read the report below and said to go ahead with the hour change.
+- All 74 pending TikTok posts (10-08 to 11-13) moved with `updateScheduledPost`: 14:00 to 16:00 and
+  20:00 to 22:00, same day, nothing else changed (same text, title, images, automatic music).
+  74 calls, no error. Confirmed with fresh `getScheduledPosts` calls: one post at 16:00 and one at 22:00
+  on each of the 37 days, all `PENDING`, all with two `.jpeg` images; X posts untouched.
+- 16:00 and 22:00 stay in Paris local time after the clock change of 10-25.
+- `PLAYBOOK.md` (Rhythm, template example, step 3) and `state/posts.md` updated to the new hours.
+- `updateScheduledPost` takes the new time in `info.publicationDate` only (no separate `date` argument),
+  accepts the `static.metricool.com` media URLs returned by `getScheduledPosts`, and gives the post a new id.
+- To watch: the next two weeks are the first real test of 16:00 against 22:00 with the new format.
+  Compare the two slots once each has about ten posts, converting analytics times from UTC.
+
 ## 2026-10-08, 08:52 (scheduled run, nobody watching)
 
 - State found: nothing in `ERROR`. TikTok 2 a day to 10-31, X 4 a day to 10-20 then five scattered posts.
@@ -31,6 +45,7 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
   exact 2-hour shift; how the old table was built is not written down, so this is likely, not proven.
   The 14:00 and 20:00 slots are the playbook's rule and 74 TikTok posts sit on them: left as they are
   until the owner says whether to move them (for example to 16:00 and 22:00).
+  (Settled the same morning: see the entry above.)
 - Not verified: in `getScheduledPosts`, the first reply under the two published X posts still shows
   `PUBLISHING` the next morning, while the posts themselves show `PUBLISHED`. Analytics count 1 reply on
   each, so the reply probably went out, but no tool here can read the thread. Asked the owner to look.
