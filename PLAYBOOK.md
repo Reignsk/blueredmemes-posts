@@ -43,8 +43,12 @@ Read it fully at the start of every run, then follow "Every run" below.
 - X, second stream ("theory/fact", asked by the owner on 2026-10-11): up to 4 text-only posts a day
   in English at 09:00, 16:30, 19:00 and 22:00, through Metricool, no image, no reply. Keep at least
   7 days scheduled ahead, like the dilemmas.
-  - Content: fun theories, light conspiracies, Mandela effects, space and history mysteries, and true
-    facts, each ending with a question that is easy to answer. Vary the wording; avoid repeating the
+  - Content: five categories in rotation, each day mixing at least three of them:
+    history (surprising true events and dates), conspiracies (light and fun only: Mandela effects,
+    Bermuda Triangle, Phantom Time, "Birds Aren't Real"), theories (simulation, parallel universes,
+    Fermi paradox, time), psychology (how the mind works: memory, deja vu, dreams, biases such as the
+    spotlight effect or the Baader-Meinhof phenomenon, habits), and facts (animals, space, science,
+    the body). Each post ends with a question that is easy to answer. Vary the wording; avoid repeating the
     same prompt ("tell me a fact that sounds fake...") more than once a week, and never two posts on
     the same theme the same day.
   - Every fact must be true; check anything not certain with a web search and drop it if unsure.
