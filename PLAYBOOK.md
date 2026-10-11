@@ -51,9 +51,9 @@ Read it fully at the start of every run, then follow "Every run" below.
     Say "about" for approximate figures. Label theories as theories.
   - Never: vaccines, health claims, elections, politics, religion, real tragedies, real people
     accused of anything, "the Moon landing was fake" type claims.
-  - Never two X posts in the same 30 minutes (any stream, any tool). Typefully (free plan, quota used
-    up for October) also holds a few of these posts at 16:30 or 19:00: on those days, leave that slot
-    empty in Metricool. Read Typefully's queue (social set 341134) before scheduling this stream.
+  - Never two X posts in the same 30 minutes, whatever the stream.
+  - Everything goes through Metricool. Never schedule anything in Typefully (owner's decision,
+    2026-10-11); its October posts were moved to Metricool and deleted there.
   - Count the two streams separately in the journal (impressions and replies per post) so the owner
     can see which one works.
 - Why these hours: on the owner's 187 past TikTok posts (May to early October 2026), the strongest hour

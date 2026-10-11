@@ -21,6 +21,11 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - Gaps: theory stream ends 10-25; dilemma stream thins after 10-25 (only 10-28); no X post at all on
   10-26, 10-29, 10-31. The next scheduled run should fill both.
 
+- 13:40, owner: "everything on Metricool, not Typefully". The 9 scheduled Typefully posts and the
+  unscheduled draft were recreated in Metricool at the same Paris times (10-11 19:00, 10-13 16:30,
+  10-15 19:00, 10-17 16:30, 10-19 19:00, 10-21 16:30, 10-24 19:00, 10-27 15:00, 10-30 19:00; the
+  sharks draft at 10-26 19:00), then deleted from Typefully. Typefully now holds nothing scheduled.
+
 ## 2026-10-11 (in conversation with the owner): first look at X
 
 - Followers (TTEV01): 71 (10-06), 73 (10-07), 120 (10-08), 118 (10-09), 122 (10-10). The jump came on
