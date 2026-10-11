@@ -40,6 +40,22 @@ Read it fully at the start of every run, then follow "Every run" below.
   - Every new dilemma goes on X as well as TikTok (not at the same hour).
   - A dilemma may be reposted on X once it is at least 21 days old, with a rewritten text.
   - If there is not enough material for 4 a day, schedule fewer. Never repeat inside 21 days.
+- X, second stream ("theory/fact", asked by the owner on 2026-10-11): up to 4 text-only posts a day
+  in English at 09:00, 16:30, 19:00 and 22:00, through Metricool, no image, no reply. Keep at least
+  7 days scheduled ahead, like the dilemmas.
+  - Content: fun theories, light conspiracies, Mandela effects, space and history mysteries, and true
+    facts, each ending with a question that is easy to answer. Vary the wording; avoid repeating the
+    same prompt ("tell me a fact that sounds fake...") more than once a week, and never two posts on
+    the same theme the same day.
+  - Every fact must be true; check anything not certain with a web search and drop it if unsure.
+    Say "about" for approximate figures. Label theories as theories.
+  - Never: vaccines, health claims, elections, politics, religion, real tragedies, real people
+    accused of anything, "the Moon landing was fake" type claims.
+  - Never two X posts in the same 30 minutes (any stream, any tool). Typefully (free plan, quota used
+    up for October) also holds a few of these posts at 16:30 or 19:00: on those days, leave that slot
+    empty in Metricool. Read Typefully's queue (social set 341134) before scheduling this stream.
+  - Count the two streams separately in the journal (impressions and replies per post) so the owner
+    can see which one works.
 - Why these hours: on the owner's 187 past TikTok posts (May to early October 2026), the strongest hour
   in Metricool's analytics was "20:00", "14:00" and "17:00" were good and "18:00" was the weakest.
   Those analytics timestamps are in UTC, not Paris time (checked 2026-10-08: a post scheduled for 21:15

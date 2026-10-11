@@ -2,6 +2,25 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-11, 13:40 (in conversation with the owner): second X stream, theories and facts
+
+- In another conversation the owner had 26 text-only "theory/fact" X posts scheduled in Metricool
+  (10-11 to 10-18, 09:00/15:00/19:00/22:00) and 9 in Typefully (free plan, quota used up), plus one
+  unscheduled Typefully draft ("Sharks are older than trees").
+- Clashes fixed: 8 days had two X posts at 15:00. Moved 5 Metricool theory posts and 3 Typefully drafts
+  (10-13, 10-17, 10-21) to 16:30 the same day. Theory slots are now 09:00, 16:30, 19:00, 22:00.
+- Added 25 theory/fact posts for 10-19 to 10-25 (3 or 4 a day, leaving the slot free where Typefully
+  posts). Topics: Venus day, Phantom Time, Voynich, Scotland unicorn, Homer's blue, lightning heat,
+  cats staring, Hundred Years' War, Wow! signal, reading in dreams, radioactive bananas, Bermuda
+  Triangle, mammoths and pyramids, waking before the alarm, Moon drifting, animals and earthquakes,
+  Pringles can, memory reconsolidation, card shuffles, Tunguska, faces in dreams, neutron star,
+  Napoleon's height, stomach lining, block universe.
+- Found: Typefully's welcome text went out on X on 2026-10-07 (https://x.com/ReignsK1/status/2107743093336498205).
+  The owner should delete it; we never delete published posts.
+- The first reply under today's 12:00 dilemma post still showed PUBLISHING at 13:28, as on 10-07.
+- Gaps: theory stream ends 10-25; dilemma stream thins after 10-25 (only 10-28); no X post at all on
+  10-26, 10-29, 10-31. The next scheduled run should fill both.
+
 ## 2026-10-11 (in conversation with the owner): first look at X
 
 - Followers (TTEV01): 71 (10-06), 73 (10-07), 120 (10-08), 118 (10-09), 122 (10-10). The jump came on
