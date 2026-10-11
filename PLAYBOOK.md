@@ -43,18 +43,24 @@ Read it fully at the start of every run, then follow "Every run" below.
 - X, second stream ("theory/fact", asked by the owner on 2026-10-11): up to 4 text-only posts a day
   in English at 09:00, 16:30, 19:00 and 22:00, through Metricool, no image, no reply. Keep at least
   7 days scheduled ahead, like the dilemmas.
-  - Content: five categories in rotation, each day mixing at least three of them:
-    history (surprising true events and dates), conspiracies (light and fun only: Mandela effects,
-    Bermuda Triangle, Phantom Time, "Birds Aren't Real"), theories (simulation, parallel universes,
-    Fermi paradox, time), psychology (how the mind works: memory, deja vu, dreams, biases such as the
-    spotlight effect or the Baader-Meinhof phenomenon, habits), and facts (animals, space, science,
-    the body). Each post ends with a question that is easy to answer. Vary the wording; avoid repeating the
+  - Content: three categories only (owner's decision, 2026-10-11), mixed every day:
+    1. Serious conspiracies, told with a serious tone: documented operations that were real
+       (MKUltra, Northwoods, COINTELPRO, Gulf of Tonkin, Paperclip, Phoebus cartel, NSA files) and
+       famous unexplained cases (Roswell, Area 51, Phantom Time, Bermuda Triangle). State what is
+       documented as fact and what is claimed as a claim; never present an unproven theory as true.
+    2. Theories: physics and cosmology ideas and thought experiments (simulation, parallel universes,
+       Dark Forest, Great Filter, Boltzmann brain, holographic principle, paradoxes).
+    3. Psychology: how the mind works (memory, deja vu, dreams, named effects and biases such as
+       Baader-Meinhof, Zeigarnik, spotlight, Dunning-Kruger, doorway effect, Tetris effect).
+    No plain history trivia and no "fun facts" (animals, food, space numbers): the owner dropped them.
+    Each post ends with a question that is easy to answer. Vary the wording; avoid repeating the
     same prompt ("tell me a fact that sounds fake...") more than once a week, and never two posts on
     the same theme the same day.
   - Every fact must be true; check anything not certain with a web search and drop it if unsure.
     Say "about" for approximate figures. Label theories as theories.
-  - Never: vaccines, health claims, elections, politics, religion, real tragedies, real people
-    accused of anything, "the Moon landing was fake" type claims.
+  - Never: vaccines, health claims, current elections and politics, religion, conspiracies that blame
+    an ethnic, religious or other group, real people accused of crimes without a court or official
+    finding, real tragedies with victims, "the Moon landing was fake" type claims.
   - Never two X posts in the same 30 minutes, whatever the stream.
   - Everything goes through Metricool. Never schedule anything in Typefully (owner's decision,
     2026-10-11); its October posts were moved to Metricool and deleted there.

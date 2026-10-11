@@ -26,6 +26,14 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
   10-15 19:00, 10-17 16:30, 10-19 19:00, 10-21 16:30, 10-24 19:00, 10-27 15:00, 10-30 19:00; the
   sharks draft at 10-26 19:00), then deleted from Typefully. Typefully now holds nothing scheduled.
 
+- 13:47, owner: keep only serious conspiracies, theories and psychology; drop history and facts.
+  Metricool has no delete tool here, so the 28 scheduled history/fact posts (10-12 to 10-30) were
+  rewritten in place with the three categories, same times: MKUltra, Northwoods, COINTELPRO, Phoebus
+  cartel, Gulf of Tonkin, Area 51, Roswell, Paperclip, NSA files, Mockingbird; Dark Forest, Boltzmann
+  brain, Great Filter, holographic principle, Kardashev, fine-tuning, Roko's basilisk, bootstrap
+  paradox; Baader-Meinhof, doorway effect, spotlight effect, Zeigarnik, Dunning-Kruger, cocktail
+  party effect, Ben Franklin effect, mere exposure, Tetris effect, hypnic jerk.
+
 ## 2026-10-11 (in conversation with the owner): first look at X
 
 - Followers (TTEV01): 71 (10-06), 73 (10-07), 120 (10-08), 118 (10-09), 122 (10-10). The jump came on
