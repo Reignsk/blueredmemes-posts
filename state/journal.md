@@ -2,6 +2,19 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-11 (in conversation with the owner): first look at X
+
+- Followers (TTEV01): 71 (10-06), 73 (10-07), 120 (10-08), 118 (10-09), 122 (10-10). The jump came on
+  10-08; posts are credited with almost no follows (TTTW30), so the cause is unknown (Premium badge,
+  the owner's own activity, or something else).
+- Impressions per post (TTTW11), 14 posts 10-07 to 10-10: 2 to 38, median about 20. Best: the 10-07
+  21:00 "nerfed" post (38), the 10-08 18:00 "rewind" post (34), the 10-07 18:00 "who wins" post (34). Posts of
+  10-10 show 2 to 6 but are only hours old.
+- Replies: every post shows 1, which is our own automatic reply. Only two posts got replies from others
+  (10-09 21:00: 2, 10-08 18:00: 1). Likes: 0 to 2 per post.
+- Reading: with about 120 followers, posts reach about 20 people each. Volume alone will not grow X; reach
+  comes from replies on bigger accounts, which only the owner can do. Too early to judge hours or formats.
+
 ## 2026-10-08, 09:25 (follow-up, on the owner's answer): TikTok moved to 16:00 and 22:00
 
 - The owner read the report below and said to go ahead with the hour change.
