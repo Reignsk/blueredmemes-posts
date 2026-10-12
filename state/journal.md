@@ -7,7 +7,7 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - State found: no `ERROR` on 10-10 to 10-12. TikTok 2 a day to 11-13; X dilemmas 4 a day to 10-25 then only
   10-28 18:00; theory stream 4 a day to 10-25. Both minimums (10 days TikTok, 7 days X) were already met.
 - Wrote 14 new dilemmas (`e01` to `e14`, bank now 89): four 2-choice, three 3-choice, three 4-choice,
-  two 5-choice, two 6-choice. Rendered, checked the sheet and four full-size slides (e03, e07, e10, e11,
+  two 5-choice, two 6-choice. Rendered, checked the sheet and five full-size slides (e03, e07, e10, e11,
   e14), reordered options in e02, e07 and e10 so the position colours match the text, re-rendered, pushed
   to `2026-11/` (raw URL answered 200, image/jpeg).
 - Scheduled 14 X posts (10-26 to 10-29, each with its first reply; 10-27 15:00 left to the theory post) and
