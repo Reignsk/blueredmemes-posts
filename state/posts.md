@@ -2,8 +2,8 @@
 
 One line per dilemma. Times are Europe/Paris, year 2026. `-` means not used on that network yet.
 "Image" is the dilemma slide, as a JPEG path in this repo (branch `images`); the cover is the same name
-ending in `-1-cover.jpg`. All 75 pairs exist as JPEG (TikTok refuses PNG): 59 in `2026-10/`, 16 in `2026-11/`.
-All 75 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with `tools/render.js`.
+ending in `-1-cover.jpg`. All 89 pairs exist as JPEG (TikTok refuses PNG): 59 in `2026-10/`, 30 in `2026-11/`.
+All 89 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with `tools/render.js`.
 
 | Hook | Choices | TikTok | X | Image |
 |---|---|---|---|---|
@@ -82,17 +82,36 @@ All 75 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with 
 | PICK YOUR RIDE | 5 | 11-03 16:00 | 10-22 18:00 | 2026-11/d14-2-dilemma.jpg |
 | PICK YOUR MONSTER | 6 | 11-01 22:00 | 10-25 12:00 | 2026-11/d15-2-dilemma.jpg |
 | PICK YOUR SECRET BASE | 6 | 11-08 22:00 | 10-23 12:00 | 2026-11/d16-2-dilemma.jpg |
+| THEME SONG FOR LIFE | 2 | 11-15 22:00 | 10-26 12:00 | 2026-11/e01-2-dilemma.jpg |
+| WET OR BACKWARDS? | 2 | 11-17 16:00 | 10-27 12:00 | 2026-11/e02-2-dilemma.jpg |
+| 50% EPIC OR 100% ANNOYING? | 2 | 11-14 16:00 | 10-28 15:00 | 2026-11/e03-2-dilemma.jpg |
+| WHICH MEMORY PAYS? | 2 | 11-19 16:00 | 10-29 15:00 | 2026-11/e04-2-dilemma.jpg |
+| WHO HAUNTS YOU? | 3 | 11-18 16:00 | 10-26 15:00 | 2026-11/e05-2-dilemma.jpg |
+| HOW LONG DOES IT LAST? | 3 | 11-16 16:00 | 10-27 21:00 | 2026-11/e06-2-dilemma.jpg |
+| YOUR ELEMENT. YOUR CAGE. | 3 | 11-20 16:00 | 10-29 12:00 | 2026-11/e07-2-dilemma.jpg |
+| RANK THE CURSES | 4 | 11-18 22:00 | 10-27 18:00 | 2026-11/e08-2-dilemma.jpg |
+| PICK YOUR PARTNER | 4 | 11-15 16:00 | 10-26 18:00 | 2026-11/e09-2-dilemma.jpg |
+| YOUR BIRTH SEASON DECIDES | 4 | 11-14 22:00 | 10-28 12:00 | 2026-11/e10-2-dilemma.jpg |
+| A DOOR IN YOUR CLOSET | 5 | 11-19 22:00 | 10-29 18:00 | 2026-11/e11-2-dilemma.jpg |
+| WHAT ARE YOU MADE OF? | 5 | 11-17 22:00 | 10-26 21:00 | 2026-11/e12-2-dilemma.jpg |
+| PICK YOUR FAMILIAR | 6 | 11-16 22:00 | 10-28 21:00 | 2026-11/e13-2-dilemma.jpg |
+| HAUNTED YARD SALE | 6 | 11-20 22:00 | 10-29 21:00 | 2026-11/e14-2-dilemma.jpg |
 
-## Where the schedule stands (written 2026-10-08)
+## Where the schedule stands (written 2026-10-12)
 
-- TikTok: 2 a day (16:00, 22:00) from 10-08 to 11-13. Nothing after 11-13.
-  All 74 pending posts were moved from 14:00 and 20:00 to 16:00 and 22:00 on 2026-10-08 (owner's decision).
-- X: 4 a day (12:00, 15:00, 18:00, 21:00) from 10-08 to 10-25; then only 10-28 at 18:00.
-  First empty X slots: 10-26 (all four), 10-27 (all four), 10-28 at 12:00, 15:00 and 21:00.
-- Every one of the 75 dilemmas is now planned on both networks. Nothing is waiting in reserve:
-  the next run needs new dilemmas for X from 10-26 (TikTok can wait until it drops under 10 days ahead).
-- Earliest X reposts allowed (21 days after first use, with a rewritten text): the two posts of 10-07
-  from 10-28, the posts of 10-08 from 10-29, and so on.
+- TikTok: 2 a day (16:00, 22:00) from 10-12 to 11-20. Nothing after 11-20.
+- X dilemmas: 4 a day (12:00, 15:00, 18:00, 21:00) from 10-12 to 10-29, except 10-27 (3: the 15:00 slot holds
+  a theory post) and 10-28 18:00 is the old "DO THE MATH" post. Nothing from 10-30.
+- X theory stream: 4 a day (09:00, 16:30, 19:00, 22:00) to 10-25; after that only 10-26 19:00, 10-27 15:00,
+  10-30 19:00. Not extended in this run.
+- All 89 dilemmas are planned on both networks. Nothing in reserve.
+- From 10-30, X can use reposts (21+ days old, rewritten text): the posts first used on X on 10-07 to 10-09
+  are all eligible by 10-30. Prefer the best performers (see the journal) and new dilemmas.
+- `e01` to `e14` (written 2026-10-12) are in `2026-11/`. Their option order was set so that the position
+  colours (A red, B blue, C green, D purple) match the text (lava on red, water on blue...).
+
+## Older notes (2026-10-08)
+
 - The 16 dilemmas written on 2026-10-08 are `d01` to `d16`, in `2026-11/` (cover: `-1-cover.jpg`).
   Their X posts use the JPEG slide (X accepts it; Metricool returned `.jpeg` for all of them).
 - The older PNG files with French names (`-1-couverture.png`, `-2-dilemme.png`) are still in `2026-10/`:

@@ -2,6 +2,39 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-12, 09:00 (scheduled run, nobody watching)
+
+- State found: no `ERROR` on 10-10 to 10-12. TikTok 2 a day to 11-13; X dilemmas 4 a day to 10-25 then only
+  10-28 18:00; theory stream 4 a day to 10-25. Both minimums (10 days TikTok, 7 days X) were already met.
+- Wrote 14 new dilemmas (`e01` to `e14`, bank now 89): four 2-choice, three 3-choice, three 4-choice,
+  two 5-choice, two 6-choice. Rendered, checked the sheet and four full-size slides (e03, e07, e10, e11,
+  e14), reordered options in e02, e07 and e10 so the position colours match the text, re-rendered, pushed
+  to `2026-11/` (raw URL answered 200, image/jpeg).
+- Scheduled 14 X posts (10-26 to 10-29, each with its first reply; 10-27 15:00 left to the theory post) and
+  14 TikTok carousels (11-14 to 11-20). 28 calls, no error, every media URL came back `.jpeg`.
+- Confirmed with fresh `getScheduledPosts`: TikTok 2 a day 10-12 to 11-20; X dilemmas 4 a day 10-12 to
+  10-29 (3 on 10-27); theory posts unchanged. No slot double-booked, no two X posts within 30 minutes.
+- Not done: the theory stream was not extended past 10-25 (still 13 days ahead, above the 7-day minimum;
+  every fact must be checked, so it is better done in its own pass). Next run: theory posts from 10-26 and
+  X dilemmas from 10-30 (reposts allowed from then).
+- TikTok, new format, posts 10-07 to 10-11 (views / likes / comments, Paris time):
+  best 10-08 16:00 "One thing can never touch you" 4,980 / 148 / 20; 10-10 16:00 "Stop or rewind"
+  2,378 / 93 / 5; 10-08 22:00 "last emoji/meal/search" 1,705 / 49 / 5.
+  Lowest: 10-11 22:00 "geese or kangaroo" 1,042 (under a day old); 10-07 21:15 "Unstoppable force" 1,079;
+  10-11 16:00 "Body, mind or will" 1,261.
+  Common thread: the best ones are personal and specific (what can never touch *you*, your phone), the
+  weakest are abstract matchups. So far the 16:00 posts (4,980 / 2,378 / 1,566 / 1,261) beat the 22:00 ones
+  (1,705 / 1,479 / 1,329 / 1,042): too few posts to change hours yet.
+  Worry: the new format sits around 1,000 to 5,000 views, against 2,700 to 7,400 for the five old-format
+  posts of 10-02 to 10-05 (hashtag-only captions). Watch another week before deciding anything.
+- X: followers (TTEV01) 122 (10-10), 125 (10-11). Impressions per day (TTEV11): 0 for 10-12, nothing else.
+  Posts 10-07 to 10-11: 5 to 38 impressions, best still the 10-07 and 10-08 posts (29 to 38) and 10-09
+  21:00 (32, 2 likes, 3 replies). Since 10-10 most posts get 6 to 13. First theory posts (10-11): 5 and 7.
+  Replies are almost only our own automatic reply. Reposts and follows: empty.
+- Seen, not changed (owner's own posts): the theory stream still holds a few posts outside the three
+  categories, e.g. 10-18 16:30 "Monopoly man monocle" (Mandela effect), 10-17 16:30 "Covid time warp",
+  10-12 19:00 "phone ads". The 10-11 Mandela-effect post quoted a film character.
+
 ## 2026-10-11, 13:40 (in conversation with the owner): second X stream, theories and facts
 
 - In another conversation the owner had 26 text-only "theory/fact" X posts scheduled in Metricool
