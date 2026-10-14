@@ -2,6 +2,18 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-14 (in conversation with the owner): "engagement is zero"
+
+- X followers: 71 (10-06), 120 (10-08), 130 (10-12), 141 (10-13). Growing, about +10 a day.
+- X impressions per post fell: 21 to 38 on 10-07/10-08 (4 posts a day), 2 to 23 since 10-11, when the
+  text stream started (about 8 posts a day). Text posts: 2 to 12. Replies from others: almost none
+  (the "1 reply" on dilemma posts is our own automatic reply).
+- TikTok, new format, 13 posts 10-07 to 10-13: views 339 to 5,110, median about 1,450 (10-13 posts are
+  only a day old). The old posts of early October had a median near 3,000. Best: 10-08 16:00 (5,110,
+  154 likes, 20 comments). The new format is doing worse than the owner's old posts so far.
+- Proposed to the owner: cut X back to 4 posts a day, and test what differs from his old TikTok posts
+  (sound chosen by him on a few posts, captions, covers). Waiting for his answer before changing volume.
+
 ## 2026-10-12, 09:00 (scheduled run, nobody watching)
 
 - State found: no `ERROR` on 10-10 to 10-12. TikTok 2 a day to 11-13; X dilemmas 4 a day to 10-25 then only
