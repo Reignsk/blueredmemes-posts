@@ -34,7 +34,7 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - X: followers (TTEV01) 141 (10-13), 151 (10-14). Still about +10 a day. Impressions per day (TTEV11): 0 for 10-15,
   nothing else. Posts 10-11 to 10-14: 2 to 25 impressions. Dilemmas: best 10-11 21:00 "guardian" 25, then 14
   (remote, 10-13 21:00) and 13 (senses); 10-14 posts 3 to 9. Theory: best "Dark Forest" 13, "Dead Internet" 13,
-  "Mandela effect" 12; lowest 2 (Northwoods, parallel universe). Total for the 30 posts: about 250 impressions,
+  "Mandela effect" 12; lowest 2 (Northwoods, parallel universe). Total for the 30 posts: about 240 impressions,
   1 like, replies only our own. Reposts and follows: empty. Too little to compare the streams.
 
 ## 2026-10-14 (in conversation with the owner): "engagement is zero"
