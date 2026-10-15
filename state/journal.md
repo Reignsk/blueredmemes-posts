@@ -2,6 +2,41 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-15, 08:55 (scheduled run, nobody watching)
+
+- State found: no `ERROR` from 10-13 to 10-15. TikTok 2 a day to 11-20; X dilemmas 4 a day to 10-29; theory stream
+  4 a day to 10-25. Both minimums (TikTok to 10-25, X to 10-22) were already met. X was empty from 10-30.
+- Still `PUBLISHING`: the automatic first replies under the 8 X dilemma posts of 10-13 and 10-14 (parents are
+  `PUBLISHED`). Same pattern as before; analytics count 1 reply per post, so they probably went out. Not verifiable here.
+- Wrote 14 new dilemmas (`f01` to `f14`, bank now 103): five 2-choice, four 3-choice, two 4-choice, two 5-choice,
+  one 6-choice. Leaned on what works on TikTok: personal and checkable ("sent or received", "check the time"),
+  simple choices, a cost on each side. Rendered, checked the sheet and four full-size slides (f01, f07, f11, f12,
+  then f01, f12, f13, f14 again after fixes): reworded two tags that repeated the option text, gave the 5-choice
+  options a real top line ("YOUR", "WAKE UP IN A"), re-rendered. Pushed to `2026-11/` (raw URL 200, image/jpeg).
+- Scheduled 20 X posts (10-30 to 11-03, 4 a day, each with its first reply): the 14 new dilemmas plus 6 reposts
+  with rewritten text, all 21+ days after their first X post (WHO WINS?, PICK ONE. NO TAKEBACKS., ALL NERFED,
+  PICK YOUR GUARDIAN at 11-01 21:00 = exactly 21 days, 24 HOURS, ONE THING CAN NEVER TOUCH YOU), chosen from the
+  best X and TikTok numbers. Halloween (10-31) gets the roommate post (dragon, ghost, werewolf, vampire).
+- Scheduled 14 TikTok carousels (11-21 to 11-27). 34 calls, no error, every media URL came back `.jpeg`.
+- Confirmed with fresh `getScheduledPosts` (10-15 to 11-30): TikTok 2 a day 10-15 to 11-27; X every day 10-15 to
+  11-03 (4 dilemmas a day, 3 on 10-27); no `ERROR`, no double-booked slot, no two X posts within 30 minutes,
+  no duplicate TikTok title.
+- Theory stream not extended (ends 10-25 apart from 3 single posts): the 10-14 proposal to cut X back to 4 posts
+  a day is still waiting for the owner, and from 10-26 X now runs at about 4 a day anyway.
+- TikTok, new format, posts 10-11 to 10-14 (Paris time, views / likes / comments / shares):
+  best 10-11 16:00 "Body, mind or will" 1,877 / 115 / 12 / 0; 10-13 22:00 "Do the math" 1,506 / 68 / 2 / 1;
+  10-12 16:00 "See 10 years / change one day" 1,425 / 52 / 2 / 0. Lowest: 10-13 16:00 "One animal form" 493 / 17;
+  10-14 16:00 "Crowd or solitude" 567 / 28; 10-14 22:00 "Pick the price" 577 / 15 (under a day old).
+  Common thread: the weakest are abstract matchups or lists of 4-5 abstract options; the best are a single
+  personal trade-off. Overall trend is down: the 10-13 and 10-14 posts sit at 500 to 1,500 views against 1,100 to
+  5,100 the week before and 2,700 to 7,900 for the old hashtag-only posts of 10-02 to 10-05. The 16:00 vs 22:00
+  difference has disappeared (10-12: 1,425 vs 1,419). Needs the owner's call (see 10-14 entry): sound, captions.
+- X: followers (TTEV01) 141 (10-13), 151 (10-14). Still about +10 a day. Impressions per day (TTEV11): 0 for 10-15,
+  nothing else. Posts 10-11 to 10-14: 2 to 25 impressions. Dilemmas: best 10-11 21:00 "guardian" 25, then 14
+  (remote, 10-13 21:00) and 13 (senses); 10-14 posts 3 to 9. Theory: best "Dark Forest" 13, "Dead Internet" 13,
+  "Mandela effect" 12; lowest 2 (Northwoods, parallel universe). Total for the 30 posts: about 250 impressions,
+  1 like, replies only our own. Reposts and follows: empty. Too little to compare the streams.
+
 ## 2026-10-14 (in conversation with the owner): "engagement is zero"
 
 - X followers: 71 (10-06), 120 (10-08), 130 (10-12), 141 (10-13). Growing, about +10 a day.

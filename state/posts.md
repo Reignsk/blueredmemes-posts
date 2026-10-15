@@ -1,20 +1,21 @@
 # Dilemmas and where they have been used
 
 One line per dilemma. Times are Europe/Paris, year 2026. `-` means not used on that network yet.
+A second date in the X column is a repost (21+ days later, rewritten text, JPEG slide).
 "Image" is the dilemma slide, as a JPEG path in this repo (branch `images`); the cover is the same name
-ending in `-1-cover.jpg`. All 89 pairs exist as JPEG (TikTok refuses PNG): 59 in `2026-10/`, 30 in `2026-11/`.
-All 89 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with `tools/render.js`.
+ending in `-1-cover.jpg`. All 103 pairs exist as JPEG (TikTok refuses PNG): 59 in `2026-10/`, 44 in `2026-11/`.
+All 103 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with `tools/render.js`.
 
 | Hook | Choices | TikTok | X | Image |
 |---|---|---|---|---|
-| WHO WINS? | 2 | 10-07 21:15 | 10-07 18:00 | 2026-10/a01-2-dilemma.jpg |
+| WHO WINS? | 2 | 10-07 21:15 | 10-07 18:00, 10-30 18:00 | 2026-10/a01-2-dilemma.jpg |
 | BE HONEST. | 3 | 10-08 22:00 | 10-09 18:00 | 2026-10/jeu-18h-2-dilemma.jpg |
 | YOU VS YOU | 2 | 10-09 22:00 | 10-21 18:00 | 2026-10/a03-2-dilemma.jpg |
 | EVERY ONE HAS A CATCH | 4 | 10-10 22:00 | 10-14 18:00 | 2026-10/sam-18h-2-dilemma.jpg |
 | LOCKED IN FOR 10 MINUTES | 2 | 10-11 22:00 | 10-11 18:00 | 2026-10/a05-2-dilemma.jpg |
 | DO THE MATH | 2 | 10-13 22:00 | 10-28 18:00 | 2026-10/a07-2-dilemma.jpg |
 | ANY POWER YOU WANT. PICK THE PRICE. | 4 | 10-14 22:00 | 10-16 18:00 | 2026-10/mer-10h-2-dilemma.jpg |
-| ALL NERFED. PICK ONE. | 6 | 10-16 22:00 | 10-07 21:00 | 2026-10/jeu-10h-2-dilemma.jpg |
+| ALL NERFED. PICK ONE. | 6 | 10-16 22:00 | 10-07 21:00, 10-31 21:00 | 2026-10/jeu-10h-2-dilemma.jpg |
 | EVERY POWER HAS A PRICE | 2 | 10-17 22:00 | 10-08 12:00 | 2026-10/a02-2-dilemma.jpg |
 | ONE WORD. REALITY OBEYS. | 5 | 10-18 22:00 | 10-18 18:00 | 2026-10/ven-10h-2-dilemma.jpg |
 | MASTER ONE. PAY FOR IT. | 3 | 10-20 22:00 | 10-10 12:00 | 2026-10/mer-14h-2-dilemma.jpg |
@@ -25,11 +26,11 @@ All 89 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with 
 | HOW GREEDY ARE YOU? | 3 | 10-25 22:00 | 10-23 18:00 | 2026-10/dim-10h-2-dilemma.jpg |
 | CHOOSE YOUR CLASS | 5 | 10-27 22:00 | 10-08 15:00 | 2026-10/dim-14h-2-dilemma.jpg |
 | WHAT WOULD YOU GIVE UP? | 2 | 10-28 22:00 | 10-10 21:00 | 2026-10/a06-2-dilemma.jpg |
-| PICK YOUR GUARDIAN | 4 | 10-30 22:00 | 10-11 21:00 | 2026-10/lun-10h-2-dilemma.jpg |
+| PICK YOUR GUARDIAN | 4 | 10-30 22:00 | 10-11 21:00, 11-01 21:00 | 2026-10/lun-10h-2-dilemma.jpg |
 | ONE TICKET. ONE WAY. | 3 | 10-31 22:00 | 10-12 15:00 | 2026-10/mar-14h-2-dilemma.jpg |
-| ONE THING CAN NEVER TOUCH YOU | 5 | 10-08 16:00 | 10-13 12:00 | 2026-10/mar-10h-2-dilemma.jpg |
-| 24 HOURS. NO POWERS. WHERE? | 6 | 10-09 16:00 | 10-09 21:00 | 2026-10/b02-2-dilemma.jpg |
-| PICK ONE. NO TAKEBACKS. | 2 | 10-10 16:00 | 10-08 18:00 | 2026-10/b01-2-dilemma.jpg |
+| ONE THING CAN NEVER TOUCH YOU | 5 | 10-08 16:00 | 10-13 12:00, 11-03 21:00 | 2026-10/mar-10h-2-dilemma.jpg |
+| 24 HOURS. NO POWERS. WHERE? | 6 | 10-09 16:00 | 10-09 21:00, 11-03 15:00 | 2026-10/b02-2-dilemma.jpg |
+| PICK ONE. NO TAKEBACKS. | 2 | 10-10 16:00 | 10-08 18:00, 10-30 21:00 | 2026-10/b01-2-dilemma.jpg |
 | BODY, MIND OR WILL? | 3 | 10-11 16:00 | 10-09 12:00 | 2026-10/b04-2-dilemma.jpg |
 | KNOW IT OR FIX IT? | 2 | 10-12 16:00 | 10-10 15:00 | 2026-10/b05-2-dilemma.jpg |
 | RANK THEM 1 TO 4 | 4 | 10-12 22:00 | 10-11 12:00 | 2026-10/b06-2-dilemma.jpg |
@@ -96,17 +97,37 @@ All 89 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with 
 | WHAT ARE YOU MADE OF? | 5 | 11-17 22:00 | 10-26 21:00 | 2026-11/e12-2-dilemma.jpg |
 | PICK YOUR FAMILIAR | 6 | 11-16 22:00 | 10-28 21:00 | 2026-11/e13-2-dilemma.jpg |
 | HAUNTED YARD SALE | 6 | 11-20 22:00 | 10-29 21:00 | 2026-11/e14-2-dilemma.jpg |
+| SENT OR RECEIVED? | 2 | 11-22 16:00 | 11-01 12:00 | 2026-11/f01-2-dilemma.jpg |
+| PICK YOUR HOUR | 2 | 11-25 16:00 | 11-02 12:00 | 2026-11/f02-2-dilemma.jpg |
+| POWERS OR PHONE? | 2 | 11-23 22:00 | 10-30 12:00 | 2026-11/f03-2-dilemma.jpg |
+| DOGS OR CATS? | 2 | 11-26 22:00 | 11-02 21:00 | 2026-11/f04-2-dilemma.jpg |
+| HOW BIG IS YOUR UNDO? | 2 | 11-21 16:00 | 11-03 18:00 | 2026-11/f05-2-dilemma.jpg |
+| PICK YOUR AURA | 3 | 11-24 16:00 | 10-31 12:00 | 2026-11/f06-2-dilemma.jpg |
+| WHAT DO YOU FORGET? | 3 | 11-27 16:00 | 11-03 12:00 | 2026-11/f07-2-dilemma.jpg |
+| HOW FAR AHEAD? | 3 | 11-22 22:00 | 10-30 15:00 | 2026-11/f08-2-dilemma.jpg |
+| PICK YOUR ENTRANCE | 3 | 11-25 22:00 | 11-01 18:00 | 2026-11/f09-2-dilemma.jpg |
+| PICK YOUR ROOMMATE | 4 | 11-21 22:00 | 10-31 18:00 | 2026-11/f10-2-dilemma.jpg |
+| CHECK THE TIME | 4 | 11-26 16:00 | 11-02 15:00 | 2026-11/f11-2-dilemma.jpg |
+| YOUR WEAPON TALKS | 5 | 11-23 16:00 | 10-31 15:00 | 2026-11/f12-2-dilemma.jpg |
+| WAKE UP HERE FOREVER | 5 | 11-27 22:00 | 11-02 18:00 | 2026-11/f13-2-dilemma.jpg |
+| INSTANT MASTERY | 6 | 11-24 22:00 | 11-01 15:00 | 2026-11/f14-2-dilemma.jpg |
 
-## Where the schedule stands (written 2026-10-12)
+## Where the schedule stands (written 2026-10-15)
 
-- TikTok: 2 a day (16:00, 22:00) from 10-12 to 11-20. Nothing after 11-20.
-- X dilemmas: 4 a day (12:00, 15:00, 18:00, 21:00) from 10-12 to 10-29, except 10-27 (3: the 15:00 slot holds
-  a theory post) and 10-28 18:00 is the old "DO THE MATH" post. Nothing from 10-30.
+- TikTok: 2 a day (16:00, 22:00) from 10-15 to 11-27. Nothing after 11-27.
+- X dilemmas: 4 a day (12:00, 15:00, 18:00, 21:00) from 10-15 to 11-03, except 10-27 (3: the 15:00 slot holds a
+  theory post). Nothing from 11-04.
 - X theory stream: 4 a day (09:00, 16:30, 19:00, 22:00) to 10-25; after that only 10-26 19:00, 10-27 15:00,
-  10-30 19:00. Not extended in this run.
-- All 89 dilemmas are planned on both networks. Nothing in reserve.
-- From 10-30, X can use reposts (21+ days old, rewritten text): the posts first used on X on 10-07 to 10-09
-  are all eligible by 10-30. Prefer the best performers (see the journal) and new dilemmas.
+  10-30 19:00. Not extended (see journal 10-14: the owner was asked about cutting X back to 4 posts a day).
+- All 103 dilemmas are planned on both networks. Nothing new in reserve.
+- X reposts used so far: 6 (see the second dates in the X column). Still eligible for a repost from 11-04 (first X
+  use 21+ days earlier, not yet reposted): every dilemma first posted on X up to 10-14, e.g. BODY, MIND OR WILL?,
+  EVERY POWER HAS A PRICE, CHOOSE YOUR CLASS, TAKE IT OR BREAK IT, MASTER ONE, MAX OUT ONE STAT, RANK THEM 1 TO 4,
+  LOCKED IN FOR 10 MINUTES, ONE BUTTON ON THE REMOTE, ONE CALL. WHAT ANSWERS?, CHECK YOUR PHONE FIRST.
+- `f01` to `f14` (written 2026-10-15) are in `2026-11/`.
+
+## Notes of 2026-10-12
+
 - `e01` to `e14` (written 2026-10-12) are in `2026-11/`. Their option order was set so that the position
   colours (A red, B blue, C green, D purple) match the text (lava on red, water on blue...).
 
