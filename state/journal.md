@@ -2,6 +2,12 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-17 17:55 (in conversation with the owner): TikTok paused
+
+- Owner: "stop posting on TikTok until I tell you to start again". Tonight's 22:00 TikTok post and all
+  later pending TikTok posts are being turned into drafts in Metricool (kept for a later restart).
+  The playbook now starts with a pause notice. X continues as before.
+
 ## 2026-10-15, 08:55 (scheduled run, nobody watching)
 
 - State found: no `ERROR` from 10-13 to 10-15. TikTok 2 a day to 11-20; X dilemmas 4 a day to 10-29; theory stream
