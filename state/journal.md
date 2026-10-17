@@ -7,6 +7,8 @@ Newest entry first. One dated entry per run: what was done, what the numbers say
 - Owner: "stop posting on TikTok until I tell you to start again". Tonight's 22:00 TikTok post and all
   later pending TikTok posts are being turned into drafts in Metricool (kept for a later restart).
   The playbook now starts with a pause notice. X continues as before.
+- Done: 83 TikTok posts turned into drafts (10-17 22:00, 28 from 10-18 to 10-31, 54 from 11-01 to
+  11-27), no failure. Ids changed, uuids kept. X untouched (X has posts until 11-03).
 
 ## 2026-10-15, 08:55 (scheduled run, nobody watching)
 
