@@ -112,7 +112,13 @@ All 103 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with
 | WAKE UP HERE FOREVER | 5 | 11-27 22:00 | 11-02 18:00 | 2026-11/f13-2-dilemma.jpg |
 | INSTANT MASTERY | 6 | 11-24 22:00 | 11-01 15:00 | 2026-11/f14-2-dilemma.jpg |
 
-## Where the schedule stands (written 2026-10-15)
+## Where the schedule stands (checked 2026-10-19)
+
+- TikTok: paused by the owner; 52 posts 10-18 to 11-12 are drafts in Metricool. He posts TikTok himself from Canva.
+- X dilemmas: 4 a day (12:00, 15:00, 18:00, 21:00) to 11-03 (3 on 10-27). Nothing from 11-04. Nothing new in reserve.
+- X theory stream: 4 a day to 10-25, then only 10-26 19:00, 10-27 15:00, 10-30 19:00.
+
+## Where the schedule stood (written 2026-10-15)
 
 - TikTok: 2 a day (16:00, 22:00) from 10-15 to 11-27. Nothing after 11-27.
 - X dilemmas: 4 a day (12:00, 15:00, 18:00, 21:00) from 10-15 to 11-03, except 10-27 (3: the 15:00 slot holds a

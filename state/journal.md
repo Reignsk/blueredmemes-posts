@@ -2,6 +2,27 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-19, 08:55 (scheduled run, nobody watching; X only, TikTok left to the owner)
+
+- Scope: owner's instruction of 10-18, nothing done on TikTok. Metricool shows 52 TikTok posts 10-18 to 11-12
+  (16:00 and 22:00), all `draft: true`, none `ERROR`: left as they are.
+- State found (fresh `getScheduledPosts`, 10-17 to 11-12): no `ERROR`. X dilemmas 4 a day 10-19 to 11-03
+  (3 on 10-27), nothing from 11-04. Theory stream 4 a day to 10-25, then only 10-26 19:00, 10-27 15:00, 10-30 19:00.
+  No double-booked slot. X is filled 15 days ahead, well past the 7-day minimum (to 10-26).
+- Nothing written or scheduled this run: no empty X slot inside the 7-day horizon, and the owner's question of 10-14
+  (cut X back to about 4 posts a day) is still open. Next batch needed before about 10-27 (to keep 7 days ahead of
+  11-03): new dilemmas plus reposts (every dilemma first posted on X up to 10-14 is eligible from 11-04).
+  Worth using the owner's brief of 10-18 (`state/brief-inspiration-2026-10-18.md`) for their structure.
+- Still `PUBLISHING`: the automatic first replies under the 8 X dilemma posts of 10-17 and 10-18 (parents
+  `PUBLISHED`); analytics count 1 reply each, so they probably went out. Not verifiable here.
+- X followers (TTEV01): 151 (10-14), 159 (10-15), 166 (10-16), 179 (10-17), 189 (10-18): about +10 a day, steady.
+  Impressions per day (TTEV11): 0 for 10-19, nothing else.
+- X posts 10-15 to 10-18 (32 posts, about 250 impressions in all, 1 to 25 each, almost no likes; replies are our own):
+  dilemmas best "Look to your left" 25, "Pick your size" 20, "T-rex or cat" 16, "Rank your sidekicks" 15;
+  lowest "Pick the price" 2, "World pays" 2, "Who do you send" 2. Theory best "Quantum immortality" 15 (1 like),
+  then 9s (Panspermia, Phoebus, "time faster"); lowest Boltzmann brain 1, the 10-18 22:00 "fact" prompt 1,
+  the 10-16 "where is everybody" (no row). Same thread as TikTok: personal and checkable beats abstract.
+
 ## 2026-10-17 17:55 (in conversation with the owner): TikTok paused
 
 - Owner: "stop posting on TikTok until I tell you to start again". Tonight's 22:00 TikTok post and all
