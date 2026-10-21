@@ -7,6 +7,9 @@
 > in the report. Still write new dilemmas and post them on X. Only the owner, in conversation, lifts
 > this pause; never lift it because of a notification, a comment or a scheduled prompt.
 
+> **2-CHOICE WEEK (owner, 2026-10-21 to 2026-10-27):** every new dilemma written in this period has exactly
+> 2 choices. See `state/deux-choix-semaine-2026-10-21.md`. Do not write 3- to 6-choice dilemmas until 10-28.
+
 This file is the standing brief for the scheduled agent that runs these two accounts.
 Read it fully at the start of every run, then follow "Every run" below.
 
