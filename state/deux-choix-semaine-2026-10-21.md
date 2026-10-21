@@ -6,8 +6,9 @@ Forget the other numbers of choices for now."
 - Period: 2026-10-21 to 2026-10-27, 3 dilemmas a day, delivered in this conversation at 17:00 Paris.
 - Made from the owner's Canva template "MODELE 2 CHOIX" (DAHYWofrKF8, folder "Modeles dilemmes (ne pas modifier)").
 - All 21 designs are in the Canva folder "2 choix · semaine du 21 oct" (FAHYn1LIb_Q, inside "Tiktok").
-- Delivery: export each design as JPG from Canva and give the owner the download links (the workspace cannot
-  download Canva export files: the proxy refuses export-download.canva.com). TikTok stays paused: the owner posts.
+- Delivery (owner, 2026-10-21 09:34: "put them straight into Canva, I'll save them myself"): no export, no
+  links. Each day at 17:00 Paris the day's 3 designs are moved into the Canva folder "A poster" (FAHYWtUQ92Q)
+  and the owner gets a one-line message with their titles. TikTok stays paused: the owner posts.
 - New dilemmas written this week, for any channel, are 2-choice only.
 
 | Day | # | Title | A | B | Canva id |
