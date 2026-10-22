@@ -2,6 +2,27 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-22, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
+
+- Found (fresh `getScheduledPosts`, 10-19 to 11-08, no `ERROR`): **every X dilemma post from 10-20 12:00 to 11-03 21:00
+  (59 posts) was switched to `draft: true` on 10-20 between 08:43 and 08:53 Paris** (ids changed, uuids kept: same
+  pattern as the TikTok pause of 10-17). Nothing about it in this repo. Result: no X dilemma has gone out since
+  10-19 21:00; the 10-20, 10-21 and 10-22 morning dilemma slots passed as drafts.
+- Also new, created 10-20 09:29 to 09:31, not in the playbook: a nightly X thread stream at 22:30 (mysteries, a hook
+  plus 4 replies: Mary Celeste, Wow! signal, Chicago TV hijack, Devon footprints, Hessdalen, Kentucky meat shower,
+  Centralia, Bloop, Dancing plague, Flannan Isles, Voynich, Taos hum, Somerton man...), live (`draft: false`), every
+  night 10-20 to at least 11-02. Theory stream unchanged (4 a day to 10-25, then 10-26 19:00, 10-27 15:00, 10-30 19:00).
+- Decision: read as a deliberate pause of X dilemmas made after this routine's prompt was written. Did NOT un-draft
+  anything, did NOT write, render or schedule new dilemmas (every dilemma slot to 11-03 is held by a draft, and
+  adding live ones would undo a choice whose reason is unknown). Owner notified and asked: restart the drafts, or keep
+  X dilemmas paused?
+- TikTok: posts still in Metricool as drafts (16:00 and 22:00, through at least 11-08), none live, none `ERROR`. Left as they are.
+- X followers (TTEV01): 189 (10-18), 195 (10-19), 195 (10-20), 194 (10-21). Flat since dilemmas stopped (was about
+  +10 a day). Impressions per day (TTEV11): 0 for 10-22, nothing else.
+- X posts 10-19 to 10-21: last live dilemmas (10-19) 7 to 19 impressions, best "Loved or respected?" 18 (1 like,
+  1 other reply). Theory: Voynich 39, Homer's blue 14, holographic 13, Phantom Time 14; 10-21 posts 3 to 7.
+  Threads: The Buzzer 14, Mary Celeste 5 (hours old).
+
 ## 2026-10-19, 08:55 (scheduled run, nobody watching; X only, TikTok left to the owner)
 
 - Scope: owner's instruction of 10-18, nothing done on TikTok. Metricool shows 52 TikTok posts 10-18 to 11-12
