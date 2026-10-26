@@ -112,7 +112,13 @@ All 103 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with
 | WAKE UP HERE FOREVER | 5 | 11-27 22:00 | 11-02 18:00 | 2026-11/f13-2-dilemma.jpg |
 | INSTANT MASTERY | 6 | 11-24 22:00 | 11-01 15:00 | 2026-11/f14-2-dilemma.jpg |
 
-## Where the schedule stands (checked 2026-10-22)
+## Where the schedule stands (checked 2026-10-26)
+
+- Unchanged since 10-22: X dilemmas 10-20 to 11-03 are drafts, except 10-30 15:00 HOW FAR AHEAD? (still live).
+  Threads live nightly 22:30 to 11-02. Theory: 10-26 19:00, 10-27 15:00, 10-30 19:00. Nothing on X from 11-04.
+  Waiting for the owner: restart the X dilemma drafts, or keep them paused?
+
+## Where the schedule stood (checked 2026-10-22)
 
 - X dilemmas: the 59 posts 10-20 12:00 to 11-03 21:00 are all `draft: true` since 10-20 08:43 (not by this routine;
   waiting for the owner). The X column above shows their planned dates, but none from 10-20 on has gone out.

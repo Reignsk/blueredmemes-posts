@@ -2,6 +2,19 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-26, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
+
+- Found (fresh `getScheduledPosts`, 10-25 to 11-05, no `ERROR`): same state as 10-22. Every X dilemma post 10-25 to
+  11-03 is still `draft: true` (edited 10-20 08:43-08:53), except one: **10-30 15:00 "HOW FAR AHEAD?"** (created
+  10-15, never touched) is still live (`draft: false`, `PENDING`) and will go out unless the owner drafts it too.
+  Nightly 22:30 thread stream live to 11-02 (last: Somerton man). Theory stream: only 10-26 19:00, 10-27 15:00,
+  10-30 19:00 left. Nothing on X from 11-03 except drafts, nothing at all from 11-04.
+- No answer from the owner to the 10-22 question (nothing in this repo or in Metricool). Decision unchanged: no live
+  dilemma added over slots held by drafts, nothing un-drafted, no new dilemma written or rendered (the 7-day horizon,
+  to 11-02, is entirely held by drafts). Owner notified again.
+- TikTok: posts still drafts (16:00/22:00 through at least 11-05), none live, none `ERROR`. Left as they are.
+- Analytics not pulled this run (nothing to steer while dilemmas are paused).
+
 ## 2026-10-22, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
 
 - Found (fresh `getScheduledPosts`, 10-19 to 11-08, no `ERROR`): **every X dilemma post from 10-20 12:00 to 11-03 21:00
