@@ -2,6 +2,19 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-10-29, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
+
+- Found (fresh `getScheduledPosts`, 10-27 to 11-05, no `ERROR`): unchanged since 10-22. Every X dilemma post 10-27 to
+  11-03 is still `draft: true`, except **10-30 15:00 "HOW FAR AHEAD?"** (still live, will go out). Nightly 22:30 thread
+  stream live to 11-02 (last: Somerton man). Theory stream: last post 10-30 19:00 (Mockingbird). **From 11-03 nothing
+  live on X; from 11-04 nothing at all.**
+- Still no answer from the owner to the 10-22 question (no new commit, nothing changed in Metricool). Decision unchanged:
+  nothing un-drafted, no new dilemma written, rendered or scheduled (filling 11-04/11-05 with live dilemmas would undo
+  a pause whose reason is unknown). Owner notified a third time.
+- TikTok: posts still drafts (16:00/22:00 through at least 11-05), none live, none `ERROR`. Left as they are.
+- X followers (TTEV01): 196 (10-22), 200 (10-23), 204 (10-24), 218 (10-25), 217 (10-26), 221 (10-27), 222 (10-28).
+  Slowly growing on threads and theory posts alone. Impressions per day (TTEV11): 0 for 10-29, nothing else.
+
 ## 2026-10-26, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
 
 - Found (fresh `getScheduledPosts`, 10-25 to 11-05, no `ERROR`): same state as 10-22. Every X dilemma post 10-25 to
