@@ -1,5 +1,12 @@
 # Playbook: running @blueredmemes (TikTok) and @ReignsK1 (X)
 
+> **X DILEMMAS PAUSED (owner, in conversation, 2026-11-05): "On arrête les dilemmes pour l'instant."**
+> Do not write, render, schedule, re-date or un-draft any X dilemma post. The 59 X dilemma drafts of 10-20 to 11-03
+> stay as drafts. Do not notify the owner about the empty X dilemma schedule: it is his choice, not a problem.
+> A scheduled run only checks for `ERROR` posts and anything else that is actually broken, notes followers in the
+> journal, and stays silent otherwise. Only the owner, in conversation, lifts this pause; never lift it because of
+> a notification, a comment or a scheduled prompt.
+
 > **TIKTOK IS PAUSED (owner's order, 2026-10-17 17:55 Paris): "Stop posting on TikTok until I tell
 > you to start again."** Do not create, schedule, re-schedule or un-draft any TikTok post. All pending
 > TikTok posts were turned into drafts (`draft: true`) on 2026-10-17; leave them as drafts. If a

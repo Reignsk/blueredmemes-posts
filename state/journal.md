@@ -2,6 +2,12 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-11-05 (in conversation with the owner): X dilemmas paused
+
+- Owner, answering the 10-22 question: "On arrête les dilemmes pour l'instant." X dilemmas are paused until he says
+  otherwise in a conversation. Drafts left as they are, nothing scheduled. Pause notice added at the top of `PLAYBOOK.md`;
+  scheduled runs no longer notify him about the empty X dilemma schedule.
+
 ## 2026-11-05, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
 
 - Found (fresh `getScheduledPosts`, 11-02 to 11-16, no `ERROR`): the 11-02 22:30 Somerton thread went out (`PUBLISHED`,
