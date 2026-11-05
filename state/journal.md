@@ -2,6 +2,18 @@
 
 Newest entry first. One dated entry per run: what was done, what the numbers say, what to try next.
 
+## 2026-11-05, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
+
+- Found (fresh `getScheduledPosts`, 11-02 to 11-16, no `ERROR`): the 11-02 22:30 Somerton thread went out (`PUBLISHED`,
+  its 4 replies still `PUBLISHING`). **Nothing has been live on X since then: no dilemma, no thread, no theory post
+  from 11-03 to at least 11-16.** The X dilemma drafts of 10-20 to 11-03 are untouched (`draft: true`, dates now past).
+- Still no answer from the owner to the 10-22 question (no commit since 11-02, nothing changed in Metricool).
+  Decision unchanged: nothing un-drafted, no new dilemma written, rendered or scheduled. His drafting of 10-20 is the
+  latest sign of what he wants for X dilemmas; filling an empty X with live posts would override it. The 59 drafted
+  posts are unpublished and can restart with un-drafting and re-dating only. Owner notified a fifth time.
+- TikTok: drafts only (16:00/22:00 through at least 11-16), none live, none `ERROR`. Left as they are.
+- X followers (TTEV01): 223 (11-01), 222 (11-02), 229 (11-03), 232 (11-04). Impressions per day (TTEV11): 0 for 11-05.
+
 ## 2026-11-02, morning (scheduled run, nobody watching; X only, TikTok left to the owner)
 
 - Found (fresh `getScheduledPosts`, 10-29 to 11-13, no `ERROR`): unchanged since 10-22. Every X dilemma post 10-29 to

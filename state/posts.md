@@ -130,6 +130,12 @@ All 103 dilemmas are in the bank (`tools/page.html`) and can be re-rendered with
   Threads live nightly 22:30 to 11-02. Theory: 10-26 19:00, 10-27 15:00, 10-30 19:00. Nothing on X from 11-04.
   Waiting for the owner: restart the X dilemma drafts, or keep them paused?
 
+## Where the schedule stood (checked 2026-11-05)
+
+- X: nothing live from 11-03 on (last post: the 11-02 22:30 thread). Dilemma drafts 10-20 to 11-03 still `draft: true`,
+  their dates now past; none of them has gone out, so all 59 are still unused on X. Waiting for the owner.
+- TikTok: drafts only, left to the owner.
+
 ## Where the schedule stood (checked 2026-10-22)
 
 - X dilemmas: the 59 posts 10-20 12:00 to 11-03 21:00 are all `draft: true` since 10-20 08:43 (not by this routine;
