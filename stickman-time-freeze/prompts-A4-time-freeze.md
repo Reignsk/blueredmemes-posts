@@ -10,7 +10,7 @@
 1. **(Optionnel mais recommandé) Fiche personnage d'abord** : génère une image du héros avec le prompt de la section 1b, garde la meilleure, et joins-la comme **image de référence personnage** à chaque clip qui la supporte. Ça aide beaucoup la cohérence ; ça ne remplace pas le texte du prompt.
 2. **Génère les 11 clips S1 → S11** (section 3). Chaque prompt est autonome : copie-le en entier, sans rien raccourcir.
 3. **Monte** selon le guide de raccord (section 4) : garde seulement les plages « retained », pose la voix off **mp3 complète** sur la timeline, puis musique, bruitages et sous-titres (section 5).
-4. Les durées « generate » sont des **cibles** non vérifiées : si ton modèle ne fait que 5 s ou 10 s, génère la durée disponible la plus proche et garde la même plage utile.
+4. Durées choisies pour **Google Flow · Omni Flash 1.1** (réglable par pas de 2 s, 3 crédits par tranche de 2 s) : total **102 crédits** pour les 11 clips, hors retouches. Si un clip coupe l'action trop tôt, regénère-le avec 2 s de plus.
 
 **Plateforme conseillée par la skill** : Google Flow (Veo), c'est là que les échantillons A4 ont été faits. Tout modèle texte→vidéo 9:16 avec image de référence convient (Higgsfield, Kling, etc.). Fais **d'abord 1 ou 2 clips tests en basse résolution** (par ex. S4 et S8) avant de tout lancer.
 
@@ -46,15 +46,15 @@ Character reference sheet, 9:16 vertical, plain soft warm-white background, full
 | Source | Generate | Retained (source) | Film | Lieu | Voix off couverte |
 |---|---|---|---|---|---|
 | S1 | 8 s | 0.0–8.0 | 0.0–8.0 | Salle des pouvoirs | Choose one power… / Time freeze. Mind reading. Shapeshifting. |
-| S2 | 8 s | 0.0–5.3 | 8.0–13.3 | Salle des pouvoirs | Or super strength. You chose… TIME FREEZE! |
+| S2 | 6 s | 0.0–5.3 | 8.0–13.3 | Salle des pouvoirs | Or super strength. You chose… TIME FREEZE! |
 | S3 | 6 s | 0.0–4.5 | 13.3–17.8 | Carrefour en ville, heure dorée | Imagine snapping your fingers… and the whole world just stops. |
 | S4 | 8 s | 0.0–7.2 | 17.8–25.0 | Même rue figée + terrasse de café | Cars frozen… Birds… A cup of coffee… never hits the ground. |
-| S5 | 6 s | 0.0–3.0 | 25.0–28.0 | Entrée de l'école, matin | Late for school? Snap. Now you have all the time you need. |
-| S6 | 6 s | 0.0–3.5 | 28.0–31.5 | Passage piéton, quartier | Someone about to cross the road without looking? Snap. |
-| S7 | 8 s | 0.0–5.2 | 31.5–36.7 | Même passage piéton | You walk over… pull them back. Nobody ever knows… |
+| S5 | 4 s | 0.0–3.0 | 25.0–28.0 | Entrée de l'école, matin | Late for school? Snap. Now you have all the time you need. |
+| S6 | 4 s | 0.0–3.5 | 28.0–31.5 | Passage piéton, quartier | Someone about to cross the road without looking? Snap. |
+| S7 | 6 s | 0.0–5.2 | 31.5–36.7 | Même passage piéton | You walk over… pull them back. Nobody ever knows… |
 | S8 | 8 s | 0.0–7.7 | 36.7–44.4 | Salle de classe | Sleep for ten hours… read every answer… during a test. |
 | S9 | 8 s | 0.0–6.2 | 44.4–50.6 | Rue figée, nuit, horloge géante | But here's the catch… you still get older. |
-| S10 | 6 s | 0.0–3.6 | 50.6–54.2 | Parc | One minute for everyone else… a whole year for you. |
+| S10 | 4 s | 0.0–3.6 | 50.6–54.2 | Parc | One minute for everyone else… a whole year for you. |
 | S11 | 6 s | 0.0–5.4 | 54.2–59.6 | Même parc | So… would you still use it? Tell me in the comments… episode two. |
 
 Les temps « Film » sont approximatifs (pauses détectées dans la voix off) : recale chaque coupe sur l'audio réel au montage.
@@ -95,7 +95,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ### S2 — Le choix (film 8.0–13.3)
 
 ```text
-OUTPUT: Source S2. Generate 8 seconds, 9:16 vertical. Retain 0.0–5.3 s only (film 8.0–13.3 s); the tail is unused.
+OUTPUT: Source S2. Generate 6 seconds, 9:16 vertical. Retain 0.0–5.3 s only (film 8.0–13.3 s); the tail is unused.
 
 ENVIRONMENT: Full-color 2D cartoon environment with clean contours and gentle atmospheric light: a small round floating stone platform under a calm deep-purple and navy night sky with soft twinkling stars and drifting pale mist. Above the platform float four large round glowing medallions arranged in a gentle vertical arc: an electric blue medallion with a simple clock icon (plain face, two hands, no numerals), a soft violet medallion with a simple brain icon, an emerald green medallion with a simple human-silhouette icon and a curved swap arrow, and a warm orange medallion with a simple clenched-fist icon. Icons are plain shapes only.
 
@@ -178,7 +178,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ### S5 — En retard à l'école (film 25.0–28.0)
 
 ```text
-OUTPUT: Source S5. Generate 6 seconds, 9:16 vertical. Retain 0.0–3.0 s (film 25.0–28.0 s); fast pacing.
+OUTPUT: Source S5. Generate 4 seconds, 9:16 vertical. Retain 0.0–3.0 s (film 25.0–28.0 s); fast pacing.
 
 ENVIRONMENT: Full-color 2D cartoon school entrance on a bright morning: red-brick school building, open iron gate, green bushes, clear blue sky. A large round wall clock above the entrance with a plain face and two hands, no numerals; the minute hand is just one tick before the top. No other people.
 
@@ -205,7 +205,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ### S6 — Le piéton distrait (film 28.0–31.5)
 
 ```text
-OUTPUT: Source S6. Generate 6 seconds, 9:16 vertical. Retain 0.0–3.5 s (film 28.0–31.5 s).
+OUTPUT: Source S6. Generate 4 seconds, 9:16 vertical. Retain 0.0–3.5 s (film 28.0–31.5 s).
 
 ENVIRONMENT: Full-color 2D cartoon residential street on a sunny afternoon: a two-lane road with a white zebra crosswalk, green trees, small colorful houses, sidewalks on both sides.
 
@@ -236,7 +236,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ### S7 — Le sauvetage invisible (film 31.5–36.7)
 
 ```text
-OUTPUT: Source S7. Generate 8 seconds, 9:16 vertical. Retain 0.0–5.2 s (film 31.5–36.7 s).
+OUTPUT: Source S7. Generate 6 seconds, 9:16 vertical. Retain 0.0–5.2 s (film 31.5–36.7 s).
 
 ENVIRONMENT: The same full-color 2D cartoon residential street with a white zebra crosswalk, green trees and small colorful houses, frozen in time at the start: cool desaturated blue-gray with tiny pale-blue dust specks hanging in the air.
 
@@ -329,7 +329,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ### S10 — Une minute pour eux, un an pour toi (film 50.6–54.2)
 
 ```text
-OUTPUT: Source S10. Generate 6 seconds, 9:16 vertical. Retain 0.0–3.6 s (film 50.6–54.2 s).
+OUTPUT: Source S10. Generate 4 seconds, 9:16 vertical. Retain 0.0–3.6 s (film 50.6–54.2 s).
 
 ENVIRONMENT: Full-color 2D cartoon city park with a large tree, a wooden bench and a path, frozen in time: cool desaturated blue-gray, a few leaves hanging motionless in mid-air, tiny pale-blue dust specks.
 
