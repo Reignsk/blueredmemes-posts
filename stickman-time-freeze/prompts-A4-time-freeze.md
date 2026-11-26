@@ -97,7 +97,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 ```text
 OUTPUT: Source S2. Generate 6 seconds, 9:16 vertical. Retain 0.0–5.3 s only (film 8.0–13.3 s); the tail is unused.
 
-ENVIRONMENT: Full-color 2D cartoon environment with clean contours and gentle atmospheric light: a small round floating stone platform under a calm deep-purple and navy night sky with soft twinkling stars and drifting pale mist. Above the platform float four large round glowing medallions arranged in a gentle vertical arc: an electric blue medallion with a simple clock icon (plain face, two hands, no numerals), a soft violet medallion with a simple brain icon, an emerald green medallion with a simple human-silhouette icon and a curved swap arrow, and a warm orange medallion with a simple clenched-fist icon. Icons are plain shapes only.
+ENVIRONMENT: Full-color 2D cartoon environment with clean contours and gentle atmospheric light: a small round floating rocky platform with patches of moss above soft drifting clouds, under a calm deep-purple and navy night sky with soft twinkling stars. Above the platform float five round glowing medallions in an arc: at the top an electric blue medallion with a simple clock icon (plain face, two hands, no numerals); upper left a blue medallion with a simple abstract figure icon; upper right a warm orange medallion with a simple clenched-fist icon; lower left a soft violet medallion with a simple brain icon; lower right an emerald green medallion with a simple person icon and two curved arrows. Icons are plain shapes only. If a start image is provided, match its layout exactly.
 
 CHARACTER LOCK — THE HERO: One minimalist 2D cartoon protagonist with a white filled circular head, two small dark oval eyes, simple eyebrow strokes and a short curved mouth. The torso is a slim closed tapered shape with solid white fill inside its dark outline. Both arms and both legs are dark single-line strokes with constant medium weight; hands are small dark rounded shapes and feet are short dark rounded strokes. No hair or clothing accessories. Keep the same head-to-body proportions, white head and torso fill, and outline weight in every shot. Exactly two arms and two legs exist; a moving limb replaces its previous pose rather than leaving another limb behind. Expressions change only the simple facial marks, never the head shape or character design.
 
@@ -105,12 +105,12 @@ PALETTE: deep purple and navy sky, electric blue, soft violet, emerald green and
 
 COMPOSITION (9:16): hero at the bottom center, medallions above; push-in toward the blue medallion, then medium shot of the hero.
 
-OPENING STATE: blue, violet and green medallions glowing, orange dim; the hero looking toward the orange medallion.
+OPENING STATE: the clock, violet and green medallions glowing, the orange and left blue medallions softer; the hero standing at the bottom center, slightly turned, looking up.
 
 TIMED ACTION:
-[0.0–0.9 s] The orange fist medallion lights up with a small punchy shake; all four now glow.
+[0.0–0.9 s] The orange fist medallion lights up brightly with a small punchy shake; the hero turns his head toward it.
 [0.9–2.0 s] The hero steps forward and moves one hand slowly from medallion to medallion, choosing; camera pushes in.
-[2.0–3.2 s] The hero reaches up decisively and touches the electric blue clock medallion; the other three fade dark.
+[2.0–3.2 s] The hero reaches up decisively and touches the electric blue clock medallion; all the other medallions fade dark.
 [3.2–5.3 s] The clock icon's hands stop abruptly. A ring of electric blue light bursts outward from the medallion and sweeps across the scene: the stars stop twinkling, the mist freezes in place, tiny pale-blue dust specks hang in the air, and everything except the hero turns cool desaturated blue-gray. The hero looks down at his own hand in amazement.
 
 SOUND: No speech, no voices, no narration, no music. Optional single deep whoosh at the freeze.
@@ -392,7 +392,7 @@ NEGATIVE: No visible words, letters, numbers, captions, subtitles, logos, waterm
 
 | Coupe | De → Vers | Lien |
 |---|---|---|
-| 8.0 | S1 → S2 | Continu : même salle, 3 médaillons allumés, le héros se tourne vers l'orange. |
+| 8.0 | S1 → S2 | Continu : utiliser la **dernière image de S1** comme image de départ de S2 (même disposition à 5 médaillons). |
 | 13.3 | S2 → S3 | Changement de lieu : la main qui regarde (S2) → la main qui claque (S3). Coupe sur l'étincelle. |
 | 17.8 | S3 → S4 | Même rue figée : vue haute large → niveau du sol. |
 | 25.0 | S4 → S5 | Changement de lieu, coupe franche sur « Late for school? ». |
